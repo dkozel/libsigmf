@@ -35,7 +35,7 @@ set(libsigmf_deps "")
 
 # flatbuffers
 if (${USE_SYSTEM_FLATBUFFERS} OR CMAKE_CROSSCOMPILING)
-  find_package(Flatbuffers REQUIRED)
+  find_package(FlatBuffers REQUIRED NAMES FlatBuffers Flatbuffers)
 else() 
   message(STATUS "Flatbuffers was not found. Submodule will be used. This will require building flatc")
   set(FLATBUFFERS_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/flatbuffers/include")
