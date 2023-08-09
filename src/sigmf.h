@@ -63,15 +63,15 @@ struct SigMF {
      * Write over the fields with a new record from a JSON object
      */
     void from_json(const json &j) {
-        global.from_json(j["global"]);
+        global.from_json(j.at("global"));
         captures.clear();
         annotations.clear();
-        for (auto &element : j["annotations"]) {
+        for (auto &element : j.at("annotations")) {
             AnnotationType a;
             a.from_json(element);
             annotations.emplace_back(a);
         }
-        for (auto &element : j["captures"]) {
+        for (auto &element : j.at("captures")) {
             CaptureType c;
             c.from_json(element);
             captures.emplace_back(c);
@@ -96,7 +96,7 @@ struct SigMFCollection {
      * Write over the fields with a new record from a JSON object
      */
     void from_json(const json &j) {
-        collection.from_json(j["collection"]);
+        collection.from_json(j.at("collection"));
     }
 };
 
