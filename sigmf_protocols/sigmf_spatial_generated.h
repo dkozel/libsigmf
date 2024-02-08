@@ -412,6 +412,7 @@ struct CaptureT : public flatbuffers::NativeTable {
   std::vector<std::shared_ptr<sigmf::spatial::cartesian_pointT>> element_geometry{};
   flatbuffers::Optional<double> phase_offset = flatbuffers::nullopt;
   std::shared_ptr<sigmf::spatial::sigmf_calibrationT> calibration{};
+  flatbuffers::Optional<double> aperture_rotation = flatbuffers::nullopt;
 };
 
 struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
@@ -426,7 +427,8 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_EMITTER_BEARING = 8,
     VT_ELEMENT_GEOMETRY = 10,
     VT_PHASE_OFFSET = 12,
-    VT_CALIBRATION = 14
+    VT_CALIBRATION = 14,
+    VT_APERTURE_ROTATION = 16
   };
   flatbuffers::Optional<double> aperture_azimuth() const {
     return GetOptional<double, double>(VT_APERTURE_AZIMUTH);
@@ -446,6 +448,9 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::spatial::sigmf_calibration *calibration() const {
     return GetPointer<const sigmf::spatial::sigmf_calibration *>(VT_CALIBRATION);
   }
+  flatbuffers::Optional<double> aperture_rotation() const {
+    return GetOptional<double, double>(VT_APERTURE_ROTATION);
+  }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<double>(verifier, VT_APERTURE_AZIMUTH) &&
@@ -459,6 +464,7 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            VerifyField<double>(verifier, VT_PHASE_OFFSET) &&
            VerifyOffset(verifier, VT_CALIBRATION) &&
            verifier.VerifyTable(calibration()) &&
+           VerifyField<double>(verifier, VT_APERTURE_ROTATION) &&
            verifier.EndTable();
   }
   CaptureT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
@@ -488,6 +494,9 @@ struct CaptureBuilder {
   void add_calibration(flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration) {
     fbb_.AddOffset(Capture::VT_CALIBRATION, calibration);
   }
+  void add_aperture_rotation(double aperture_rotation) {
+    fbb_.AddElement<double>(Capture::VT_APERTURE_ROTATION, aperture_rotation);
+  }
   explicit CaptureBuilder(flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
@@ -506,8 +515,10 @@ inline flatbuffers::Offset<Capture> CreateCapture(
     flatbuffers::Offset<sigmf::spatial::sigmf_bearing> emitter_bearing = 0,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry = 0,
     flatbuffers::Optional<double> phase_offset = flatbuffers::nullopt,
-    flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration = 0) {
+    flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration = 0,
+    flatbuffers::Optional<double> aperture_rotation = flatbuffers::nullopt) {
   CaptureBuilder builder_(_fbb);
+  if(aperture_rotation) { builder_.add_aperture_rotation(*aperture_rotation); }
   if(phase_offset) { builder_.add_phase_offset(*phase_offset); }
   if(aperture_azimuth) { builder_.add_aperture_azimuth(*aperture_azimuth); }
   builder_.add_calibration(calibration);
@@ -524,7 +535,8 @@ inline flatbuffers::Offset<Capture> CreateCaptureDirect(
     flatbuffers::Offset<sigmf::spatial::sigmf_bearing> emitter_bearing = 0,
     const std::vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry = nullptr,
     flatbuffers::Optional<double> phase_offset = flatbuffers::nullopt,
-    flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration = 0) {
+    flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration = 0,
+    flatbuffers::Optional<double> aperture_rotation = flatbuffers::nullopt) {
   auto element_geometry__ = element_geometry ? _fbb.CreateVector<flatbuffers::Offset<sigmf::spatial::cartesian_point>>(*element_geometry) : 0;
   return sigmf::spatial::CreateCapture(
       _fbb,
@@ -533,7 +545,8 @@ inline flatbuffers::Offset<Capture> CreateCaptureDirect(
       emitter_bearing,
       element_geometry__,
       phase_offset,
-      calibration);
+      calibration,
+      aperture_rotation);
 }
 
 flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
@@ -909,6 +922,7 @@ inline void Capture::UnPackTo(CaptureT *_o, const flatbuffers::resolver_function
   { auto _e = element_geometry(); if (_e) { _o->element_geometry.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->element_geometry[_i] = std::shared_ptr<sigmf::spatial::cartesian_pointT>(_e->Get(_i)->UnPack(_resolver)); } } }
   { auto _e = phase_offset(); _o->phase_offset = _e; }
   { auto _e = calibration(); if (_e) _o->calibration = std::shared_ptr<sigmf::spatial::sigmf_calibrationT>(_e->UnPack(_resolver)); }
+  { auto _e = aperture_rotation(); _o->aperture_rotation = _e; }
 }
 
 inline flatbuffers::Offset<Capture> Capture::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -925,6 +939,7 @@ inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder
   auto _element_geometry = _o->element_geometry.size() ? _fbb.CreateVector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> (_o->element_geometry.size(), [](size_t i, _VectorArgs *__va) { return Createcartesian_point(*__va->__fbb, __va->__o->element_geometry[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _phase_offset = _o->phase_offset;
   auto _calibration = _o->calibration ? Createsigmf_calibration(_fbb, _o->calibration.get(), _rehasher) : 0;
+  auto _aperture_rotation = _o->aperture_rotation;
   return sigmf::spatial::CreateCapture(
       _fbb,
       _aperture_azimuth,
@@ -932,7 +947,8 @@ inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder
       _emitter_bearing,
       _element_geometry,
       _phase_offset,
-      _calibration);
+      _calibration,
+      _aperture_rotation);
 }
 
 inline AnnotationT *Annotation::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
@@ -1106,7 +1122,8 @@ inline const flatbuffers::TypeTable *CaptureTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 0 },
     { flatbuffers::ET_SEQUENCE, 1, 1 },
     { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_SEQUENCE, 0, 2 }
+    { flatbuffers::ET_SEQUENCE, 0, 2 },
+    { flatbuffers::ET_DOUBLE, 0, -1 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
     sigmf::spatial::sigmf_bearingTypeTable,
@@ -1119,10 +1136,11 @@ inline const flatbuffers::TypeTable *CaptureTypeTable() {
     "emitter_bearing",
     "element_geometry",
     "phase_offset",
-    "calibration"
+    "calibration",
+    "aperture_rotation"
   };
   static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 6, type_codes, type_refs, nullptr, nullptr, names
+    flatbuffers::ST_TABLE, 7, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }

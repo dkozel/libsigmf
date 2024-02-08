@@ -33,6 +33,7 @@ table Capture {
     element_geometry:[cartesian_point];
     phase_offset:double=null;
     calibration:sigmf_calibration;
+    aperture_rotation:double=null;
 }
 
 table Annotation {
