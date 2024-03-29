@@ -1,0 +1,33 @@
+
+namespace sigmf.traceability;
+
+table traceability_origin {
+    account:string;             // account name or identifier
+    container:string;           // container or repository name
+    file_path:string;           // path to the file within the container
+}
+
+table traceability_datachange {
+    author:string;              // email address of the author who changed the metadata
+    datetime:string;            // timestamp of the modification in ISO 8601 format
+}
+
+table Global {
+    last_modified:traceability_datachange;  // captures the author and timestamp of the most recent modification
+    last_reviewed:traceability_datachange;  // captures the author and timestamp of the most recent review
+    revision:int;                           // specifies the revision number associated with the metadata
+    origin:traceability_origin;             // provides information about the origin of the data
+}
+
+table Capture { /*`traceability` does not extend `captures`*/ }
+
+table Annotation {
+    last_modified:traceability_datachange;   // captures the author and timestamp of the most recent modification
+    last_reviewed:traceability_datachange;   // captures the author and timestamp of the most recent review
+}
+
+table Descr {
+    global:Global;
+    annotation:Annotation;
+    capture:Capture;
+}
