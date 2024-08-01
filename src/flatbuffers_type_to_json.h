@@ -45,7 +45,7 @@ static json to_json(const typename R::NativeTableType &obj) {
 template<typename R>
 static typename R::NativeTableType from_json(json json_value) {
     if (!json_value.is_object()) {
-        throw std::invalid_argument("json_value must be a JSON object");
+        throw std::invalid_argument("Argument to from_json() must be a JSON Object");
     }
     R *ttype;
     typename R::NativeTableType return_object;
