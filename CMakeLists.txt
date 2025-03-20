@@ -34,11 +34,9 @@ set(LIBSIGMF_CMAKE_PROJECT_TARGETS_FILE "${LIBSIGMF_CMAKE_CONFIG_DIR}/${PROJECT_
 set(libsigmf_deps "")
 
 # flatbuffers
-if (${USE_SYSTEM_FLATBUFFERS})
+if (${USE_SYSTEM_FLATBUFFERS} OR CMAKE_CROSSCOMPILING)
   find_package(Flatbuffers REQUIRED)
-endif (${USE_SYSTEM_FLATBUFFERS})
-
-if (NOT ${USE_SYSTEM_FLATBUFFERS})
+else() 
   message(STATUS "Flatbuffers was not found. Submodule will be used. This will require building flatc")
   set(FLATBUFFERS_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/flatbuffers/include")
   # Initialize Flatbuffers submodule if unititialized
@@ -55,7 +53,9 @@ if (NOT ${USE_SYSTEM_FLATBUFFERS})
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/flatbuffers
           ${CMAKE_CURRENT_BINARY_DIR}/flatbuffers-build
           EXCLUDE_FROM_ALL)
-endif (NOT ${USE_SYSTEM_FLATBUFFERS})
+  #Export Target so that we can pull in if we're cross compiling
+   export(TARGETS flatc FILE "${CMAKE_BINARY_DIR}/FlatbuffersConfig.cmake")
+endif (${USE_SYSTEM_FLATBUFFERS} OR CMAKE_CROSSCOMPILING)
 
 # nlohmann_json
 if (${USE_SYSTEM_JSON})
