@@ -6,6 +6,13 @@
 
 #include "flatbuffers/flatbuffers.h"
 
+// Ensure the included flatbuffers.h is the same version as when this file was
+// generated, otherwise it may not be compatible.
+static_assert(FLATBUFFERS_VERSION_MAJOR == 23 &&
+              FLATBUFFERS_VERSION_MINOR == 3 &&
+              FLATBUFFERS_VERSION_REVISION == 3,
+             "Non-compatible flatbuffers version included");
+
 namespace sigmf {
 namespace traceability {
 
@@ -33,29 +40,29 @@ struct Descr;
 struct DescrBuilder;
 struct DescrT;
 
-inline const flatbuffers::TypeTable *traceability_originTypeTable();
+inline const ::flatbuffers::TypeTable *traceability_originTypeTable();
 
-inline const flatbuffers::TypeTable *traceability_datachangeTypeTable();
+inline const ::flatbuffers::TypeTable *traceability_datachangeTypeTable();
 
-inline const flatbuffers::TypeTable *GlobalTypeTable();
+inline const ::flatbuffers::TypeTable *GlobalTypeTable();
 
-inline const flatbuffers::TypeTable *CaptureTypeTable();
+inline const ::flatbuffers::TypeTable *CaptureTypeTable();
 
-inline const flatbuffers::TypeTable *AnnotationTypeTable();
+inline const ::flatbuffers::TypeTable *AnnotationTypeTable();
 
-inline const flatbuffers::TypeTable *DescrTypeTable();
+inline const ::flatbuffers::TypeTable *DescrTypeTable();
 
-struct traceability_originT : public flatbuffers::NativeTable {
+struct traceability_originT : public ::flatbuffers::NativeTable {
   typedef traceability_origin TableType;
   std::string account{};
   std::string container{};
   std::string file_path{};
 };
 
-struct traceability_origin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct traceability_origin FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef traceability_originT NativeTableType;
   typedef traceability_originBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return traceability_originTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -63,16 +70,16 @@ struct traceability_origin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
     VT_CONTAINER = 6,
     VT_FILE_PATH = 8
   };
-  const flatbuffers::String *account() const {
-    return GetPointer<const flatbuffers::String *>(VT_ACCOUNT);
+  const ::flatbuffers::String *account() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_ACCOUNT);
   }
-  const flatbuffers::String *container() const {
-    return GetPointer<const flatbuffers::String *>(VT_CONTAINER);
+  const ::flatbuffers::String *container() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CONTAINER);
   }
-  const flatbuffers::String *file_path() const {
-    return GetPointer<const flatbuffers::String *>(VT_FILE_PATH);
+  const ::flatbuffers::String *file_path() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_FILE_PATH);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_ACCOUNT) &&
            verifier.VerifyString(account()) &&
@@ -82,40 +89,40 @@ struct traceability_origin FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table 
            verifier.VerifyString(file_path()) &&
            verifier.EndTable();
   }
-  traceability_originT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(traceability_originT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<traceability_origin> Pack(flatbuffers::FlatBufferBuilder &_fbb, const traceability_originT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  traceability_originT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(traceability_originT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<traceability_origin> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const traceability_originT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct traceability_originBuilder {
   typedef traceability_origin Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_account(flatbuffers::Offset<flatbuffers::String> account) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_account(::flatbuffers::Offset<::flatbuffers::String> account) {
     fbb_.AddOffset(traceability_origin::VT_ACCOUNT, account);
   }
-  void add_container(flatbuffers::Offset<flatbuffers::String> container) {
+  void add_container(::flatbuffers::Offset<::flatbuffers::String> container) {
     fbb_.AddOffset(traceability_origin::VT_CONTAINER, container);
   }
-  void add_file_path(flatbuffers::Offset<flatbuffers::String> file_path) {
+  void add_file_path(::flatbuffers::Offset<::flatbuffers::String> file_path) {
     fbb_.AddOffset(traceability_origin::VT_FILE_PATH, file_path);
   }
-  explicit traceability_originBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit traceability_originBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<traceability_origin> Finish() {
+  ::flatbuffers::Offset<traceability_origin> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<traceability_origin>(end);
+    auto o = ::flatbuffers::Offset<traceability_origin>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<traceability_origin> Createtraceability_origin(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::String> account = 0,
-    flatbuffers::Offset<flatbuffers::String> container = 0,
-    flatbuffers::Offset<flatbuffers::String> file_path = 0) {
+inline ::flatbuffers::Offset<traceability_origin> Createtraceability_origin(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> account = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> container = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> file_path = 0) {
   traceability_originBuilder builder_(_fbb);
   builder_.add_file_path(file_path);
   builder_.add_container(container);
@@ -123,8 +130,8 @@ inline flatbuffers::Offset<traceability_origin> Createtraceability_origin(
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<traceability_origin> Createtraceability_originDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<traceability_origin> Createtraceability_originDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *account = nullptr,
     const char *container = nullptr,
     const char *file_path = nullptr) {
@@ -138,31 +145,31 @@ inline flatbuffers::Offset<traceability_origin> Createtraceability_originDirect(
       file_path__);
 }
 
-flatbuffers::Offset<traceability_origin> Createtraceability_origin(flatbuffers::FlatBufferBuilder &_fbb, const traceability_originT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<traceability_origin> Createtraceability_origin(::flatbuffers::FlatBufferBuilder &_fbb, const traceability_originT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct traceability_datachangeT : public flatbuffers::NativeTable {
+struct traceability_datachangeT : public ::flatbuffers::NativeTable {
   typedef traceability_datachange TableType;
   std::string author{};
   std::string datetime{};
 };
 
-struct traceability_datachange FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct traceability_datachange FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef traceability_datachangeT NativeTableType;
   typedef traceability_datachangeBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return traceability_datachangeTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_AUTHOR = 4,
     VT_DATETIME = 6
   };
-  const flatbuffers::String *author() const {
-    return GetPointer<const flatbuffers::String *>(VT_AUTHOR);
+  const ::flatbuffers::String *author() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_AUTHOR);
   }
-  const flatbuffers::String *datetime() const {
-    return GetPointer<const flatbuffers::String *>(VT_DATETIME);
+  const ::flatbuffers::String *datetime() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_DATETIME);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_AUTHOR) &&
            verifier.VerifyString(author()) &&
@@ -170,44 +177,44 @@ struct traceability_datachange FLATBUFFERS_FINAL_CLASS : private flatbuffers::Ta
            verifier.VerifyString(datetime()) &&
            verifier.EndTable();
   }
-  traceability_datachangeT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(traceability_datachangeT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<traceability_datachange> Pack(flatbuffers::FlatBufferBuilder &_fbb, const traceability_datachangeT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  traceability_datachangeT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(traceability_datachangeT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<traceability_datachange> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const traceability_datachangeT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct traceability_datachangeBuilder {
   typedef traceability_datachange Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_author(flatbuffers::Offset<flatbuffers::String> author) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_author(::flatbuffers::Offset<::flatbuffers::String> author) {
     fbb_.AddOffset(traceability_datachange::VT_AUTHOR, author);
   }
-  void add_datetime(flatbuffers::Offset<flatbuffers::String> datetime) {
+  void add_datetime(::flatbuffers::Offset<::flatbuffers::String> datetime) {
     fbb_.AddOffset(traceability_datachange::VT_DATETIME, datetime);
   }
-  explicit traceability_datachangeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit traceability_datachangeBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<traceability_datachange> Finish() {
+  ::flatbuffers::Offset<traceability_datachange> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<traceability_datachange>(end);
+    auto o = ::flatbuffers::Offset<traceability_datachange>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<traceability_datachange> Createtraceability_datachange(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::String> author = 0,
-    flatbuffers::Offset<flatbuffers::String> datetime = 0) {
+inline ::flatbuffers::Offset<traceability_datachange> Createtraceability_datachange(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> author = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> datetime = 0) {
   traceability_datachangeBuilder builder_(_fbb);
   builder_.add_datetime(datetime);
   builder_.add_author(author);
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<traceability_datachange> Createtraceability_datachangeDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<traceability_datachange> Createtraceability_datachangeDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *author = nullptr,
     const char *datetime = nullptr) {
   auto author__ = author ? _fbb.CreateString(author) : 0;
@@ -218,20 +225,24 @@ inline flatbuffers::Offset<traceability_datachange> Createtraceability_datachang
       datetime__);
 }
 
-flatbuffers::Offset<traceability_datachange> Createtraceability_datachange(flatbuffers::FlatBufferBuilder &_fbb, const traceability_datachangeT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<traceability_datachange> Createtraceability_datachange(::flatbuffers::FlatBufferBuilder &_fbb, const traceability_datachangeT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct GlobalT : public flatbuffers::NativeTable {
+struct GlobalT : public ::flatbuffers::NativeTable {
   typedef Global TableType;
   std::shared_ptr<sigmf::traceability::traceability_datachangeT> last_modified{};
   std::shared_ptr<sigmf::traceability::traceability_datachangeT> last_reviewed{};
   int32_t revision = 0;
   std::shared_ptr<sigmf::traceability::traceability_originT> origin{};
+  GlobalT() = default;
+  GlobalT(const GlobalT &o);
+  GlobalT(GlobalT&&) FLATBUFFERS_NOEXCEPT = default;
+  GlobalT &operator=(GlobalT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Global FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Global FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef GlobalT NativeTableType;
   typedef GlobalBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GlobalTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -252,55 +263,55 @@ struct Global FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::traceability::traceability_origin *origin() const {
     return GetPointer<const sigmf::traceability::traceability_origin *>(VT_ORIGIN);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_LAST_MODIFIED) &&
            verifier.VerifyTable(last_modified()) &&
            VerifyOffset(verifier, VT_LAST_REVIEWED) &&
            verifier.VerifyTable(last_reviewed()) &&
-           VerifyField<int32_t>(verifier, VT_REVISION) &&
+           VerifyField<int32_t>(verifier, VT_REVISION, 4) &&
            VerifyOffset(verifier, VT_ORIGIN) &&
            verifier.VerifyTable(origin()) &&
            verifier.EndTable();
   }
-  GlobalT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Global> Pack(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  GlobalT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(GlobalT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Global> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct GlobalBuilder {
   typedef Global Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_last_modified(flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_modified) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_last_modified(::flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_modified) {
     fbb_.AddOffset(Global::VT_LAST_MODIFIED, last_modified);
   }
-  void add_last_reviewed(flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_reviewed) {
+  void add_last_reviewed(::flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_reviewed) {
     fbb_.AddOffset(Global::VT_LAST_REVIEWED, last_reviewed);
   }
   void add_revision(int32_t revision) {
     fbb_.AddElement<int32_t>(Global::VT_REVISION, revision, 0);
   }
-  void add_origin(flatbuffers::Offset<sigmf::traceability::traceability_origin> origin) {
+  void add_origin(::flatbuffers::Offset<sigmf::traceability::traceability_origin> origin) {
     fbb_.AddOffset(Global::VT_ORIGIN, origin);
   }
-  explicit GlobalBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit GlobalBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Global> Finish() {
+  ::flatbuffers::Offset<Global> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Global>(end);
+    auto o = ::flatbuffers::Offset<Global>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Global> CreateGlobal(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_modified = 0,
-    flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_reviewed = 0,
+inline ::flatbuffers::Offset<Global> CreateGlobal(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_modified = 0,
+    ::flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_reviewed = 0,
     int32_t revision = 0,
-    flatbuffers::Offset<sigmf::traceability::traceability_origin> origin = 0) {
+    ::flatbuffers::Offset<sigmf::traceability::traceability_origin> origin = 0) {
   GlobalBuilder builder_(_fbb);
   builder_.add_origin(origin);
   builder_.add_revision(revision);
@@ -309,60 +320,64 @@ inline flatbuffers::Offset<Global> CreateGlobal(
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Global> CreateGlobal(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct CaptureT : public flatbuffers::NativeTable {
+struct CaptureT : public ::flatbuffers::NativeTable {
   typedef Capture TableType;
 };
 
-struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Capture FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef CaptureT NativeTableType;
   typedef CaptureBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return CaptureTypeTable();
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            verifier.EndTable();
   }
-  CaptureT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(CaptureT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Capture> Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  CaptureT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(CaptureT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Capture> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct CaptureBuilder {
   typedef Capture Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  explicit CaptureBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  explicit CaptureBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Capture> Finish() {
+  ::flatbuffers::Offset<Capture> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Capture>(end);
+    auto o = ::flatbuffers::Offset<Capture>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Capture> CreateCapture(
-    flatbuffers::FlatBufferBuilder &_fbb) {
+inline ::flatbuffers::Offset<Capture> CreateCapture(
+    ::flatbuffers::FlatBufferBuilder &_fbb) {
   CaptureBuilder builder_(_fbb);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Capture> CreateCapture(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct AnnotationT : public flatbuffers::NativeTable {
+struct AnnotationT : public ::flatbuffers::NativeTable {
   typedef Annotation TableType;
   std::shared_ptr<sigmf::traceability::traceability_datachangeT> last_modified{};
   std::shared_ptr<sigmf::traceability::traceability_datachangeT> last_reviewed{};
+  AnnotationT() = default;
+  AnnotationT(const AnnotationT &o);
+  AnnotationT(AnnotationT&&) FLATBUFFERS_NOEXCEPT = default;
+  AnnotationT &operator=(AnnotationT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Annotation FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef AnnotationT NativeTableType;
   typedef AnnotationBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return AnnotationTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -375,7 +390,7 @@ struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::traceability::traceability_datachange *last_reviewed() const {
     return GetPointer<const sigmf::traceability::traceability_datachange *>(VT_LAST_REVIEWED);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_LAST_MODIFIED) &&
            verifier.VerifyTable(last_modified()) &&
@@ -383,55 +398,59 @@ struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyTable(last_reviewed()) &&
            verifier.EndTable();
   }
-  AnnotationT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(AnnotationT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Annotation> Pack(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  AnnotationT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(AnnotationT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Annotation> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct AnnotationBuilder {
   typedef Annotation Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_last_modified(flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_modified) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_last_modified(::flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_modified) {
     fbb_.AddOffset(Annotation::VT_LAST_MODIFIED, last_modified);
   }
-  void add_last_reviewed(flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_reviewed) {
+  void add_last_reviewed(::flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_reviewed) {
     fbb_.AddOffset(Annotation::VT_LAST_REVIEWED, last_reviewed);
   }
-  explicit AnnotationBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit AnnotationBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Annotation> Finish() {
+  ::flatbuffers::Offset<Annotation> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Annotation>(end);
+    auto o = ::flatbuffers::Offset<Annotation>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Annotation> CreateAnnotation(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_modified = 0,
-    flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_reviewed = 0) {
+inline ::flatbuffers::Offset<Annotation> CreateAnnotation(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_modified = 0,
+    ::flatbuffers::Offset<sigmf::traceability::traceability_datachange> last_reviewed = 0) {
   AnnotationBuilder builder_(_fbb);
   builder_.add_last_reviewed(last_reviewed);
   builder_.add_last_modified(last_modified);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Annotation> CreateAnnotation(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct DescrT : public flatbuffers::NativeTable {
+struct DescrT : public ::flatbuffers::NativeTable {
   typedef Descr TableType;
   std::shared_ptr<sigmf::traceability::GlobalT> global{};
   std::shared_ptr<sigmf::traceability::AnnotationT> annotation{};
   std::shared_ptr<sigmf::traceability::CaptureT> capture{};
+  DescrT() = default;
+  DescrT(const DescrT &o);
+  DescrT(DescrT&&) FLATBUFFERS_NOEXCEPT = default;
+  DescrT &operator=(DescrT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Descr FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef DescrT NativeTableType;
   typedef DescrBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return DescrTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -448,7 +467,7 @@ struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::traceability::Capture *capture() const {
     return GetPointer<const sigmf::traceability::Capture *>(VT_CAPTURE);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_GLOBAL) &&
            verifier.VerifyTable(global()) &&
@@ -458,40 +477,40 @@ struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyTable(capture()) &&
            verifier.EndTable();
   }
-  DescrT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(DescrT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Descr> Pack(flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  DescrT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(DescrT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Descr> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct DescrBuilder {
   typedef Descr Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_global(flatbuffers::Offset<sigmf::traceability::Global> global) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_global(::flatbuffers::Offset<sigmf::traceability::Global> global) {
     fbb_.AddOffset(Descr::VT_GLOBAL, global);
   }
-  void add_annotation(flatbuffers::Offset<sigmf::traceability::Annotation> annotation) {
+  void add_annotation(::flatbuffers::Offset<sigmf::traceability::Annotation> annotation) {
     fbb_.AddOffset(Descr::VT_ANNOTATION, annotation);
   }
-  void add_capture(flatbuffers::Offset<sigmf::traceability::Capture> capture) {
+  void add_capture(::flatbuffers::Offset<sigmf::traceability::Capture> capture) {
     fbb_.AddOffset(Descr::VT_CAPTURE, capture);
   }
-  explicit DescrBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit DescrBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Descr> Finish() {
+  ::flatbuffers::Offset<Descr> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Descr>(end);
+    auto o = ::flatbuffers::Offset<Descr>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Descr> CreateDescr(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<sigmf::traceability::Global> global = 0,
-    flatbuffers::Offset<sigmf::traceability::Annotation> annotation = 0,
-    flatbuffers::Offset<sigmf::traceability::Capture> capture = 0) {
+inline ::flatbuffers::Offset<Descr> CreateDescr(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<sigmf::traceability::Global> global = 0,
+    ::flatbuffers::Offset<sigmf::traceability::Annotation> annotation = 0,
+    ::flatbuffers::Offset<sigmf::traceability::Capture> capture = 0) {
   DescrBuilder builder_(_fbb);
   builder_.add_capture(capture);
   builder_.add_annotation(annotation);
@@ -499,15 +518,15 @@ inline flatbuffers::Offset<Descr> CreateDescr(
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Descr> CreateDescr(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-inline traceability_originT *traceability_origin::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline traceability_originT *traceability_origin::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<traceability_originT>(new traceability_originT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void traceability_origin::UnPackTo(traceability_originT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void traceability_origin::UnPackTo(traceability_originT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = account(); if (_e) _o->account = _e->str(); }
@@ -515,14 +534,14 @@ inline void traceability_origin::UnPackTo(traceability_originT *_o, const flatbu
   { auto _e = file_path(); if (_e) _o->file_path = _e->str(); }
 }
 
-inline flatbuffers::Offset<traceability_origin> traceability_origin::Pack(flatbuffers::FlatBufferBuilder &_fbb, const traceability_originT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<traceability_origin> traceability_origin::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const traceability_originT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createtraceability_origin(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<traceability_origin> Createtraceability_origin(flatbuffers::FlatBufferBuilder &_fbb, const traceability_originT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<traceability_origin> Createtraceability_origin(::flatbuffers::FlatBufferBuilder &_fbb, const traceability_originT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const traceability_originT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const traceability_originT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _account = _o->account.empty() ? 0 : _fbb.CreateString(_o->account);
   auto _container = _o->container.empty() ? 0 : _fbb.CreateString(_o->container);
   auto _file_path = _o->file_path.empty() ? 0 : _fbb.CreateString(_o->file_path);
@@ -533,27 +552,27 @@ inline flatbuffers::Offset<traceability_origin> Createtraceability_origin(flatbu
       _file_path);
 }
 
-inline traceability_datachangeT *traceability_datachange::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline traceability_datachangeT *traceability_datachange::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<traceability_datachangeT>(new traceability_datachangeT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void traceability_datachange::UnPackTo(traceability_datachangeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void traceability_datachange::UnPackTo(traceability_datachangeT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = author(); if (_e) _o->author = _e->str(); }
   { auto _e = datetime(); if (_e) _o->datetime = _e->str(); }
 }
 
-inline flatbuffers::Offset<traceability_datachange> traceability_datachange::Pack(flatbuffers::FlatBufferBuilder &_fbb, const traceability_datachangeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<traceability_datachange> traceability_datachange::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const traceability_datachangeT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createtraceability_datachange(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<traceability_datachange> Createtraceability_datachange(flatbuffers::FlatBufferBuilder &_fbb, const traceability_datachangeT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<traceability_datachange> Createtraceability_datachange(::flatbuffers::FlatBufferBuilder &_fbb, const traceability_datachangeT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const traceability_datachangeT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const traceability_datachangeT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _author = _o->author.empty() ? 0 : _fbb.CreateString(_o->author);
   auto _datetime = _o->datetime.empty() ? 0 : _fbb.CreateString(_o->datetime);
   return sigmf::traceability::Createtraceability_datachange(
@@ -562,29 +581,44 @@ inline flatbuffers::Offset<traceability_datachange> Createtraceability_datachang
       _datetime);
 }
 
-inline GlobalT *Global::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline GlobalT::GlobalT(const GlobalT &o)
+      : last_modified((o.last_modified) ? new sigmf::traceability::traceability_datachangeT(*o.last_modified) : nullptr),
+        last_reviewed((o.last_reviewed) ? new sigmf::traceability::traceability_datachangeT(*o.last_reviewed) : nullptr),
+        revision(o.revision),
+        origin((o.origin) ? new sigmf::traceability::traceability_originT(*o.origin) : nullptr) {
+}
+
+inline GlobalT &GlobalT::operator=(GlobalT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(last_modified, o.last_modified);
+  std::swap(last_reviewed, o.last_reviewed);
+  std::swap(revision, o.revision);
+  std::swap(origin, o.origin);
+  return *this;
+}
+
+inline GlobalT *Global::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<GlobalT>(new GlobalT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Global::UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Global::UnPackTo(GlobalT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = last_modified(); if (_e) _o->last_modified = std::shared_ptr<sigmf::traceability::traceability_datachangeT>(_e->UnPack(_resolver)); }
-  { auto _e = last_reviewed(); if (_e) _o->last_reviewed = std::shared_ptr<sigmf::traceability::traceability_datachangeT>(_e->UnPack(_resolver)); }
+  { auto _e = last_modified(); if (_e) { if(_o->last_modified) { _e->UnPackTo(_o->last_modified.get(), _resolver); } else { _o->last_modified = std::shared_ptr<sigmf::traceability::traceability_datachangeT>(_e->UnPack(_resolver)); } } else if (_o->last_modified) { _o->last_modified.reset(); } }
+  { auto _e = last_reviewed(); if (_e) { if(_o->last_reviewed) { _e->UnPackTo(_o->last_reviewed.get(), _resolver); } else { _o->last_reviewed = std::shared_ptr<sigmf::traceability::traceability_datachangeT>(_e->UnPack(_resolver)); } } else if (_o->last_reviewed) { _o->last_reviewed.reset(); } }
   { auto _e = revision(); _o->revision = _e; }
-  { auto _e = origin(); if (_e) _o->origin = std::shared_ptr<sigmf::traceability::traceability_originT>(_e->UnPack(_resolver)); }
+  { auto _e = origin(); if (_e) { if(_o->origin) { _e->UnPackTo(_o->origin.get(), _resolver); } else { _o->origin = std::shared_ptr<sigmf::traceability::traceability_originT>(_e->UnPack(_resolver)); } } else if (_o->origin) { _o->origin.reset(); } }
 }
 
-inline flatbuffers::Offset<Global> Global::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Global> Global::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateGlobal(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Global> CreateGlobal(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const GlobalT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const GlobalT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _last_modified = _o->last_modified ? Createtraceability_datachange(_fbb, _o->last_modified.get(), _rehasher) : 0;
   auto _last_reviewed = _o->last_reviewed ? Createtraceability_datachange(_fbb, _o->last_reviewed.get(), _rehasher) : 0;
   auto _revision = _o->revision;
@@ -597,50 +631,61 @@ inline flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &
       _origin);
 }
 
-inline CaptureT *Capture::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline CaptureT *Capture::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<CaptureT>(new CaptureT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Capture::UnPackTo(CaptureT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Capture::UnPackTo(CaptureT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
 }
 
-inline flatbuffers::Offset<Capture> Capture::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Capture> Capture::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateCapture(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Capture> CreateCapture(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   return sigmf::traceability::CreateCapture(
       _fbb);
 }
 
-inline AnnotationT *Annotation::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline AnnotationT::AnnotationT(const AnnotationT &o)
+      : last_modified((o.last_modified) ? new sigmf::traceability::traceability_datachangeT(*o.last_modified) : nullptr),
+        last_reviewed((o.last_reviewed) ? new sigmf::traceability::traceability_datachangeT(*o.last_reviewed) : nullptr) {
+}
+
+inline AnnotationT &AnnotationT::operator=(AnnotationT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(last_modified, o.last_modified);
+  std::swap(last_reviewed, o.last_reviewed);
+  return *this;
+}
+
+inline AnnotationT *Annotation::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<AnnotationT>(new AnnotationT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Annotation::UnPackTo(AnnotationT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Annotation::UnPackTo(AnnotationT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = last_modified(); if (_e) _o->last_modified = std::shared_ptr<sigmf::traceability::traceability_datachangeT>(_e->UnPack(_resolver)); }
-  { auto _e = last_reviewed(); if (_e) _o->last_reviewed = std::shared_ptr<sigmf::traceability::traceability_datachangeT>(_e->UnPack(_resolver)); }
+  { auto _e = last_modified(); if (_e) { if(_o->last_modified) { _e->UnPackTo(_o->last_modified.get(), _resolver); } else { _o->last_modified = std::shared_ptr<sigmf::traceability::traceability_datachangeT>(_e->UnPack(_resolver)); } } else if (_o->last_modified) { _o->last_modified.reset(); } }
+  { auto _e = last_reviewed(); if (_e) { if(_o->last_reviewed) { _e->UnPackTo(_o->last_reviewed.get(), _resolver); } else { _o->last_reviewed = std::shared_ptr<sigmf::traceability::traceability_datachangeT>(_e->UnPack(_resolver)); } } else if (_o->last_reviewed) { _o->last_reviewed.reset(); } }
 }
 
-inline flatbuffers::Offset<Annotation> Annotation::Pack(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Annotation> Annotation::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateAnnotation(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Annotation> CreateAnnotation(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const AnnotationT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const AnnotationT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _last_modified = _o->last_modified ? Createtraceability_datachange(_fbb, _o->last_modified.get(), _rehasher) : 0;
   auto _last_reviewed = _o->last_reviewed ? Createtraceability_datachange(_fbb, _o->last_reviewed.get(), _rehasher) : 0;
   return sigmf::traceability::CreateAnnotation(
@@ -649,28 +694,41 @@ inline flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferB
       _last_reviewed);
 }
 
-inline DescrT *Descr::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline DescrT::DescrT(const DescrT &o)
+      : global((o.global) ? new sigmf::traceability::GlobalT(*o.global) : nullptr),
+        annotation((o.annotation) ? new sigmf::traceability::AnnotationT(*o.annotation) : nullptr),
+        capture((o.capture) ? new sigmf::traceability::CaptureT(*o.capture) : nullptr) {
+}
+
+inline DescrT &DescrT::operator=(DescrT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(global, o.global);
+  std::swap(annotation, o.annotation);
+  std::swap(capture, o.capture);
+  return *this;
+}
+
+inline DescrT *Descr::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<DescrT>(new DescrT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Descr::UnPackTo(DescrT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Descr::UnPackTo(DescrT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = global(); if (_e) _o->global = std::shared_ptr<sigmf::traceability::GlobalT>(_e->UnPack(_resolver)); }
-  { auto _e = annotation(); if (_e) _o->annotation = std::shared_ptr<sigmf::traceability::AnnotationT>(_e->UnPack(_resolver)); }
-  { auto _e = capture(); if (_e) _o->capture = std::shared_ptr<sigmf::traceability::CaptureT>(_e->UnPack(_resolver)); }
+  { auto _e = global(); if (_e) { if(_o->global) { _e->UnPackTo(_o->global.get(), _resolver); } else { _o->global = std::shared_ptr<sigmf::traceability::GlobalT>(_e->UnPack(_resolver)); } } else if (_o->global) { _o->global.reset(); } }
+  { auto _e = annotation(); if (_e) { if(_o->annotation) { _e->UnPackTo(_o->annotation.get(), _resolver); } else { _o->annotation = std::shared_ptr<sigmf::traceability::AnnotationT>(_e->UnPack(_resolver)); } } else if (_o->annotation) { _o->annotation.reset(); } }
+  { auto _e = capture(); if (_e) { if(_o->capture) { _e->UnPackTo(_o->capture.get(), _resolver); } else { _o->capture = std::shared_ptr<sigmf::traceability::CaptureT>(_e->UnPack(_resolver)); } } else if (_o->capture) { _o->capture.reset(); } }
 }
 
-inline flatbuffers::Offset<Descr> Descr::Pack(flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Descr> Descr::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateDescr(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Descr> CreateDescr(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const DescrT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const DescrT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _global = _o->global ? CreateGlobal(_fbb, _o->global.get(), _rehasher) : 0;
   auto _annotation = _o->annotation ? CreateAnnotation(_fbb, _o->annotation.get(), _rehasher) : 0;
   auto _capture = _o->capture ? CreateCapture(_fbb, _o->capture.get(), _rehasher) : 0;
@@ -681,46 +739,46 @@ inline flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_f
       _capture);
 }
 
-inline const flatbuffers::TypeTable *traceability_originTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 }
+inline const ::flatbuffers::TypeTable *traceability_originTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 }
   };
   static const char * const names[] = {
     "account",
     "container",
     "file_path"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 3, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 3, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *traceability_datachangeTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 }
+inline const ::flatbuffers::TypeTable *traceability_datachangeTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 }
   };
   static const char * const names[] = {
     "author",
     "datetime"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 2, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 2, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *GlobalTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_INT, 0, -1 },
-    { flatbuffers::ET_SEQUENCE, 0, 1 }
+inline const ::flatbuffers::TypeTable *GlobalTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_INT, 0, -1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 1 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::traceability::traceability_datachangeTypeTable,
     sigmf::traceability::traceability_originTypeTable
   };
@@ -730,44 +788,44 @@ inline const flatbuffers::TypeTable *GlobalTypeTable() {
     "revision",
     "origin"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 4, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 4, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *CaptureTypeTable() {
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
+inline const ::flatbuffers::TypeTable *CaptureTypeTable() {
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *AnnotationTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 0 }
+inline const ::flatbuffers::TypeTable *AnnotationTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::traceability::traceability_datachangeTypeTable
   };
   static const char * const names[] = {
     "last_modified",
     "last_reviewed"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 2, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 2, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *DescrTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 1 },
-    { flatbuffers::ET_SEQUENCE, 0, 2 }
+inline const ::flatbuffers::TypeTable *DescrTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 2 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::traceability::GlobalTypeTable,
     sigmf::traceability::AnnotationTypeTable,
     sigmf::traceability::CaptureTypeTable
@@ -777,8 +835,8 @@ inline const flatbuffers::TypeTable *DescrTypeTable() {
     "annotation",
     "capture"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }

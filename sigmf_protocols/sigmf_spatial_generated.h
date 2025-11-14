@@ -6,6 +6,13 @@
 
 #include "flatbuffers/flatbuffers.h"
 
+// Ensure the included flatbuffers.h is the same version as when this file was
+// generated, otherwise it may not be compatible.
+static_assert(FLATBUFFERS_VERSION_MAJOR == 23 &&
+              FLATBUFFERS_VERSION_MINOR == 3 &&
+              FLATBUFFERS_VERSION_REVISION == 3,
+             "Non-compatible flatbuffers version included");
+
 namespace sigmf {
 namespace spatial {
 
@@ -41,36 +48,36 @@ struct Descr;
 struct DescrBuilder;
 struct DescrT;
 
-inline const flatbuffers::TypeTable *sigmf_bearingTypeTable();
+inline const ::flatbuffers::TypeTable *sigmf_bearingTypeTable();
 
-inline const flatbuffers::TypeTable *cartesian_pointTypeTable();
+inline const ::flatbuffers::TypeTable *cartesian_pointTypeTable();
 
-inline const flatbuffers::TypeTable *sigmf_calibrationTypeTable();
+inline const ::flatbuffers::TypeTable *sigmf_calibrationTypeTable();
 
-inline const flatbuffers::TypeTable *GlobalTypeTable();
+inline const ::flatbuffers::TypeTable *GlobalTypeTable();
 
-inline const flatbuffers::TypeTable *CaptureTypeTable();
+inline const ::flatbuffers::TypeTable *CaptureTypeTable();
 
-inline const flatbuffers::TypeTable *AnnotationTypeTable();
+inline const ::flatbuffers::TypeTable *AnnotationTypeTable();
 
-inline const flatbuffers::TypeTable *CollectionTypeTable();
+inline const ::flatbuffers::TypeTable *CollectionTypeTable();
 
-inline const flatbuffers::TypeTable *DescrTypeTable();
+inline const ::flatbuffers::TypeTable *DescrTypeTable();
 
-struct sigmf_bearingT : public flatbuffers::NativeTable {
+struct sigmf_bearingT : public ::flatbuffers::NativeTable {
   typedef sigmf_bearing TableType;
-  flatbuffers::Optional<double> azimuth = flatbuffers::nullopt;
-  flatbuffers::Optional<double> elevation = flatbuffers::nullopt;
-  flatbuffers::Optional<double> range = flatbuffers::nullopt;
-  flatbuffers::Optional<double> az_error = flatbuffers::nullopt;
-  flatbuffers::Optional<double> el_error = flatbuffers::nullopt;
-  flatbuffers::Optional<double> range_error = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> azimuth = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> elevation = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> range = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> az_error = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> el_error = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> range_error = ::flatbuffers::nullopt;
 };
 
-struct sigmf_bearing FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct sigmf_bearing FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef sigmf_bearingT NativeTableType;
   typedef sigmf_bearingBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return sigmf_bearingTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -81,43 +88,43 @@ struct sigmf_bearing FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_EL_ERROR = 12,
     VT_RANGE_ERROR = 14
   };
-  flatbuffers::Optional<double> azimuth() const {
+  ::flatbuffers::Optional<double> azimuth() const {
     return GetOptional<double, double>(VT_AZIMUTH);
   }
-  flatbuffers::Optional<double> elevation() const {
+  ::flatbuffers::Optional<double> elevation() const {
     return GetOptional<double, double>(VT_ELEVATION);
   }
-  flatbuffers::Optional<double> range() const {
+  ::flatbuffers::Optional<double> range() const {
     return GetOptional<double, double>(VT_RANGE);
   }
-  flatbuffers::Optional<double> az_error() const {
+  ::flatbuffers::Optional<double> az_error() const {
     return GetOptional<double, double>(VT_AZ_ERROR);
   }
-  flatbuffers::Optional<double> el_error() const {
+  ::flatbuffers::Optional<double> el_error() const {
     return GetOptional<double, double>(VT_EL_ERROR);
   }
-  flatbuffers::Optional<double> range_error() const {
+  ::flatbuffers::Optional<double> range_error() const {
     return GetOptional<double, double>(VT_RANGE_ERROR);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<double>(verifier, VT_AZIMUTH) &&
-           VerifyField<double>(verifier, VT_ELEVATION) &&
-           VerifyField<double>(verifier, VT_RANGE) &&
-           VerifyField<double>(verifier, VT_AZ_ERROR) &&
-           VerifyField<double>(verifier, VT_EL_ERROR) &&
-           VerifyField<double>(verifier, VT_RANGE_ERROR) &&
+           VerifyField<double>(verifier, VT_AZIMUTH, 8) &&
+           VerifyField<double>(verifier, VT_ELEVATION, 8) &&
+           VerifyField<double>(verifier, VT_RANGE, 8) &&
+           VerifyField<double>(verifier, VT_AZ_ERROR, 8) &&
+           VerifyField<double>(verifier, VT_EL_ERROR, 8) &&
+           VerifyField<double>(verifier, VT_RANGE_ERROR, 8) &&
            verifier.EndTable();
   }
-  sigmf_bearingT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(sigmf_bearingT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<sigmf_bearing> Pack(flatbuffers::FlatBufferBuilder &_fbb, const sigmf_bearingT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  sigmf_bearingT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(sigmf_bearingT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<sigmf_bearing> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const sigmf_bearingT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct sigmf_bearingBuilder {
   typedef sigmf_bearing Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_azimuth(double azimuth) {
     fbb_.AddElement<double>(sigmf_bearing::VT_AZIMUTH, azimuth);
   }
@@ -136,25 +143,25 @@ struct sigmf_bearingBuilder {
   void add_range_error(double range_error) {
     fbb_.AddElement<double>(sigmf_bearing::VT_RANGE_ERROR, range_error);
   }
-  explicit sigmf_bearingBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit sigmf_bearingBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<sigmf_bearing> Finish() {
+  ::flatbuffers::Offset<sigmf_bearing> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<sigmf_bearing>(end);
+    auto o = ::flatbuffers::Offset<sigmf_bearing>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<sigmf_bearing> Createsigmf_bearing(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Optional<double> azimuth = flatbuffers::nullopt,
-    flatbuffers::Optional<double> elevation = flatbuffers::nullopt,
-    flatbuffers::Optional<double> range = flatbuffers::nullopt,
-    flatbuffers::Optional<double> az_error = flatbuffers::nullopt,
-    flatbuffers::Optional<double> el_error = flatbuffers::nullopt,
-    flatbuffers::Optional<double> range_error = flatbuffers::nullopt) {
+inline ::flatbuffers::Offset<sigmf_bearing> Createsigmf_bearing(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Optional<double> azimuth = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> elevation = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> range = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> az_error = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> el_error = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> range_error = ::flatbuffers::nullopt) {
   sigmf_bearingBuilder builder_(_fbb);
   if(range_error) { builder_.add_range_error(*range_error); }
   if(el_error) { builder_.add_el_error(*el_error); }
@@ -165,77 +172,77 @@ inline flatbuffers::Offset<sigmf_bearing> Createsigmf_bearing(
   return builder_.Finish();
 }
 
-flatbuffers::Offset<sigmf_bearing> Createsigmf_bearing(flatbuffers::FlatBufferBuilder &_fbb, const sigmf_bearingT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<sigmf_bearing> Createsigmf_bearing(::flatbuffers::FlatBufferBuilder &_fbb, const sigmf_bearingT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct cartesian_pointT : public flatbuffers::NativeTable {
+struct cartesian_pointT : public ::flatbuffers::NativeTable {
   typedef cartesian_point TableType;
   std::vector<double> point{};
-  flatbuffers::Optional<bool> unknown = flatbuffers::nullopt;
+  ::flatbuffers::Optional<bool> unknown = ::flatbuffers::nullopt;
 };
 
-struct cartesian_point FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct cartesian_point FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef cartesian_pointT NativeTableType;
   typedef cartesian_pointBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return cartesian_pointTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_POINT = 4,
     VT_UNKNOWN = 6
   };
-  const flatbuffers::Vector<double> *point() const {
-    return GetPointer<const flatbuffers::Vector<double> *>(VT_POINT);
+  const ::flatbuffers::Vector<double> *point() const {
+    return GetPointer<const ::flatbuffers::Vector<double> *>(VT_POINT);
   }
-  flatbuffers::Optional<bool> unknown() const {
+  ::flatbuffers::Optional<bool> unknown() const {
     return GetOptional<uint8_t, bool>(VT_UNKNOWN);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_POINT) &&
            verifier.VerifyVector(point()) &&
-           VerifyField<uint8_t>(verifier, VT_UNKNOWN) &&
+           VerifyField<uint8_t>(verifier, VT_UNKNOWN, 1) &&
            verifier.EndTable();
   }
-  cartesian_pointT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(cartesian_pointT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<cartesian_point> Pack(flatbuffers::FlatBufferBuilder &_fbb, const cartesian_pointT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  cartesian_pointT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(cartesian_pointT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<cartesian_point> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const cartesian_pointT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct cartesian_pointBuilder {
   typedef cartesian_point Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_point(flatbuffers::Offset<flatbuffers::Vector<double>> point) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_point(::flatbuffers::Offset<::flatbuffers::Vector<double>> point) {
     fbb_.AddOffset(cartesian_point::VT_POINT, point);
   }
   void add_unknown(bool unknown) {
     fbb_.AddElement<uint8_t>(cartesian_point::VT_UNKNOWN, static_cast<uint8_t>(unknown));
   }
-  explicit cartesian_pointBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit cartesian_pointBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<cartesian_point> Finish() {
+  ::flatbuffers::Offset<cartesian_point> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<cartesian_point>(end);
+    auto o = ::flatbuffers::Offset<cartesian_point>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<cartesian_point> Createcartesian_point(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::Vector<double>> point = 0,
-    flatbuffers::Optional<bool> unknown = flatbuffers::nullopt) {
+inline ::flatbuffers::Offset<cartesian_point> Createcartesian_point(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::Vector<double>> point = 0,
+    ::flatbuffers::Optional<bool> unknown = ::flatbuffers::nullopt) {
   cartesian_pointBuilder builder_(_fbb);
   builder_.add_point(point);
   if(unknown) { builder_.add_unknown(*unknown); }
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<cartesian_point> Createcartesian_pointDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<cartesian_point> Createcartesian_pointDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<double> *point = nullptr,
-    flatbuffers::Optional<bool> unknown = flatbuffers::nullopt) {
+    ::flatbuffers::Optional<bool> unknown = ::flatbuffers::nullopt) {
   auto point__ = point ? _fbb.CreateVector<double>(*point) : 0;
   return sigmf::spatial::Createcartesian_point(
       _fbb,
@@ -243,19 +250,23 @@ inline flatbuffers::Offset<cartesian_point> Createcartesian_pointDirect(
       unknown);
 }
 
-flatbuffers::Offset<cartesian_point> Createcartesian_point(flatbuffers::FlatBufferBuilder &_fbb, const cartesian_pointT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<cartesian_point> Createcartesian_point(::flatbuffers::FlatBufferBuilder &_fbb, const cartesian_pointT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct sigmf_calibrationT : public flatbuffers::NativeTable {
+struct sigmf_calibrationT : public ::flatbuffers::NativeTable {
   typedef sigmf_calibration TableType;
   std::string caltype{};
   std::shared_ptr<sigmf::spatial::sigmf_bearingT> bearing{};
   std::shared_ptr<sigmf::spatial::cartesian_pointT> cal_geometry{};
+  sigmf_calibrationT() = default;
+  sigmf_calibrationT(const sigmf_calibrationT &o);
+  sigmf_calibrationT(sigmf_calibrationT&&) FLATBUFFERS_NOEXCEPT = default;
+  sigmf_calibrationT &operator=(sigmf_calibrationT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct sigmf_calibration FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct sigmf_calibration FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef sigmf_calibrationT NativeTableType;
   typedef sigmf_calibrationBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return sigmf_calibrationTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -263,8 +274,8 @@ struct sigmf_calibration FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_BEARING = 6,
     VT_CAL_GEOMETRY = 8
   };
-  const flatbuffers::String *caltype() const {
-    return GetPointer<const flatbuffers::String *>(VT_CALTYPE);
+  const ::flatbuffers::String *caltype() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CALTYPE);
   }
   const sigmf::spatial::sigmf_bearing *bearing() const {
     return GetPointer<const sigmf::spatial::sigmf_bearing *>(VT_BEARING);
@@ -272,7 +283,7 @@ struct sigmf_calibration FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::spatial::cartesian_point *cal_geometry() const {
     return GetPointer<const sigmf::spatial::cartesian_point *>(VT_CAL_GEOMETRY);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_CALTYPE) &&
            verifier.VerifyString(caltype()) &&
@@ -282,40 +293,40 @@ struct sigmf_calibration FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyTable(cal_geometry()) &&
            verifier.EndTable();
   }
-  sigmf_calibrationT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(sigmf_calibrationT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<sigmf_calibration> Pack(flatbuffers::FlatBufferBuilder &_fbb, const sigmf_calibrationT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  sigmf_calibrationT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(sigmf_calibrationT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<sigmf_calibration> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const sigmf_calibrationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct sigmf_calibrationBuilder {
   typedef sigmf_calibration Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_caltype(flatbuffers::Offset<flatbuffers::String> caltype) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_caltype(::flatbuffers::Offset<::flatbuffers::String> caltype) {
     fbb_.AddOffset(sigmf_calibration::VT_CALTYPE, caltype);
   }
-  void add_bearing(flatbuffers::Offset<sigmf::spatial::sigmf_bearing> bearing) {
+  void add_bearing(::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> bearing) {
     fbb_.AddOffset(sigmf_calibration::VT_BEARING, bearing);
   }
-  void add_cal_geometry(flatbuffers::Offset<sigmf::spatial::cartesian_point> cal_geometry) {
+  void add_cal_geometry(::flatbuffers::Offset<sigmf::spatial::cartesian_point> cal_geometry) {
     fbb_.AddOffset(sigmf_calibration::VT_CAL_GEOMETRY, cal_geometry);
   }
-  explicit sigmf_calibrationBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit sigmf_calibrationBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<sigmf_calibration> Finish() {
+  ::flatbuffers::Offset<sigmf_calibration> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<sigmf_calibration>(end);
+    auto o = ::flatbuffers::Offset<sigmf_calibration>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<sigmf_calibration> Createsigmf_calibration(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::String> caltype = 0,
-    flatbuffers::Offset<sigmf::spatial::sigmf_bearing> bearing = 0,
-    flatbuffers::Offset<sigmf::spatial::cartesian_point> cal_geometry = 0) {
+inline ::flatbuffers::Offset<sigmf_calibration> Createsigmf_calibration(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> caltype = 0,
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> bearing = 0,
+    ::flatbuffers::Offset<sigmf::spatial::cartesian_point> cal_geometry = 0) {
   sigmf_calibrationBuilder builder_(_fbb);
   builder_.add_cal_geometry(cal_geometry);
   builder_.add_bearing(bearing);
@@ -323,11 +334,11 @@ inline flatbuffers::Offset<sigmf_calibration> Createsigmf_calibration(
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<sigmf_calibration> Createsigmf_calibrationDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<sigmf_calibration> Createsigmf_calibrationDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *caltype = nullptr,
-    flatbuffers::Offset<sigmf::spatial::sigmf_bearing> bearing = 0,
-    flatbuffers::Offset<sigmf::spatial::cartesian_point> cal_geometry = 0) {
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> bearing = 0,
+    ::flatbuffers::Offset<sigmf::spatial::cartesian_point> cal_geometry = 0) {
   auto caltype__ = caltype ? _fbb.CreateString(caltype) : 0;
   return sigmf::spatial::Createsigmf_calibration(
       _fbb,
@@ -336,89 +347,93 @@ inline flatbuffers::Offset<sigmf_calibration> Createsigmf_calibrationDirect(
       cal_geometry);
 }
 
-flatbuffers::Offset<sigmf_calibration> Createsigmf_calibration(flatbuffers::FlatBufferBuilder &_fbb, const sigmf_calibrationT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<sigmf_calibration> Createsigmf_calibration(::flatbuffers::FlatBufferBuilder &_fbb, const sigmf_calibrationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct GlobalT : public flatbuffers::NativeTable {
+struct GlobalT : public ::flatbuffers::NativeTable {
   typedef Global TableType;
-  flatbuffers::Optional<uint64_t> num_elements = flatbuffers::nullopt;
-  flatbuffers::Optional<uint64_t> channel_index = flatbuffers::nullopt;
+  ::flatbuffers::Optional<uint64_t> num_elements = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<uint64_t> channel_index = ::flatbuffers::nullopt;
 };
 
-struct Global FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Global FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef GlobalT NativeTableType;
   typedef GlobalBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GlobalTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_NUM_ELEMENTS = 4,
     VT_CHANNEL_INDEX = 6
   };
-  flatbuffers::Optional<uint64_t> num_elements() const {
+  ::flatbuffers::Optional<uint64_t> num_elements() const {
     return GetOptional<uint64_t, uint64_t>(VT_NUM_ELEMENTS);
   }
-  flatbuffers::Optional<uint64_t> channel_index() const {
+  ::flatbuffers::Optional<uint64_t> channel_index() const {
     return GetOptional<uint64_t, uint64_t>(VT_CHANNEL_INDEX);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<uint64_t>(verifier, VT_NUM_ELEMENTS) &&
-           VerifyField<uint64_t>(verifier, VT_CHANNEL_INDEX) &&
+           VerifyField<uint64_t>(verifier, VT_NUM_ELEMENTS, 8) &&
+           VerifyField<uint64_t>(verifier, VT_CHANNEL_INDEX, 8) &&
            verifier.EndTable();
   }
-  GlobalT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Global> Pack(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  GlobalT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(GlobalT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Global> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct GlobalBuilder {
   typedef Global Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_num_elements(uint64_t num_elements) {
     fbb_.AddElement<uint64_t>(Global::VT_NUM_ELEMENTS, num_elements);
   }
   void add_channel_index(uint64_t channel_index) {
     fbb_.AddElement<uint64_t>(Global::VT_CHANNEL_INDEX, channel_index);
   }
-  explicit GlobalBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit GlobalBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Global> Finish() {
+  ::flatbuffers::Offset<Global> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Global>(end);
+    auto o = ::flatbuffers::Offset<Global>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Global> CreateGlobal(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Optional<uint64_t> num_elements = flatbuffers::nullopt,
-    flatbuffers::Optional<uint64_t> channel_index = flatbuffers::nullopt) {
+inline ::flatbuffers::Offset<Global> CreateGlobal(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Optional<uint64_t> num_elements = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<uint64_t> channel_index = ::flatbuffers::nullopt) {
   GlobalBuilder builder_(_fbb);
   if(channel_index) { builder_.add_channel_index(*channel_index); }
   if(num_elements) { builder_.add_num_elements(*num_elements); }
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Global> CreateGlobal(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct CaptureT : public flatbuffers::NativeTable {
+struct CaptureT : public ::flatbuffers::NativeTable {
   typedef Capture TableType;
-  flatbuffers::Optional<double> aperture_azimuth = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> aperture_azimuth = ::flatbuffers::nullopt;
   std::shared_ptr<sigmf::spatial::sigmf_bearingT> aperture_bearing{};
   std::shared_ptr<sigmf::spatial::sigmf_bearingT> emitter_bearing{};
   std::vector<std::shared_ptr<sigmf::spatial::cartesian_pointT>> element_geometry{};
-  flatbuffers::Optional<double> phase_offset = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> phase_offset = ::flatbuffers::nullopt;
   std::shared_ptr<sigmf::spatial::sigmf_calibrationT> calibration{};
-  flatbuffers::Optional<double> aperture_rotation = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> aperture_rotation = ::flatbuffers::nullopt;
+  CaptureT() = default;
+  CaptureT(const CaptureT &o);
+  CaptureT(CaptureT&&) FLATBUFFERS_NOEXCEPT = default;
+  CaptureT &operator=(CaptureT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Capture FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef CaptureT NativeTableType;
   typedef CaptureBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return CaptureTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -430,7 +445,7 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_CALIBRATION = 14,
     VT_APERTURE_ROTATION = 16
   };
-  flatbuffers::Optional<double> aperture_azimuth() const {
+  ::flatbuffers::Optional<double> aperture_azimuth() const {
     return GetOptional<double, double>(VT_APERTURE_AZIMUTH);
   }
   const sigmf::spatial::sigmf_bearing *aperture_bearing() const {
@@ -439,21 +454,21 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::spatial::sigmf_bearing *emitter_bearing() const {
     return GetPointer<const sigmf::spatial::sigmf_bearing *>(VT_EMITTER_BEARING);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> *>(VT_ELEMENT_GEOMETRY);
+  const ::flatbuffers::Vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry() const {
+    return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>> *>(VT_ELEMENT_GEOMETRY);
   }
-  flatbuffers::Optional<double> phase_offset() const {
+  ::flatbuffers::Optional<double> phase_offset() const {
     return GetOptional<double, double>(VT_PHASE_OFFSET);
   }
   const sigmf::spatial::sigmf_calibration *calibration() const {
     return GetPointer<const sigmf::spatial::sigmf_calibration *>(VT_CALIBRATION);
   }
-  flatbuffers::Optional<double> aperture_rotation() const {
+  ::flatbuffers::Optional<double> aperture_rotation() const {
     return GetOptional<double, double>(VT_APERTURE_ROTATION);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<double>(verifier, VT_APERTURE_AZIMUTH) &&
+           VerifyField<double>(verifier, VT_APERTURE_AZIMUTH, 8) &&
            VerifyOffset(verifier, VT_APERTURE_BEARING) &&
            verifier.VerifyTable(aperture_bearing()) &&
            VerifyOffset(verifier, VT_EMITTER_BEARING) &&
@@ -461,62 +476,62 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            VerifyOffset(verifier, VT_ELEMENT_GEOMETRY) &&
            verifier.VerifyVector(element_geometry()) &&
            verifier.VerifyVectorOfTables(element_geometry()) &&
-           VerifyField<double>(verifier, VT_PHASE_OFFSET) &&
+           VerifyField<double>(verifier, VT_PHASE_OFFSET, 8) &&
            VerifyOffset(verifier, VT_CALIBRATION) &&
            verifier.VerifyTable(calibration()) &&
-           VerifyField<double>(verifier, VT_APERTURE_ROTATION) &&
+           VerifyField<double>(verifier, VT_APERTURE_ROTATION, 8) &&
            verifier.EndTable();
   }
-  CaptureT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(CaptureT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Capture> Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  CaptureT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(CaptureT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Capture> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct CaptureBuilder {
   typedef Capture Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_aperture_azimuth(double aperture_azimuth) {
     fbb_.AddElement<double>(Capture::VT_APERTURE_AZIMUTH, aperture_azimuth);
   }
-  void add_aperture_bearing(flatbuffers::Offset<sigmf::spatial::sigmf_bearing> aperture_bearing) {
+  void add_aperture_bearing(::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> aperture_bearing) {
     fbb_.AddOffset(Capture::VT_APERTURE_BEARING, aperture_bearing);
   }
-  void add_emitter_bearing(flatbuffers::Offset<sigmf::spatial::sigmf_bearing> emitter_bearing) {
+  void add_emitter_bearing(::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> emitter_bearing) {
     fbb_.AddOffset(Capture::VT_EMITTER_BEARING, emitter_bearing);
   }
-  void add_element_geometry(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry) {
+  void add_element_geometry(::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry) {
     fbb_.AddOffset(Capture::VT_ELEMENT_GEOMETRY, element_geometry);
   }
   void add_phase_offset(double phase_offset) {
     fbb_.AddElement<double>(Capture::VT_PHASE_OFFSET, phase_offset);
   }
-  void add_calibration(flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration) {
+  void add_calibration(::flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration) {
     fbb_.AddOffset(Capture::VT_CALIBRATION, calibration);
   }
   void add_aperture_rotation(double aperture_rotation) {
     fbb_.AddElement<double>(Capture::VT_APERTURE_ROTATION, aperture_rotation);
   }
-  explicit CaptureBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit CaptureBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Capture> Finish() {
+  ::flatbuffers::Offset<Capture> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Capture>(end);
+    auto o = ::flatbuffers::Offset<Capture>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Capture> CreateCapture(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Optional<double> aperture_azimuth = flatbuffers::nullopt,
-    flatbuffers::Offset<sigmf::spatial::sigmf_bearing> aperture_bearing = 0,
-    flatbuffers::Offset<sigmf::spatial::sigmf_bearing> emitter_bearing = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry = 0,
-    flatbuffers::Optional<double> phase_offset = flatbuffers::nullopt,
-    flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration = 0,
-    flatbuffers::Optional<double> aperture_rotation = flatbuffers::nullopt) {
+inline ::flatbuffers::Offset<Capture> CreateCapture(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Optional<double> aperture_azimuth = ::flatbuffers::nullopt,
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> aperture_bearing = 0,
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> emitter_bearing = 0,
+    ::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry = 0,
+    ::flatbuffers::Optional<double> phase_offset = ::flatbuffers::nullopt,
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration = 0,
+    ::flatbuffers::Optional<double> aperture_rotation = ::flatbuffers::nullopt) {
   CaptureBuilder builder_(_fbb);
   if(aperture_rotation) { builder_.add_aperture_rotation(*aperture_rotation); }
   if(phase_offset) { builder_.add_phase_offset(*phase_offset); }
@@ -528,16 +543,16 @@ inline flatbuffers::Offset<Capture> CreateCapture(
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<Capture> CreateCaptureDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Optional<double> aperture_azimuth = flatbuffers::nullopt,
-    flatbuffers::Offset<sigmf::spatial::sigmf_bearing> aperture_bearing = 0,
-    flatbuffers::Offset<sigmf::spatial::sigmf_bearing> emitter_bearing = 0,
-    const std::vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry = nullptr,
-    flatbuffers::Optional<double> phase_offset = flatbuffers::nullopt,
-    flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration = 0,
-    flatbuffers::Optional<double> aperture_rotation = flatbuffers::nullopt) {
-  auto element_geometry__ = element_geometry ? _fbb.CreateVector<flatbuffers::Offset<sigmf::spatial::cartesian_point>>(*element_geometry) : 0;
+inline ::flatbuffers::Offset<Capture> CreateCaptureDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Optional<double> aperture_azimuth = ::flatbuffers::nullopt,
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> aperture_bearing = 0,
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> emitter_bearing = 0,
+    const std::vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry = nullptr,
+    ::flatbuffers::Optional<double> phase_offset = ::flatbuffers::nullopt,
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_calibration> calibration = 0,
+    ::flatbuffers::Optional<double> aperture_rotation = ::flatbuffers::nullopt) {
+  auto element_geometry__ = element_geometry ? _fbb.CreateVector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>>(*element_geometry) : 0;
   return sigmf::spatial::CreateCapture(
       _fbb,
       aperture_azimuth,
@@ -549,153 +564,165 @@ inline flatbuffers::Offset<Capture> CreateCaptureDirect(
       aperture_rotation);
 }
 
-flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Capture> CreateCapture(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct AnnotationT : public flatbuffers::NativeTable {
+struct AnnotationT : public ::flatbuffers::NativeTable {
   typedef Annotation TableType;
-  flatbuffers::Optional<double> signal_azimuth = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> signal_azimuth = ::flatbuffers::nullopt;
   std::shared_ptr<sigmf::spatial::sigmf_bearingT> signal_bearing{};
+  AnnotationT() = default;
+  AnnotationT(const AnnotationT &o);
+  AnnotationT(AnnotationT&&) FLATBUFFERS_NOEXCEPT = default;
+  AnnotationT &operator=(AnnotationT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Annotation FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef AnnotationT NativeTableType;
   typedef AnnotationBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return AnnotationTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_SIGNAL_AZIMUTH = 4,
     VT_SIGNAL_BEARING = 6
   };
-  flatbuffers::Optional<double> signal_azimuth() const {
+  ::flatbuffers::Optional<double> signal_azimuth() const {
     return GetOptional<double, double>(VT_SIGNAL_AZIMUTH);
   }
   const sigmf::spatial::sigmf_bearing *signal_bearing() const {
     return GetPointer<const sigmf::spatial::sigmf_bearing *>(VT_SIGNAL_BEARING);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<double>(verifier, VT_SIGNAL_AZIMUTH) &&
+           VerifyField<double>(verifier, VT_SIGNAL_AZIMUTH, 8) &&
            VerifyOffset(verifier, VT_SIGNAL_BEARING) &&
            verifier.VerifyTable(signal_bearing()) &&
            verifier.EndTable();
   }
-  AnnotationT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(AnnotationT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Annotation> Pack(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  AnnotationT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(AnnotationT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Annotation> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct AnnotationBuilder {
   typedef Annotation Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_signal_azimuth(double signal_azimuth) {
     fbb_.AddElement<double>(Annotation::VT_SIGNAL_AZIMUTH, signal_azimuth);
   }
-  void add_signal_bearing(flatbuffers::Offset<sigmf::spatial::sigmf_bearing> signal_bearing) {
+  void add_signal_bearing(::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> signal_bearing) {
     fbb_.AddOffset(Annotation::VT_SIGNAL_BEARING, signal_bearing);
   }
-  explicit AnnotationBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit AnnotationBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Annotation> Finish() {
+  ::flatbuffers::Offset<Annotation> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Annotation>(end);
+    auto o = ::flatbuffers::Offset<Annotation>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Annotation> CreateAnnotation(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Optional<double> signal_azimuth = flatbuffers::nullopt,
-    flatbuffers::Offset<sigmf::spatial::sigmf_bearing> signal_bearing = 0) {
+inline ::flatbuffers::Offset<Annotation> CreateAnnotation(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Optional<double> signal_azimuth = ::flatbuffers::nullopt,
+    ::flatbuffers::Offset<sigmf::spatial::sigmf_bearing> signal_bearing = 0) {
   AnnotationBuilder builder_(_fbb);
   if(signal_azimuth) { builder_.add_signal_azimuth(*signal_azimuth); }
   builder_.add_signal_bearing(signal_bearing);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Annotation> CreateAnnotation(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct CollectionT : public flatbuffers::NativeTable {
+struct CollectionT : public ::flatbuffers::NativeTable {
   typedef Collection TableType;
   std::vector<std::shared_ptr<sigmf::spatial::cartesian_pointT>> element_geometry{};
+  CollectionT() = default;
+  CollectionT(const CollectionT &o);
+  CollectionT(CollectionT&&) FLATBUFFERS_NOEXCEPT = default;
+  CollectionT &operator=(CollectionT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Collection FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Collection FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef CollectionT NativeTableType;
   typedef CollectionBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return CollectionTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_ELEMENT_GEOMETRY = 4
   };
-  const flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> *>(VT_ELEMENT_GEOMETRY);
+  const ::flatbuffers::Vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry() const {
+    return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>> *>(VT_ELEMENT_GEOMETRY);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_ELEMENT_GEOMETRY) &&
            verifier.VerifyVector(element_geometry()) &&
            verifier.VerifyVectorOfTables(element_geometry()) &&
            verifier.EndTable();
   }
-  CollectionT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(CollectionT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Collection> Pack(flatbuffers::FlatBufferBuilder &_fbb, const CollectionT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  CollectionT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(CollectionT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Collection> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CollectionT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct CollectionBuilder {
   typedef Collection Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_element_geometry(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_element_geometry(::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry) {
     fbb_.AddOffset(Collection::VT_ELEMENT_GEOMETRY, element_geometry);
   }
-  explicit CollectionBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit CollectionBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Collection> Finish() {
+  ::flatbuffers::Offset<Collection> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Collection>(end);
+    auto o = ::flatbuffers::Offset<Collection>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Collection> CreateCollection(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry = 0) {
+inline ::flatbuffers::Offset<Collection> CreateCollection(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>>> element_geometry = 0) {
   CollectionBuilder builder_(_fbb);
   builder_.add_element_geometry(element_geometry);
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<Collection> CreateCollectionDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    const std::vector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry = nullptr) {
-  auto element_geometry__ = element_geometry ? _fbb.CreateVector<flatbuffers::Offset<sigmf::spatial::cartesian_point>>(*element_geometry) : 0;
+inline ::flatbuffers::Offset<Collection> CreateCollectionDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const std::vector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>> *element_geometry = nullptr) {
+  auto element_geometry__ = element_geometry ? _fbb.CreateVector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>>(*element_geometry) : 0;
   return sigmf::spatial::CreateCollection(
       _fbb,
       element_geometry__);
 }
 
-flatbuffers::Offset<Collection> CreateCollection(flatbuffers::FlatBufferBuilder &_fbb, const CollectionT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Collection> CreateCollection(::flatbuffers::FlatBufferBuilder &_fbb, const CollectionT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct DescrT : public flatbuffers::NativeTable {
+struct DescrT : public ::flatbuffers::NativeTable {
   typedef Descr TableType;
   std::shared_ptr<sigmf::spatial::GlobalT> global{};
   std::shared_ptr<sigmf::spatial::AnnotationT> annotation{};
   std::shared_ptr<sigmf::spatial::CaptureT> capture{};
   std::shared_ptr<sigmf::spatial::CollectionT> collection{};
+  DescrT() = default;
+  DescrT(const DescrT &o);
+  DescrT(DescrT&&) FLATBUFFERS_NOEXCEPT = default;
+  DescrT &operator=(DescrT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Descr FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef DescrT NativeTableType;
   typedef DescrBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return DescrTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -716,7 +743,7 @@ struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::spatial::Collection *collection() const {
     return GetPointer<const sigmf::spatial::Collection *>(VT_COLLECTION);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_GLOBAL) &&
            verifier.VerifyTable(global()) &&
@@ -728,44 +755,44 @@ struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyTable(collection()) &&
            verifier.EndTable();
   }
-  DescrT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(DescrT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Descr> Pack(flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  DescrT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(DescrT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Descr> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct DescrBuilder {
   typedef Descr Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_global(flatbuffers::Offset<sigmf::spatial::Global> global) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_global(::flatbuffers::Offset<sigmf::spatial::Global> global) {
     fbb_.AddOffset(Descr::VT_GLOBAL, global);
   }
-  void add_annotation(flatbuffers::Offset<sigmf::spatial::Annotation> annotation) {
+  void add_annotation(::flatbuffers::Offset<sigmf::spatial::Annotation> annotation) {
     fbb_.AddOffset(Descr::VT_ANNOTATION, annotation);
   }
-  void add_capture(flatbuffers::Offset<sigmf::spatial::Capture> capture) {
+  void add_capture(::flatbuffers::Offset<sigmf::spatial::Capture> capture) {
     fbb_.AddOffset(Descr::VT_CAPTURE, capture);
   }
-  void add_collection(flatbuffers::Offset<sigmf::spatial::Collection> collection) {
+  void add_collection(::flatbuffers::Offset<sigmf::spatial::Collection> collection) {
     fbb_.AddOffset(Descr::VT_COLLECTION, collection);
   }
-  explicit DescrBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit DescrBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Descr> Finish() {
+  ::flatbuffers::Offset<Descr> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Descr>(end);
+    auto o = ::flatbuffers::Offset<Descr>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Descr> CreateDescr(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<sigmf::spatial::Global> global = 0,
-    flatbuffers::Offset<sigmf::spatial::Annotation> annotation = 0,
-    flatbuffers::Offset<sigmf::spatial::Capture> capture = 0,
-    flatbuffers::Offset<sigmf::spatial::Collection> collection = 0) {
+inline ::flatbuffers::Offset<Descr> CreateDescr(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<sigmf::spatial::Global> global = 0,
+    ::flatbuffers::Offset<sigmf::spatial::Annotation> annotation = 0,
+    ::flatbuffers::Offset<sigmf::spatial::Capture> capture = 0,
+    ::flatbuffers::Offset<sigmf::spatial::Collection> collection = 0) {
   DescrBuilder builder_(_fbb);
   builder_.add_collection(collection);
   builder_.add_capture(capture);
@@ -774,15 +801,15 @@ inline flatbuffers::Offset<Descr> CreateDescr(
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Descr> CreateDescr(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-inline sigmf_bearingT *sigmf_bearing::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline sigmf_bearingT *sigmf_bearing::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<sigmf_bearingT>(new sigmf_bearingT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void sigmf_bearing::UnPackTo(sigmf_bearingT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void sigmf_bearing::UnPackTo(sigmf_bearingT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = azimuth(); _o->azimuth = _e; }
@@ -793,14 +820,14 @@ inline void sigmf_bearing::UnPackTo(sigmf_bearingT *_o, const flatbuffers::resol
   { auto _e = range_error(); _o->range_error = _e; }
 }
 
-inline flatbuffers::Offset<sigmf_bearing> sigmf_bearing::Pack(flatbuffers::FlatBufferBuilder &_fbb, const sigmf_bearingT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<sigmf_bearing> sigmf_bearing::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const sigmf_bearingT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createsigmf_bearing(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<sigmf_bearing> Createsigmf_bearing(flatbuffers::FlatBufferBuilder &_fbb, const sigmf_bearingT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<sigmf_bearing> Createsigmf_bearing(::flatbuffers::FlatBufferBuilder &_fbb, const sigmf_bearingT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const sigmf_bearingT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const sigmf_bearingT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _azimuth = _o->azimuth;
   auto _elevation = _o->elevation;
   auto _range = _o->range;
@@ -817,27 +844,27 @@ inline flatbuffers::Offset<sigmf_bearing> Createsigmf_bearing(flatbuffers::FlatB
       _range_error);
 }
 
-inline cartesian_pointT *cartesian_point::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline cartesian_pointT *cartesian_point::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<cartesian_pointT>(new cartesian_pointT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void cartesian_point::UnPackTo(cartesian_pointT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void cartesian_point::UnPackTo(cartesian_pointT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = point(); if (_e) { _o->point.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->point[_i] = _e->Get(_i); } } }
+  { auto _e = point(); if (_e) { _o->point.resize(_e->size()); for (::flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->point[_i] = _e->Get(_i); } } else { _o->point.resize(0); } }
   { auto _e = unknown(); _o->unknown = _e; }
 }
 
-inline flatbuffers::Offset<cartesian_point> cartesian_point::Pack(flatbuffers::FlatBufferBuilder &_fbb, const cartesian_pointT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<cartesian_point> cartesian_point::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const cartesian_pointT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createcartesian_point(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<cartesian_point> Createcartesian_point(flatbuffers::FlatBufferBuilder &_fbb, const cartesian_pointT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<cartesian_point> Createcartesian_point(::flatbuffers::FlatBufferBuilder &_fbb, const cartesian_pointT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const cartesian_pointT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const cartesian_pointT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _point = _o->point.size() ? _fbb.CreateVector(_o->point) : 0;
   auto _unknown = _o->unknown;
   return sigmf::spatial::Createcartesian_point(
@@ -846,28 +873,41 @@ inline flatbuffers::Offset<cartesian_point> Createcartesian_point(flatbuffers::F
       _unknown);
 }
 
-inline sigmf_calibrationT *sigmf_calibration::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline sigmf_calibrationT::sigmf_calibrationT(const sigmf_calibrationT &o)
+      : caltype(o.caltype),
+        bearing((o.bearing) ? new sigmf::spatial::sigmf_bearingT(*o.bearing) : nullptr),
+        cal_geometry((o.cal_geometry) ? new sigmf::spatial::cartesian_pointT(*o.cal_geometry) : nullptr) {
+}
+
+inline sigmf_calibrationT &sigmf_calibrationT::operator=(sigmf_calibrationT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(caltype, o.caltype);
+  std::swap(bearing, o.bearing);
+  std::swap(cal_geometry, o.cal_geometry);
+  return *this;
+}
+
+inline sigmf_calibrationT *sigmf_calibration::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<sigmf_calibrationT>(new sigmf_calibrationT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void sigmf_calibration::UnPackTo(sigmf_calibrationT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void sigmf_calibration::UnPackTo(sigmf_calibrationT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = caltype(); if (_e) _o->caltype = _e->str(); }
-  { auto _e = bearing(); if (_e) _o->bearing = std::shared_ptr<sigmf::spatial::sigmf_bearingT>(_e->UnPack(_resolver)); }
-  { auto _e = cal_geometry(); if (_e) _o->cal_geometry = std::shared_ptr<sigmf::spatial::cartesian_pointT>(_e->UnPack(_resolver)); }
+  { auto _e = bearing(); if (_e) { if(_o->bearing) { _e->UnPackTo(_o->bearing.get(), _resolver); } else { _o->bearing = std::shared_ptr<sigmf::spatial::sigmf_bearingT>(_e->UnPack(_resolver)); } } else if (_o->bearing) { _o->bearing.reset(); } }
+  { auto _e = cal_geometry(); if (_e) { if(_o->cal_geometry) { _e->UnPackTo(_o->cal_geometry.get(), _resolver); } else { _o->cal_geometry = std::shared_ptr<sigmf::spatial::cartesian_pointT>(_e->UnPack(_resolver)); } } else if (_o->cal_geometry) { _o->cal_geometry.reset(); } }
 }
 
-inline flatbuffers::Offset<sigmf_calibration> sigmf_calibration::Pack(flatbuffers::FlatBufferBuilder &_fbb, const sigmf_calibrationT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<sigmf_calibration> sigmf_calibration::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const sigmf_calibrationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createsigmf_calibration(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<sigmf_calibration> Createsigmf_calibration(flatbuffers::FlatBufferBuilder &_fbb, const sigmf_calibrationT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<sigmf_calibration> Createsigmf_calibration(::flatbuffers::FlatBufferBuilder &_fbb, const sigmf_calibrationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const sigmf_calibrationT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const sigmf_calibrationT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _caltype = _o->caltype.empty() ? 0 : _fbb.CreateString(_o->caltype);
   auto _bearing = _o->bearing ? Createsigmf_bearing(_fbb, _o->bearing.get(), _rehasher) : 0;
   auto _cal_geometry = _o->cal_geometry ? Createcartesian_point(_fbb, _o->cal_geometry.get(), _rehasher) : 0;
@@ -878,27 +918,27 @@ inline flatbuffers::Offset<sigmf_calibration> Createsigmf_calibration(flatbuffer
       _cal_geometry);
 }
 
-inline GlobalT *Global::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline GlobalT *Global::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<GlobalT>(new GlobalT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Global::UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Global::UnPackTo(GlobalT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = num_elements(); _o->num_elements = _e; }
   { auto _e = channel_index(); _o->channel_index = _e; }
 }
 
-inline flatbuffers::Offset<Global> Global::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Global> Global::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateGlobal(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Global> CreateGlobal(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const GlobalT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const GlobalT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _num_elements = _o->num_elements;
   auto _channel_index = _o->channel_index;
   return sigmf::spatial::CreateGlobal(
@@ -907,36 +947,58 @@ inline flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &
       _channel_index);
 }
 
-inline CaptureT *Capture::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline CaptureT::CaptureT(const CaptureT &o)
+      : aperture_azimuth(o.aperture_azimuth),
+        aperture_bearing((o.aperture_bearing) ? new sigmf::spatial::sigmf_bearingT(*o.aperture_bearing) : nullptr),
+        emitter_bearing((o.emitter_bearing) ? new sigmf::spatial::sigmf_bearingT(*o.emitter_bearing) : nullptr),
+        phase_offset(o.phase_offset),
+        calibration((o.calibration) ? new sigmf::spatial::sigmf_calibrationT(*o.calibration) : nullptr),
+        aperture_rotation(o.aperture_rotation) {
+  element_geometry.reserve(o.element_geometry.size());
+  for (const auto &element_geometry_ : o.element_geometry) { element_geometry.emplace_back((element_geometry_) ? new sigmf::spatial::cartesian_pointT(*element_geometry_) : nullptr); }
+}
+
+inline CaptureT &CaptureT::operator=(CaptureT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(aperture_azimuth, o.aperture_azimuth);
+  std::swap(aperture_bearing, o.aperture_bearing);
+  std::swap(emitter_bearing, o.emitter_bearing);
+  std::swap(element_geometry, o.element_geometry);
+  std::swap(phase_offset, o.phase_offset);
+  std::swap(calibration, o.calibration);
+  std::swap(aperture_rotation, o.aperture_rotation);
+  return *this;
+}
+
+inline CaptureT *Capture::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<CaptureT>(new CaptureT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Capture::UnPackTo(CaptureT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Capture::UnPackTo(CaptureT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = aperture_azimuth(); _o->aperture_azimuth = _e; }
-  { auto _e = aperture_bearing(); if (_e) _o->aperture_bearing = std::shared_ptr<sigmf::spatial::sigmf_bearingT>(_e->UnPack(_resolver)); }
-  { auto _e = emitter_bearing(); if (_e) _o->emitter_bearing = std::shared_ptr<sigmf::spatial::sigmf_bearingT>(_e->UnPack(_resolver)); }
-  { auto _e = element_geometry(); if (_e) { _o->element_geometry.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->element_geometry[_i] = std::shared_ptr<sigmf::spatial::cartesian_pointT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = aperture_bearing(); if (_e) { if(_o->aperture_bearing) { _e->UnPackTo(_o->aperture_bearing.get(), _resolver); } else { _o->aperture_bearing = std::shared_ptr<sigmf::spatial::sigmf_bearingT>(_e->UnPack(_resolver)); } } else if (_o->aperture_bearing) { _o->aperture_bearing.reset(); } }
+  { auto _e = emitter_bearing(); if (_e) { if(_o->emitter_bearing) { _e->UnPackTo(_o->emitter_bearing.get(), _resolver); } else { _o->emitter_bearing = std::shared_ptr<sigmf::spatial::sigmf_bearingT>(_e->UnPack(_resolver)); } } else if (_o->emitter_bearing) { _o->emitter_bearing.reset(); } }
+  { auto _e = element_geometry(); if (_e) { _o->element_geometry.resize(_e->size()); for (::flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { if(_o->element_geometry[_i]) { _e->Get(_i)->UnPackTo(_o->element_geometry[_i].get(), _resolver); } else { _o->element_geometry[_i] = std::shared_ptr<sigmf::spatial::cartesian_pointT>(_e->Get(_i)->UnPack(_resolver)); }; } } else { _o->element_geometry.resize(0); } }
   { auto _e = phase_offset(); _o->phase_offset = _e; }
-  { auto _e = calibration(); if (_e) _o->calibration = std::shared_ptr<sigmf::spatial::sigmf_calibrationT>(_e->UnPack(_resolver)); }
+  { auto _e = calibration(); if (_e) { if(_o->calibration) { _e->UnPackTo(_o->calibration.get(), _resolver); } else { _o->calibration = std::shared_ptr<sigmf::spatial::sigmf_calibrationT>(_e->UnPack(_resolver)); } } else if (_o->calibration) { _o->calibration.reset(); } }
   { auto _e = aperture_rotation(); _o->aperture_rotation = _e; }
 }
 
-inline flatbuffers::Offset<Capture> Capture::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Capture> Capture::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateCapture(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Capture> CreateCapture(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _aperture_azimuth = _o->aperture_azimuth;
   auto _aperture_bearing = _o->aperture_bearing ? Createsigmf_bearing(_fbb, _o->aperture_bearing.get(), _rehasher) : 0;
   auto _emitter_bearing = _o->emitter_bearing ? Createsigmf_bearing(_fbb, _o->emitter_bearing.get(), _rehasher) : 0;
-  auto _element_geometry = _o->element_geometry.size() ? _fbb.CreateVector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> (_o->element_geometry.size(), [](size_t i, _VectorArgs *__va) { return Createcartesian_point(*__va->__fbb, __va->__o->element_geometry[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _element_geometry = _o->element_geometry.size() ? _fbb.CreateVector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>> (_o->element_geometry.size(), [](size_t i, _VectorArgs *__va) { return Createcartesian_point(*__va->__fbb, __va->__o->element_geometry[i].get(), __va->__rehasher); }, &_va ) : 0;
   auto _phase_offset = _o->phase_offset;
   auto _calibration = _o->calibration ? Createsigmf_calibration(_fbb, _o->calibration.get(), _rehasher) : 0;
   auto _aperture_rotation = _o->aperture_rotation;
@@ -951,27 +1013,38 @@ inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder
       _aperture_rotation);
 }
 
-inline AnnotationT *Annotation::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline AnnotationT::AnnotationT(const AnnotationT &o)
+      : signal_azimuth(o.signal_azimuth),
+        signal_bearing((o.signal_bearing) ? new sigmf::spatial::sigmf_bearingT(*o.signal_bearing) : nullptr) {
+}
+
+inline AnnotationT &AnnotationT::operator=(AnnotationT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(signal_azimuth, o.signal_azimuth);
+  std::swap(signal_bearing, o.signal_bearing);
+  return *this;
+}
+
+inline AnnotationT *Annotation::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<AnnotationT>(new AnnotationT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Annotation::UnPackTo(AnnotationT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Annotation::UnPackTo(AnnotationT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = signal_azimuth(); _o->signal_azimuth = _e; }
-  { auto _e = signal_bearing(); if (_e) _o->signal_bearing = std::shared_ptr<sigmf::spatial::sigmf_bearingT>(_e->UnPack(_resolver)); }
+  { auto _e = signal_bearing(); if (_e) { if(_o->signal_bearing) { _e->UnPackTo(_o->signal_bearing.get(), _resolver); } else { _o->signal_bearing = std::shared_ptr<sigmf::spatial::sigmf_bearingT>(_e->UnPack(_resolver)); } } else if (_o->signal_bearing) { _o->signal_bearing.reset(); } }
 }
 
-inline flatbuffers::Offset<Annotation> Annotation::Pack(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Annotation> Annotation::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateAnnotation(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Annotation> CreateAnnotation(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const AnnotationT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const AnnotationT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _signal_azimuth = _o->signal_azimuth;
   auto _signal_bearing = _o->signal_bearing ? Createsigmf_bearing(_fbb, _o->signal_bearing.get(), _rehasher) : 0;
   return sigmf::spatial::CreateAnnotation(
@@ -980,55 +1053,80 @@ inline flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferB
       _signal_bearing);
 }
 
-inline CollectionT *Collection::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline CollectionT::CollectionT(const CollectionT &o) {
+  element_geometry.reserve(o.element_geometry.size());
+  for (const auto &element_geometry_ : o.element_geometry) { element_geometry.emplace_back((element_geometry_) ? new sigmf::spatial::cartesian_pointT(*element_geometry_) : nullptr); }
+}
+
+inline CollectionT &CollectionT::operator=(CollectionT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(element_geometry, o.element_geometry);
+  return *this;
+}
+
+inline CollectionT *Collection::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<CollectionT>(new CollectionT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Collection::UnPackTo(CollectionT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Collection::UnPackTo(CollectionT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = element_geometry(); if (_e) { _o->element_geometry.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->element_geometry[_i] = std::shared_ptr<sigmf::spatial::cartesian_pointT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = element_geometry(); if (_e) { _o->element_geometry.resize(_e->size()); for (::flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { if(_o->element_geometry[_i]) { _e->Get(_i)->UnPackTo(_o->element_geometry[_i].get(), _resolver); } else { _o->element_geometry[_i] = std::shared_ptr<sigmf::spatial::cartesian_pointT>(_e->Get(_i)->UnPack(_resolver)); }; } } else { _o->element_geometry.resize(0); } }
 }
 
-inline flatbuffers::Offset<Collection> Collection::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CollectionT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Collection> Collection::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CollectionT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateCollection(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Collection> CreateCollection(flatbuffers::FlatBufferBuilder &_fbb, const CollectionT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Collection> CreateCollection(::flatbuffers::FlatBufferBuilder &_fbb, const CollectionT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const CollectionT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
-  auto _element_geometry = _o->element_geometry.size() ? _fbb.CreateVector<flatbuffers::Offset<sigmf::spatial::cartesian_point>> (_o->element_geometry.size(), [](size_t i, _VectorArgs *__va) { return Createcartesian_point(*__va->__fbb, __va->__o->element_geometry[i].get(), __va->__rehasher); }, &_va ) : 0;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const CollectionT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  auto _element_geometry = _o->element_geometry.size() ? _fbb.CreateVector<::flatbuffers::Offset<sigmf::spatial::cartesian_point>> (_o->element_geometry.size(), [](size_t i, _VectorArgs *__va) { return Createcartesian_point(*__va->__fbb, __va->__o->element_geometry[i].get(), __va->__rehasher); }, &_va ) : 0;
   return sigmf::spatial::CreateCollection(
       _fbb,
       _element_geometry);
 }
 
-inline DescrT *Descr::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline DescrT::DescrT(const DescrT &o)
+      : global((o.global) ? new sigmf::spatial::GlobalT(*o.global) : nullptr),
+        annotation((o.annotation) ? new sigmf::spatial::AnnotationT(*o.annotation) : nullptr),
+        capture((o.capture) ? new sigmf::spatial::CaptureT(*o.capture) : nullptr),
+        collection((o.collection) ? new sigmf::spatial::CollectionT(*o.collection) : nullptr) {
+}
+
+inline DescrT &DescrT::operator=(DescrT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(global, o.global);
+  std::swap(annotation, o.annotation);
+  std::swap(capture, o.capture);
+  std::swap(collection, o.collection);
+  return *this;
+}
+
+inline DescrT *Descr::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<DescrT>(new DescrT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Descr::UnPackTo(DescrT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Descr::UnPackTo(DescrT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = global(); if (_e) _o->global = std::shared_ptr<sigmf::spatial::GlobalT>(_e->UnPack(_resolver)); }
-  { auto _e = annotation(); if (_e) _o->annotation = std::shared_ptr<sigmf::spatial::AnnotationT>(_e->UnPack(_resolver)); }
-  { auto _e = capture(); if (_e) _o->capture = std::shared_ptr<sigmf::spatial::CaptureT>(_e->UnPack(_resolver)); }
-  { auto _e = collection(); if (_e) _o->collection = std::shared_ptr<sigmf::spatial::CollectionT>(_e->UnPack(_resolver)); }
+  { auto _e = global(); if (_e) { if(_o->global) { _e->UnPackTo(_o->global.get(), _resolver); } else { _o->global = std::shared_ptr<sigmf::spatial::GlobalT>(_e->UnPack(_resolver)); } } else if (_o->global) { _o->global.reset(); } }
+  { auto _e = annotation(); if (_e) { if(_o->annotation) { _e->UnPackTo(_o->annotation.get(), _resolver); } else { _o->annotation = std::shared_ptr<sigmf::spatial::AnnotationT>(_e->UnPack(_resolver)); } } else if (_o->annotation) { _o->annotation.reset(); } }
+  { auto _e = capture(); if (_e) { if(_o->capture) { _e->UnPackTo(_o->capture.get(), _resolver); } else { _o->capture = std::shared_ptr<sigmf::spatial::CaptureT>(_e->UnPack(_resolver)); } } else if (_o->capture) { _o->capture.reset(); } }
+  { auto _e = collection(); if (_e) { if(_o->collection) { _e->UnPackTo(_o->collection.get(), _resolver); } else { _o->collection = std::shared_ptr<sigmf::spatial::CollectionT>(_e->UnPack(_resolver)); } } else if (_o->collection) { _o->collection.reset(); } }
 }
 
-inline flatbuffers::Offset<Descr> Descr::Pack(flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Descr> Descr::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateDescr(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Descr> CreateDescr(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const DescrT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const DescrT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _global = _o->global ? CreateGlobal(_fbb, _o->global.get(), _rehasher) : 0;
   auto _annotation = _o->annotation ? CreateAnnotation(_fbb, _o->annotation.get(), _rehasher) : 0;
   auto _capture = _o->capture ? CreateCapture(_fbb, _o->capture.get(), _rehasher) : 0;
@@ -1041,14 +1139,14 @@ inline flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_f
       _collection);
 }
 
-inline const flatbuffers::TypeTable *sigmf_bearingTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 }
+inline const ::flatbuffers::TypeTable *sigmf_bearingTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 }
   };
   static const char * const names[] = {
     "azimuth",
@@ -1058,34 +1156,34 @@ inline const flatbuffers::TypeTable *sigmf_bearingTypeTable() {
     "el_error",
     "range_error"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 6, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 6, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *cartesian_pointTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_DOUBLE, 1, -1 },
-    { flatbuffers::ET_BOOL, 0, -1 }
+inline const ::flatbuffers::TypeTable *cartesian_pointTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_DOUBLE, 1, -1 },
+    { ::flatbuffers::ET_BOOL, 0, -1 }
   };
   static const char * const names[] = {
     "point",
     "unknown"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 2, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 2, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *sigmf_calibrationTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 1 }
+inline const ::flatbuffers::TypeTable *sigmf_calibrationTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 1 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::spatial::sigmf_bearingTypeTable,
     sigmf::spatial::cartesian_pointTypeTable
   };
@@ -1094,38 +1192,38 @@ inline const flatbuffers::TypeTable *sigmf_calibrationTypeTable() {
     "bearing",
     "cal_geometry"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *GlobalTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_ULONG, 0, -1 },
-    { flatbuffers::ET_ULONG, 0, -1 }
+inline const ::flatbuffers::TypeTable *GlobalTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_ULONG, 0, -1 },
+    { ::flatbuffers::ET_ULONG, 0, -1 }
   };
   static const char * const names[] = {
     "num_elements",
     "channel_index"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 2, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 2, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *CaptureTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 1, 1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_SEQUENCE, 0, 2 },
-    { flatbuffers::ET_DOUBLE, 0, -1 }
+inline const ::flatbuffers::TypeTable *CaptureTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 1, 1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 2 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::spatial::sigmf_bearingTypeTable,
     sigmf::spatial::cartesian_pointTypeTable,
     sigmf::spatial::sigmf_calibrationTypeTable
@@ -1139,54 +1237,54 @@ inline const flatbuffers::TypeTable *CaptureTypeTable() {
     "calibration",
     "aperture_rotation"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 7, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 7, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *AnnotationTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_SEQUENCE, 0, 0 }
+inline const ::flatbuffers::TypeTable *AnnotationTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::spatial::sigmf_bearingTypeTable
   };
   static const char * const names[] = {
     "signal_azimuth",
     "signal_bearing"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 2, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 2, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *CollectionTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_SEQUENCE, 1, 0 }
+inline const ::flatbuffers::TypeTable *CollectionTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_SEQUENCE, 1, 0 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::spatial::cartesian_pointTypeTable
   };
   static const char * const names[] = {
     "element_geometry"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 1, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 1, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *DescrTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 1 },
-    { flatbuffers::ET_SEQUENCE, 0, 2 },
-    { flatbuffers::ET_SEQUENCE, 0, 3 }
+inline const ::flatbuffers::TypeTable *DescrTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 2 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 3 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::spatial::GlobalTypeTable,
     sigmf::spatial::AnnotationTypeTable,
     sigmf::spatial::CaptureTypeTable,
@@ -1198,8 +1296,8 @@ inline const flatbuffers::TypeTable *DescrTypeTable() {
     "capture",
     "collection"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 4, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 4, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }

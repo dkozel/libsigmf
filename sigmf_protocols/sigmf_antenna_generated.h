@@ -6,6 +6,13 @@
 
 #include "flatbuffers/flatbuffers.h"
 
+// Ensure the included flatbuffers.h is the same version as when this file was
+// generated, otherwise it may not be compatible.
+static_assert(FLATBUFFERS_VERSION_MAJOR == 23 &&
+              FLATBUFFERS_VERSION_MINOR == 3 &&
+              FLATBUFFERS_VERSION_REVISION == 3,
+             "Non-compatible flatbuffers version included");
+
 namespace sigmf {
 namespace antenna {
 
@@ -25,37 +32,37 @@ struct Descr;
 struct DescrBuilder;
 struct DescrT;
 
-inline const flatbuffers::TypeTable *GlobalTypeTable();
+inline const ::flatbuffers::TypeTable *GlobalTypeTable();
 
-inline const flatbuffers::TypeTable *CaptureTypeTable();
+inline const ::flatbuffers::TypeTable *CaptureTypeTable();
 
-inline const flatbuffers::TypeTable *AnnotationTypeTable();
+inline const ::flatbuffers::TypeTable *AnnotationTypeTable();
 
-inline const flatbuffers::TypeTable *DescrTypeTable();
+inline const ::flatbuffers::TypeTable *DescrTypeTable();
 
-struct GlobalT : public flatbuffers::NativeTable {
+struct GlobalT : public ::flatbuffers::NativeTable {
   typedef Global TableType;
   std::string model{};
   std::string type{};
-  flatbuffers::Optional<double> low_frequency = flatbuffers::nullopt;
-  flatbuffers::Optional<double> high_frequency = flatbuffers::nullopt;
-  flatbuffers::Optional<double> gain = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> low_frequency = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> high_frequency = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> gain = ::flatbuffers::nullopt;
   std::vector<double> horizontal_gain_pattern{};
   std::vector<double> vertical_gain_pattern{};
-  flatbuffers::Optional<double> horizontal_beam_width = flatbuffers::nullopt;
-  flatbuffers::Optional<double> vertical_beam_width = flatbuffers::nullopt;
-  flatbuffers::Optional<double> cross_polar_discrimination = flatbuffers::nullopt;
-  flatbuffers::Optional<double> voltage_standing_wave_ratio = flatbuffers::nullopt;
-  flatbuffers::Optional<double> cable_loss = flatbuffers::nullopt;
-  flatbuffers::Optional<bool> steerable = flatbuffers::nullopt;
-  flatbuffers::Optional<bool> mobile = flatbuffers::nullopt;
-  flatbuffers::Optional<double> hagl = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> horizontal_beam_width = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> vertical_beam_width = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> cross_polar_discrimination = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> voltage_standing_wave_ratio = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> cable_loss = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<bool> steerable = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<bool> mobile = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> hagl = ::flatbuffers::nullopt;
 };
 
-struct Global FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Global FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef GlobalT NativeTableType;
   typedef GlobalBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GlobalTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -75,87 +82,87 @@ struct Global FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_MOBILE = 30,
     VT_HAGL = 32
   };
-  const flatbuffers::String *model() const {
-    return GetPointer<const flatbuffers::String *>(VT_MODEL);
+  const ::flatbuffers::String *model() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MODEL);
   }
-  const flatbuffers::String *type() const {
-    return GetPointer<const flatbuffers::String *>(VT_TYPE);
+  const ::flatbuffers::String *type() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_TYPE);
   }
-  flatbuffers::Optional<double> low_frequency() const {
+  ::flatbuffers::Optional<double> low_frequency() const {
     return GetOptional<double, double>(VT_LOW_FREQUENCY);
   }
-  flatbuffers::Optional<double> high_frequency() const {
+  ::flatbuffers::Optional<double> high_frequency() const {
     return GetOptional<double, double>(VT_HIGH_FREQUENCY);
   }
-  flatbuffers::Optional<double> gain() const {
+  ::flatbuffers::Optional<double> gain() const {
     return GetOptional<double, double>(VT_GAIN);
   }
-  const flatbuffers::Vector<double> *horizontal_gain_pattern() const {
-    return GetPointer<const flatbuffers::Vector<double> *>(VT_HORIZONTAL_GAIN_PATTERN);
+  const ::flatbuffers::Vector<double> *horizontal_gain_pattern() const {
+    return GetPointer<const ::flatbuffers::Vector<double> *>(VT_HORIZONTAL_GAIN_PATTERN);
   }
-  const flatbuffers::Vector<double> *vertical_gain_pattern() const {
-    return GetPointer<const flatbuffers::Vector<double> *>(VT_VERTICAL_GAIN_PATTERN);
+  const ::flatbuffers::Vector<double> *vertical_gain_pattern() const {
+    return GetPointer<const ::flatbuffers::Vector<double> *>(VT_VERTICAL_GAIN_PATTERN);
   }
-  flatbuffers::Optional<double> horizontal_beam_width() const {
+  ::flatbuffers::Optional<double> horizontal_beam_width() const {
     return GetOptional<double, double>(VT_HORIZONTAL_BEAM_WIDTH);
   }
-  flatbuffers::Optional<double> vertical_beam_width() const {
+  ::flatbuffers::Optional<double> vertical_beam_width() const {
     return GetOptional<double, double>(VT_VERTICAL_BEAM_WIDTH);
   }
-  flatbuffers::Optional<double> cross_polar_discrimination() const {
+  ::flatbuffers::Optional<double> cross_polar_discrimination() const {
     return GetOptional<double, double>(VT_CROSS_POLAR_DISCRIMINATION);
   }
-  flatbuffers::Optional<double> voltage_standing_wave_ratio() const {
+  ::flatbuffers::Optional<double> voltage_standing_wave_ratio() const {
     return GetOptional<double, double>(VT_VOLTAGE_STANDING_WAVE_RATIO);
   }
-  flatbuffers::Optional<double> cable_loss() const {
+  ::flatbuffers::Optional<double> cable_loss() const {
     return GetOptional<double, double>(VT_CABLE_LOSS);
   }
-  flatbuffers::Optional<bool> steerable() const {
+  ::flatbuffers::Optional<bool> steerable() const {
     return GetOptional<uint8_t, bool>(VT_STEERABLE);
   }
-  flatbuffers::Optional<bool> mobile() const {
+  ::flatbuffers::Optional<bool> mobile() const {
     return GetOptional<uint8_t, bool>(VT_MOBILE);
   }
-  flatbuffers::Optional<double> hagl() const {
+  ::flatbuffers::Optional<double> hagl() const {
     return GetOptional<double, double>(VT_HAGL);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_MODEL) &&
            verifier.VerifyString(model()) &&
            VerifyOffset(verifier, VT_TYPE) &&
            verifier.VerifyString(type()) &&
-           VerifyField<double>(verifier, VT_LOW_FREQUENCY) &&
-           VerifyField<double>(verifier, VT_HIGH_FREQUENCY) &&
-           VerifyField<double>(verifier, VT_GAIN) &&
+           VerifyField<double>(verifier, VT_LOW_FREQUENCY, 8) &&
+           VerifyField<double>(verifier, VT_HIGH_FREQUENCY, 8) &&
+           VerifyField<double>(verifier, VT_GAIN, 8) &&
            VerifyOffset(verifier, VT_HORIZONTAL_GAIN_PATTERN) &&
            verifier.VerifyVector(horizontal_gain_pattern()) &&
            VerifyOffset(verifier, VT_VERTICAL_GAIN_PATTERN) &&
            verifier.VerifyVector(vertical_gain_pattern()) &&
-           VerifyField<double>(verifier, VT_HORIZONTAL_BEAM_WIDTH) &&
-           VerifyField<double>(verifier, VT_VERTICAL_BEAM_WIDTH) &&
-           VerifyField<double>(verifier, VT_CROSS_POLAR_DISCRIMINATION) &&
-           VerifyField<double>(verifier, VT_VOLTAGE_STANDING_WAVE_RATIO) &&
-           VerifyField<double>(verifier, VT_CABLE_LOSS) &&
-           VerifyField<uint8_t>(verifier, VT_STEERABLE) &&
-           VerifyField<uint8_t>(verifier, VT_MOBILE) &&
-           VerifyField<double>(verifier, VT_HAGL) &&
+           VerifyField<double>(verifier, VT_HORIZONTAL_BEAM_WIDTH, 8) &&
+           VerifyField<double>(verifier, VT_VERTICAL_BEAM_WIDTH, 8) &&
+           VerifyField<double>(verifier, VT_CROSS_POLAR_DISCRIMINATION, 8) &&
+           VerifyField<double>(verifier, VT_VOLTAGE_STANDING_WAVE_RATIO, 8) &&
+           VerifyField<double>(verifier, VT_CABLE_LOSS, 8) &&
+           VerifyField<uint8_t>(verifier, VT_STEERABLE, 1) &&
+           VerifyField<uint8_t>(verifier, VT_MOBILE, 1) &&
+           VerifyField<double>(verifier, VT_HAGL, 8) &&
            verifier.EndTable();
   }
-  GlobalT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Global> Pack(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  GlobalT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(GlobalT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Global> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct GlobalBuilder {
   typedef Global Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_model(flatbuffers::Offset<flatbuffers::String> model) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_model(::flatbuffers::Offset<::flatbuffers::String> model) {
     fbb_.AddOffset(Global::VT_MODEL, model);
   }
-  void add_type(flatbuffers::Offset<flatbuffers::String> type) {
+  void add_type(::flatbuffers::Offset<::flatbuffers::String> type) {
     fbb_.AddOffset(Global::VT_TYPE, type);
   }
   void add_low_frequency(double low_frequency) {
@@ -167,10 +174,10 @@ struct GlobalBuilder {
   void add_gain(double gain) {
     fbb_.AddElement<double>(Global::VT_GAIN, gain);
   }
-  void add_horizontal_gain_pattern(flatbuffers::Offset<flatbuffers::Vector<double>> horizontal_gain_pattern) {
+  void add_horizontal_gain_pattern(::flatbuffers::Offset<::flatbuffers::Vector<double>> horizontal_gain_pattern) {
     fbb_.AddOffset(Global::VT_HORIZONTAL_GAIN_PATTERN, horizontal_gain_pattern);
   }
-  void add_vertical_gain_pattern(flatbuffers::Offset<flatbuffers::Vector<double>> vertical_gain_pattern) {
+  void add_vertical_gain_pattern(::flatbuffers::Offset<::flatbuffers::Vector<double>> vertical_gain_pattern) {
     fbb_.AddOffset(Global::VT_VERTICAL_GAIN_PATTERN, vertical_gain_pattern);
   }
   void add_horizontal_beam_width(double horizontal_beam_width) {
@@ -197,34 +204,34 @@ struct GlobalBuilder {
   void add_hagl(double hagl) {
     fbb_.AddElement<double>(Global::VT_HAGL, hagl);
   }
-  explicit GlobalBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit GlobalBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Global> Finish() {
+  ::flatbuffers::Offset<Global> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Global>(end);
+    auto o = ::flatbuffers::Offset<Global>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Global> CreateGlobal(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::String> model = 0,
-    flatbuffers::Offset<flatbuffers::String> type = 0,
-    flatbuffers::Optional<double> low_frequency = flatbuffers::nullopt,
-    flatbuffers::Optional<double> high_frequency = flatbuffers::nullopt,
-    flatbuffers::Optional<double> gain = flatbuffers::nullopt,
-    flatbuffers::Offset<flatbuffers::Vector<double>> horizontal_gain_pattern = 0,
-    flatbuffers::Offset<flatbuffers::Vector<double>> vertical_gain_pattern = 0,
-    flatbuffers::Optional<double> horizontal_beam_width = flatbuffers::nullopt,
-    flatbuffers::Optional<double> vertical_beam_width = flatbuffers::nullopt,
-    flatbuffers::Optional<double> cross_polar_discrimination = flatbuffers::nullopt,
-    flatbuffers::Optional<double> voltage_standing_wave_ratio = flatbuffers::nullopt,
-    flatbuffers::Optional<double> cable_loss = flatbuffers::nullopt,
-    flatbuffers::Optional<bool> steerable = flatbuffers::nullopt,
-    flatbuffers::Optional<bool> mobile = flatbuffers::nullopt,
-    flatbuffers::Optional<double> hagl = flatbuffers::nullopt) {
+inline ::flatbuffers::Offset<Global> CreateGlobal(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> model = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> type = 0,
+    ::flatbuffers::Optional<double> low_frequency = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> high_frequency = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> gain = ::flatbuffers::nullopt,
+    ::flatbuffers::Offset<::flatbuffers::Vector<double>> horizontal_gain_pattern = 0,
+    ::flatbuffers::Offset<::flatbuffers::Vector<double>> vertical_gain_pattern = 0,
+    ::flatbuffers::Optional<double> horizontal_beam_width = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> vertical_beam_width = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> cross_polar_discrimination = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> voltage_standing_wave_ratio = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> cable_loss = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<bool> steerable = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<bool> mobile = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> hagl = ::flatbuffers::nullopt) {
   GlobalBuilder builder_(_fbb);
   if(hagl) { builder_.add_hagl(*hagl); }
   if(cable_loss) { builder_.add_cable_loss(*cable_loss); }
@@ -244,23 +251,23 @@ inline flatbuffers::Offset<Global> CreateGlobal(
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<Global> CreateGlobalDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<Global> CreateGlobalDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *model = nullptr,
     const char *type = nullptr,
-    flatbuffers::Optional<double> low_frequency = flatbuffers::nullopt,
-    flatbuffers::Optional<double> high_frequency = flatbuffers::nullopt,
-    flatbuffers::Optional<double> gain = flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> low_frequency = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> high_frequency = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> gain = ::flatbuffers::nullopt,
     const std::vector<double> *horizontal_gain_pattern = nullptr,
     const std::vector<double> *vertical_gain_pattern = nullptr,
-    flatbuffers::Optional<double> horizontal_beam_width = flatbuffers::nullopt,
-    flatbuffers::Optional<double> vertical_beam_width = flatbuffers::nullopt,
-    flatbuffers::Optional<double> cross_polar_discrimination = flatbuffers::nullopt,
-    flatbuffers::Optional<double> voltage_standing_wave_ratio = flatbuffers::nullopt,
-    flatbuffers::Optional<double> cable_loss = flatbuffers::nullopt,
-    flatbuffers::Optional<bool> steerable = flatbuffers::nullopt,
-    flatbuffers::Optional<bool> mobile = flatbuffers::nullopt,
-    flatbuffers::Optional<double> hagl = flatbuffers::nullopt) {
+    ::flatbuffers::Optional<double> horizontal_beam_width = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> vertical_beam_width = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> cross_polar_discrimination = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> voltage_standing_wave_ratio = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> cable_loss = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<bool> steerable = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<bool> mobile = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> hagl = ::flatbuffers::nullopt) {
   auto model__ = model ? _fbb.CreateString(model) : 0;
   auto type__ = type ? _fbb.CreateString(type) : 0;
   auto horizontal_gain_pattern__ = horizontal_gain_pattern ? _fbb.CreateVector<double>(*horizontal_gain_pattern) : 0;
@@ -284,61 +291,61 @@ inline flatbuffers::Offset<Global> CreateGlobalDirect(
       hagl);
 }
 
-flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Global> CreateGlobal(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct CaptureT : public flatbuffers::NativeTable {
+struct CaptureT : public ::flatbuffers::NativeTable {
   typedef Capture TableType;
 };
 
-struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Capture FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef CaptureT NativeTableType;
   typedef CaptureBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return CaptureTypeTable();
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            verifier.EndTable();
   }
-  CaptureT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(CaptureT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Capture> Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  CaptureT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(CaptureT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Capture> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct CaptureBuilder {
   typedef Capture Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  explicit CaptureBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  explicit CaptureBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Capture> Finish() {
+  ::flatbuffers::Offset<Capture> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Capture>(end);
+    auto o = ::flatbuffers::Offset<Capture>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Capture> CreateCapture(
-    flatbuffers::FlatBufferBuilder &_fbb) {
+inline ::flatbuffers::Offset<Capture> CreateCapture(
+    ::flatbuffers::FlatBufferBuilder &_fbb) {
   CaptureBuilder builder_(_fbb);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Capture> CreateCapture(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct AnnotationT : public flatbuffers::NativeTable {
+struct AnnotationT : public ::flatbuffers::NativeTable {
   typedef Annotation TableType;
-  flatbuffers::Optional<double> azimuth_angle = flatbuffers::nullopt;
-  flatbuffers::Optional<double> elevation_angle = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> azimuth_angle = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> elevation_angle = ::flatbuffers::nullopt;
   std::string polarization{};
 };
 
-struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Annotation FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef AnnotationT NativeTableType;
   typedef AnnotationBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return AnnotationTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -346,57 +353,57 @@ struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_ELEVATION_ANGLE = 6,
     VT_POLARIZATION = 8
   };
-  flatbuffers::Optional<double> azimuth_angle() const {
+  ::flatbuffers::Optional<double> azimuth_angle() const {
     return GetOptional<double, double>(VT_AZIMUTH_ANGLE);
   }
-  flatbuffers::Optional<double> elevation_angle() const {
+  ::flatbuffers::Optional<double> elevation_angle() const {
     return GetOptional<double, double>(VT_ELEVATION_ANGLE);
   }
-  const flatbuffers::String *polarization() const {
-    return GetPointer<const flatbuffers::String *>(VT_POLARIZATION);
+  const ::flatbuffers::String *polarization() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_POLARIZATION);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<double>(verifier, VT_AZIMUTH_ANGLE) &&
-           VerifyField<double>(verifier, VT_ELEVATION_ANGLE) &&
+           VerifyField<double>(verifier, VT_AZIMUTH_ANGLE, 8) &&
+           VerifyField<double>(verifier, VT_ELEVATION_ANGLE, 8) &&
            VerifyOffset(verifier, VT_POLARIZATION) &&
            verifier.VerifyString(polarization()) &&
            verifier.EndTable();
   }
-  AnnotationT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(AnnotationT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Annotation> Pack(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  AnnotationT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(AnnotationT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Annotation> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct AnnotationBuilder {
   typedef Annotation Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_azimuth_angle(double azimuth_angle) {
     fbb_.AddElement<double>(Annotation::VT_AZIMUTH_ANGLE, azimuth_angle);
   }
   void add_elevation_angle(double elevation_angle) {
     fbb_.AddElement<double>(Annotation::VT_ELEVATION_ANGLE, elevation_angle);
   }
-  void add_polarization(flatbuffers::Offset<flatbuffers::String> polarization) {
+  void add_polarization(::flatbuffers::Offset<::flatbuffers::String> polarization) {
     fbb_.AddOffset(Annotation::VT_POLARIZATION, polarization);
   }
-  explicit AnnotationBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit AnnotationBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Annotation> Finish() {
+  ::flatbuffers::Offset<Annotation> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Annotation>(end);
+    auto o = ::flatbuffers::Offset<Annotation>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Annotation> CreateAnnotation(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Optional<double> azimuth_angle = flatbuffers::nullopt,
-    flatbuffers::Optional<double> elevation_angle = flatbuffers::nullopt,
-    flatbuffers::Offset<flatbuffers::String> polarization = 0) {
+inline ::flatbuffers::Offset<Annotation> CreateAnnotation(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Optional<double> azimuth_angle = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> elevation_angle = ::flatbuffers::nullopt,
+    ::flatbuffers::Offset<::flatbuffers::String> polarization = 0) {
   AnnotationBuilder builder_(_fbb);
   if(elevation_angle) { builder_.add_elevation_angle(*elevation_angle); }
   if(azimuth_angle) { builder_.add_azimuth_angle(*azimuth_angle); }
@@ -404,10 +411,10 @@ inline flatbuffers::Offset<Annotation> CreateAnnotation(
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<Annotation> CreateAnnotationDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Optional<double> azimuth_angle = flatbuffers::nullopt,
-    flatbuffers::Optional<double> elevation_angle = flatbuffers::nullopt,
+inline ::flatbuffers::Offset<Annotation> CreateAnnotationDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Optional<double> azimuth_angle = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> elevation_angle = ::flatbuffers::nullopt,
     const char *polarization = nullptr) {
   auto polarization__ = polarization ? _fbb.CreateString(polarization) : 0;
   return sigmf::antenna::CreateAnnotation(
@@ -417,19 +424,23 @@ inline flatbuffers::Offset<Annotation> CreateAnnotationDirect(
       polarization__);
 }
 
-flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Annotation> CreateAnnotation(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct DescrT : public flatbuffers::NativeTable {
+struct DescrT : public ::flatbuffers::NativeTable {
   typedef Descr TableType;
   std::shared_ptr<sigmf::antenna::GlobalT> global{};
   std::shared_ptr<sigmf::antenna::AnnotationT> annotation{};
   std::shared_ptr<sigmf::antenna::CaptureT> capture{};
+  DescrT() = default;
+  DescrT(const DescrT &o);
+  DescrT(DescrT&&) FLATBUFFERS_NOEXCEPT = default;
+  DescrT &operator=(DescrT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Descr FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef DescrT NativeTableType;
   typedef DescrBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return DescrTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -446,7 +457,7 @@ struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::antenna::Capture *capture() const {
     return GetPointer<const sigmf::antenna::Capture *>(VT_CAPTURE);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_GLOBAL) &&
            verifier.VerifyTable(global()) &&
@@ -456,40 +467,40 @@ struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyTable(capture()) &&
            verifier.EndTable();
   }
-  DescrT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(DescrT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Descr> Pack(flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  DescrT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(DescrT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Descr> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct DescrBuilder {
   typedef Descr Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_global(flatbuffers::Offset<sigmf::antenna::Global> global) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_global(::flatbuffers::Offset<sigmf::antenna::Global> global) {
     fbb_.AddOffset(Descr::VT_GLOBAL, global);
   }
-  void add_annotation(flatbuffers::Offset<sigmf::antenna::Annotation> annotation) {
+  void add_annotation(::flatbuffers::Offset<sigmf::antenna::Annotation> annotation) {
     fbb_.AddOffset(Descr::VT_ANNOTATION, annotation);
   }
-  void add_capture(flatbuffers::Offset<sigmf::antenna::Capture> capture) {
+  void add_capture(::flatbuffers::Offset<sigmf::antenna::Capture> capture) {
     fbb_.AddOffset(Descr::VT_CAPTURE, capture);
   }
-  explicit DescrBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit DescrBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Descr> Finish() {
+  ::flatbuffers::Offset<Descr> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Descr>(end);
+    auto o = ::flatbuffers::Offset<Descr>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Descr> CreateDescr(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<sigmf::antenna::Global> global = 0,
-    flatbuffers::Offset<sigmf::antenna::Annotation> annotation = 0,
-    flatbuffers::Offset<sigmf::antenna::Capture> capture = 0) {
+inline ::flatbuffers::Offset<Descr> CreateDescr(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<sigmf::antenna::Global> global = 0,
+    ::flatbuffers::Offset<sigmf::antenna::Annotation> annotation = 0,
+    ::flatbuffers::Offset<sigmf::antenna::Capture> capture = 0) {
   DescrBuilder builder_(_fbb);
   builder_.add_capture(capture);
   builder_.add_annotation(annotation);
@@ -497,15 +508,15 @@ inline flatbuffers::Offset<Descr> CreateDescr(
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Descr> CreateDescr(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-inline GlobalT *Global::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline GlobalT *Global::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<GlobalT>(new GlobalT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Global::UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Global::UnPackTo(GlobalT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = model(); if (_e) _o->model = _e->str(); }
@@ -513,8 +524,8 @@ inline void Global::UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t
   { auto _e = low_frequency(); _o->low_frequency = _e; }
   { auto _e = high_frequency(); _o->high_frequency = _e; }
   { auto _e = gain(); _o->gain = _e; }
-  { auto _e = horizontal_gain_pattern(); if (_e) { _o->horizontal_gain_pattern.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->horizontal_gain_pattern[_i] = _e->Get(_i); } } }
-  { auto _e = vertical_gain_pattern(); if (_e) { _o->vertical_gain_pattern.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->vertical_gain_pattern[_i] = _e->Get(_i); } } }
+  { auto _e = horizontal_gain_pattern(); if (_e) { _o->horizontal_gain_pattern.resize(_e->size()); for (::flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->horizontal_gain_pattern[_i] = _e->Get(_i); } } else { _o->horizontal_gain_pattern.resize(0); } }
+  { auto _e = vertical_gain_pattern(); if (_e) { _o->vertical_gain_pattern.resize(_e->size()); for (::flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->vertical_gain_pattern[_i] = _e->Get(_i); } } else { _o->vertical_gain_pattern.resize(0); } }
   { auto _e = horizontal_beam_width(); _o->horizontal_beam_width = _e; }
   { auto _e = vertical_beam_width(); _o->vertical_beam_width = _e; }
   { auto _e = cross_polar_discrimination(); _o->cross_polar_discrimination = _e; }
@@ -525,14 +536,14 @@ inline void Global::UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t
   { auto _e = hagl(); _o->hagl = _e; }
 }
 
-inline flatbuffers::Offset<Global> Global::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Global> Global::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateGlobal(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Global> CreateGlobal(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const GlobalT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const GlobalT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _model = _o->model.empty() ? 0 : _fbb.CreateString(_o->model);
   auto _type = _o->type.empty() ? 0 : _fbb.CreateString(_o->type);
   auto _low_frequency = _o->low_frequency;
@@ -567,36 +578,36 @@ inline flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &
       _hagl);
 }
 
-inline CaptureT *Capture::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline CaptureT *Capture::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<CaptureT>(new CaptureT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Capture::UnPackTo(CaptureT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Capture::UnPackTo(CaptureT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
 }
 
-inline flatbuffers::Offset<Capture> Capture::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Capture> Capture::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateCapture(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Capture> CreateCapture(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   return sigmf::antenna::CreateCapture(
       _fbb);
 }
 
-inline AnnotationT *Annotation::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline AnnotationT *Annotation::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<AnnotationT>(new AnnotationT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Annotation::UnPackTo(AnnotationT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Annotation::UnPackTo(AnnotationT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = azimuth_angle(); _o->azimuth_angle = _e; }
@@ -604,14 +615,14 @@ inline void Annotation::UnPackTo(AnnotationT *_o, const flatbuffers::resolver_fu
   { auto _e = polarization(); if (_e) _o->polarization = _e->str(); }
 }
 
-inline flatbuffers::Offset<Annotation> Annotation::Pack(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Annotation> Annotation::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateAnnotation(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Annotation> CreateAnnotation(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const AnnotationT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const AnnotationT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _azimuth_angle = _o->azimuth_angle;
   auto _elevation_angle = _o->elevation_angle;
   auto _polarization = _o->polarization.empty() ? 0 : _fbb.CreateString(_o->polarization);
@@ -622,28 +633,41 @@ inline flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferB
       _polarization);
 }
 
-inline DescrT *Descr::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline DescrT::DescrT(const DescrT &o)
+      : global((o.global) ? new sigmf::antenna::GlobalT(*o.global) : nullptr),
+        annotation((o.annotation) ? new sigmf::antenna::AnnotationT(*o.annotation) : nullptr),
+        capture((o.capture) ? new sigmf::antenna::CaptureT(*o.capture) : nullptr) {
+}
+
+inline DescrT &DescrT::operator=(DescrT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(global, o.global);
+  std::swap(annotation, o.annotation);
+  std::swap(capture, o.capture);
+  return *this;
+}
+
+inline DescrT *Descr::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<DescrT>(new DescrT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Descr::UnPackTo(DescrT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Descr::UnPackTo(DescrT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = global(); if (_e) _o->global = std::shared_ptr<sigmf::antenna::GlobalT>(_e->UnPack(_resolver)); }
-  { auto _e = annotation(); if (_e) _o->annotation = std::shared_ptr<sigmf::antenna::AnnotationT>(_e->UnPack(_resolver)); }
-  { auto _e = capture(); if (_e) _o->capture = std::shared_ptr<sigmf::antenna::CaptureT>(_e->UnPack(_resolver)); }
+  { auto _e = global(); if (_e) { if(_o->global) { _e->UnPackTo(_o->global.get(), _resolver); } else { _o->global = std::shared_ptr<sigmf::antenna::GlobalT>(_e->UnPack(_resolver)); } } else if (_o->global) { _o->global.reset(); } }
+  { auto _e = annotation(); if (_e) { if(_o->annotation) { _e->UnPackTo(_o->annotation.get(), _resolver); } else { _o->annotation = std::shared_ptr<sigmf::antenna::AnnotationT>(_e->UnPack(_resolver)); } } else if (_o->annotation) { _o->annotation.reset(); } }
+  { auto _e = capture(); if (_e) { if(_o->capture) { _e->UnPackTo(_o->capture.get(), _resolver); } else { _o->capture = std::shared_ptr<sigmf::antenna::CaptureT>(_e->UnPack(_resolver)); } } else if (_o->capture) { _o->capture.reset(); } }
 }
 
-inline flatbuffers::Offset<Descr> Descr::Pack(flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Descr> Descr::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateDescr(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Descr> CreateDescr(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const DescrT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const DescrT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _global = _o->global ? CreateGlobal(_fbb, _o->global.get(), _rehasher) : 0;
   auto _annotation = _o->annotation ? CreateAnnotation(_fbb, _o->annotation.get(), _rehasher) : 0;
   auto _capture = _o->capture ? CreateCapture(_fbb, _o->capture.get(), _rehasher) : 0;
@@ -654,23 +678,23 @@ inline flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_f
       _capture);
 }
 
-inline const flatbuffers::TypeTable *GlobalTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 1, -1 },
-    { flatbuffers::ET_DOUBLE, 1, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_BOOL, 0, -1 },
-    { flatbuffers::ET_BOOL, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 }
+inline const ::flatbuffers::TypeTable *GlobalTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 1, -1 },
+    { ::flatbuffers::ET_DOUBLE, 1, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_BOOL, 0, -1 },
+    { ::flatbuffers::ET_BOOL, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 }
   };
   static const char * const names[] = {
     "model",
@@ -689,43 +713,43 @@ inline const flatbuffers::TypeTable *GlobalTypeTable() {
     "mobile",
     "hagl"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 15, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 15, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *CaptureTypeTable() {
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
+inline const ::flatbuffers::TypeTable *CaptureTypeTable() {
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *AnnotationTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 }
+inline const ::flatbuffers::TypeTable *AnnotationTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 }
   };
   static const char * const names[] = {
     "azimuth_angle",
     "elevation_angle",
     "polarization"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 3, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 3, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *DescrTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 1 },
-    { flatbuffers::ET_SEQUENCE, 0, 2 }
+inline const ::flatbuffers::TypeTable *DescrTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 2 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::antenna::GlobalTypeTable,
     sigmf::antenna::AnnotationTypeTable,
     sigmf::antenna::CaptureTypeTable
@@ -735,8 +759,8 @@ inline const flatbuffers::TypeTable *DescrTypeTable() {
     "annotation",
     "capture"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }

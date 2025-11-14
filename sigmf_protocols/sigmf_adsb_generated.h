@@ -6,6 +6,13 @@
 
 #include "flatbuffers/flatbuffers.h"
 
+// Ensure the included flatbuffers.h is the same version as when this file was
+// generated, otherwise it may not be compatible.
+static_assert(FLATBUFFERS_VERSION_MAJOR == 23 &&
+              FLATBUFFERS_VERSION_MINOR == 3 &&
+              FLATBUFFERS_VERSION_REVISION == 3,
+             "Non-compatible flatbuffers version included");
+
 namespace sigmf {
 namespace adsb {
 
@@ -25,122 +32,122 @@ struct Descr;
 struct DescrBuilder;
 struct DescrT;
 
-inline const flatbuffers::TypeTable *GlobalTypeTable();
+inline const ::flatbuffers::TypeTable *GlobalTypeTable();
 
-inline const flatbuffers::TypeTable *CaptureTypeTable();
+inline const ::flatbuffers::TypeTable *CaptureTypeTable();
 
-inline const flatbuffers::TypeTable *AnnotationTypeTable();
+inline const ::flatbuffers::TypeTable *AnnotationTypeTable();
 
-inline const flatbuffers::TypeTable *DescrTypeTable();
+inline const ::flatbuffers::TypeTable *DescrTypeTable();
 
-struct GlobalT : public flatbuffers::NativeTable {
+struct GlobalT : public ::flatbuffers::NativeTable {
   typedef Global TableType;
 };
 
-struct Global FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Global FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef GlobalT NativeTableType;
   typedef GlobalBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return GlobalTypeTable();
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            verifier.EndTable();
   }
-  GlobalT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Global> Pack(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  GlobalT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(GlobalT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Global> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct GlobalBuilder {
   typedef Global Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  explicit GlobalBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  explicit GlobalBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Global> Finish() {
+  ::flatbuffers::Offset<Global> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Global>(end);
+    auto o = ::flatbuffers::Offset<Global>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Global> CreateGlobal(
-    flatbuffers::FlatBufferBuilder &_fbb) {
+inline ::flatbuffers::Offset<Global> CreateGlobal(
+    ::flatbuffers::FlatBufferBuilder &_fbb) {
   GlobalBuilder builder_(_fbb);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Global> CreateGlobal(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct CaptureT : public flatbuffers::NativeTable {
+struct CaptureT : public ::flatbuffers::NativeTable {
   typedef Capture TableType;
 };
 
-struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Capture FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef CaptureT NativeTableType;
   typedef CaptureBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return CaptureTypeTable();
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            verifier.EndTable();
   }
-  CaptureT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(CaptureT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Capture> Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  CaptureT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(CaptureT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Capture> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct CaptureBuilder {
   typedef Capture Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  explicit CaptureBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  explicit CaptureBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Capture> Finish() {
+  ::flatbuffers::Offset<Capture> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Capture>(end);
+    auto o = ::flatbuffers::Offset<Capture>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Capture> CreateCapture(
-    flatbuffers::FlatBufferBuilder &_fbb) {
+inline ::flatbuffers::Offset<Capture> CreateCapture(
+    ::flatbuffers::FlatBufferBuilder &_fbb) {
   CaptureBuilder builder_(_fbb);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Capture> CreateCapture(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct AnnotationT : public flatbuffers::NativeTable {
+struct AnnotationT : public ::flatbuffers::NativeTable {
   typedef Annotation TableType;
   std::string standard{};
   std::string frame_type_phy{};
-  flatbuffers::Optional<int64_t> channel = flatbuffers::nullopt;
-  flatbuffers::Optional<double> start_time_s = flatbuffers::nullopt;
-  flatbuffers::Optional<double> stop_time_s = flatbuffers::nullopt;
-  flatbuffers::Optional<double> frame_duration_s = flatbuffers::nullopt;
-  flatbuffers::Optional<double> MCS = flatbuffers::nullopt;
+  ::flatbuffers::Optional<int64_t> channel = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> start_time_s = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> stop_time_s = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> frame_duration_s = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> MCS = ::flatbuffers::nullopt;
   std::string MAC_frame_type{};
   std::string MAC_ta{};
   std::string MAC_ra{};
   std::string manufacturer_ta{};
   std::string MAC_frame{};
   std::string CRC{};
-  flatbuffers::Optional<double> start_of_packet = flatbuffers::nullopt;
-  flatbuffers::Optional<double> stop_of_packet = flatbuffers::nullopt;
-  flatbuffers::Optional<double> number_of_samples_in_packet = flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> start_of_packet = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> stop_of_packet = ::flatbuffers::nullopt;
+  ::flatbuffers::Optional<double> number_of_samples_in_packet = ::flatbuffers::nullopt;
 };
 
-struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Annotation FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef AnnotationT NativeTableType;
   typedef AnnotationBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return AnnotationTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -161,65 +168,65 @@ struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_STOP_OF_PACKET = 32,
     VT_NUMBER_OF_SAMPLES_IN_PACKET = 34
   };
-  const flatbuffers::String *standard() const {
-    return GetPointer<const flatbuffers::String *>(VT_STANDARD);
+  const ::flatbuffers::String *standard() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_STANDARD);
   }
-  const flatbuffers::String *frame_type_phy() const {
-    return GetPointer<const flatbuffers::String *>(VT_FRAME_TYPE_PHY);
+  const ::flatbuffers::String *frame_type_phy() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_FRAME_TYPE_PHY);
   }
-  flatbuffers::Optional<int64_t> channel() const {
+  ::flatbuffers::Optional<int64_t> channel() const {
     return GetOptional<int64_t, int64_t>(VT_CHANNEL);
   }
-  flatbuffers::Optional<double> start_time_s() const {
+  ::flatbuffers::Optional<double> start_time_s() const {
     return GetOptional<double, double>(VT_START_TIME_S);
   }
-  flatbuffers::Optional<double> stop_time_s() const {
+  ::flatbuffers::Optional<double> stop_time_s() const {
     return GetOptional<double, double>(VT_STOP_TIME_S);
   }
-  flatbuffers::Optional<double> frame_duration_s() const {
+  ::flatbuffers::Optional<double> frame_duration_s() const {
     return GetOptional<double, double>(VT_FRAME_DURATION_S);
   }
-  flatbuffers::Optional<double> MCS() const {
+  ::flatbuffers::Optional<double> MCS() const {
     return GetOptional<double, double>(VT_MCS);
   }
-  const flatbuffers::String *MAC_frame_type() const {
-    return GetPointer<const flatbuffers::String *>(VT_MAC_FRAME_TYPE);
+  const ::flatbuffers::String *MAC_frame_type() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MAC_FRAME_TYPE);
   }
-  const flatbuffers::String *MAC_ta() const {
-    return GetPointer<const flatbuffers::String *>(VT_MAC_TA);
+  const ::flatbuffers::String *MAC_ta() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MAC_TA);
   }
-  const flatbuffers::String *MAC_ra() const {
-    return GetPointer<const flatbuffers::String *>(VT_MAC_RA);
+  const ::flatbuffers::String *MAC_ra() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MAC_RA);
   }
-  const flatbuffers::String *manufacturer_ta() const {
-    return GetPointer<const flatbuffers::String *>(VT_MANUFACTURER_TA);
+  const ::flatbuffers::String *manufacturer_ta() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MANUFACTURER_TA);
   }
-  const flatbuffers::String *MAC_frame() const {
-    return GetPointer<const flatbuffers::String *>(VT_MAC_FRAME);
+  const ::flatbuffers::String *MAC_frame() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MAC_FRAME);
   }
-  const flatbuffers::String *CRC() const {
-    return GetPointer<const flatbuffers::String *>(VT_CRC);
+  const ::flatbuffers::String *CRC() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CRC);
   }
-  flatbuffers::Optional<double> start_of_packet() const {
+  ::flatbuffers::Optional<double> start_of_packet() const {
     return GetOptional<double, double>(VT_START_OF_PACKET);
   }
-  flatbuffers::Optional<double> stop_of_packet() const {
+  ::flatbuffers::Optional<double> stop_of_packet() const {
     return GetOptional<double, double>(VT_STOP_OF_PACKET);
   }
-  flatbuffers::Optional<double> number_of_samples_in_packet() const {
+  ::flatbuffers::Optional<double> number_of_samples_in_packet() const {
     return GetOptional<double, double>(VT_NUMBER_OF_SAMPLES_IN_PACKET);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_STANDARD) &&
            verifier.VerifyString(standard()) &&
            VerifyOffset(verifier, VT_FRAME_TYPE_PHY) &&
            verifier.VerifyString(frame_type_phy()) &&
-           VerifyField<int64_t>(verifier, VT_CHANNEL) &&
-           VerifyField<double>(verifier, VT_START_TIME_S) &&
-           VerifyField<double>(verifier, VT_STOP_TIME_S) &&
-           VerifyField<double>(verifier, VT_FRAME_DURATION_S) &&
-           VerifyField<double>(verifier, VT_MCS) &&
+           VerifyField<int64_t>(verifier, VT_CHANNEL, 8) &&
+           VerifyField<double>(verifier, VT_START_TIME_S, 8) &&
+           VerifyField<double>(verifier, VT_STOP_TIME_S, 8) &&
+           VerifyField<double>(verifier, VT_FRAME_DURATION_S, 8) &&
+           VerifyField<double>(verifier, VT_MCS, 8) &&
            VerifyOffset(verifier, VT_MAC_FRAME_TYPE) &&
            verifier.VerifyString(MAC_frame_type()) &&
            VerifyOffset(verifier, VT_MAC_TA) &&
@@ -232,24 +239,24 @@ struct Annotation FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyString(MAC_frame()) &&
            VerifyOffset(verifier, VT_CRC) &&
            verifier.VerifyString(CRC()) &&
-           VerifyField<double>(verifier, VT_START_OF_PACKET) &&
-           VerifyField<double>(verifier, VT_STOP_OF_PACKET) &&
-           VerifyField<double>(verifier, VT_NUMBER_OF_SAMPLES_IN_PACKET) &&
+           VerifyField<double>(verifier, VT_START_OF_PACKET, 8) &&
+           VerifyField<double>(verifier, VT_STOP_OF_PACKET, 8) &&
+           VerifyField<double>(verifier, VT_NUMBER_OF_SAMPLES_IN_PACKET, 8) &&
            verifier.EndTable();
   }
-  AnnotationT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(AnnotationT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Annotation> Pack(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  AnnotationT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(AnnotationT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Annotation> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct AnnotationBuilder {
   typedef Annotation Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_standard(flatbuffers::Offset<flatbuffers::String> standard) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_standard(::flatbuffers::Offset<::flatbuffers::String> standard) {
     fbb_.AddOffset(Annotation::VT_STANDARD, standard);
   }
-  void add_frame_type_phy(flatbuffers::Offset<flatbuffers::String> frame_type_phy) {
+  void add_frame_type_phy(::flatbuffers::Offset<::flatbuffers::String> frame_type_phy) {
     fbb_.AddOffset(Annotation::VT_FRAME_TYPE_PHY, frame_type_phy);
   }
   void add_channel(int64_t channel) {
@@ -267,22 +274,22 @@ struct AnnotationBuilder {
   void add_MCS(double MCS) {
     fbb_.AddElement<double>(Annotation::VT_MCS, MCS);
   }
-  void add_MAC_frame_type(flatbuffers::Offset<flatbuffers::String> MAC_frame_type) {
+  void add_MAC_frame_type(::flatbuffers::Offset<::flatbuffers::String> MAC_frame_type) {
     fbb_.AddOffset(Annotation::VT_MAC_FRAME_TYPE, MAC_frame_type);
   }
-  void add_MAC_ta(flatbuffers::Offset<flatbuffers::String> MAC_ta) {
+  void add_MAC_ta(::flatbuffers::Offset<::flatbuffers::String> MAC_ta) {
     fbb_.AddOffset(Annotation::VT_MAC_TA, MAC_ta);
   }
-  void add_MAC_ra(flatbuffers::Offset<flatbuffers::String> MAC_ra) {
+  void add_MAC_ra(::flatbuffers::Offset<::flatbuffers::String> MAC_ra) {
     fbb_.AddOffset(Annotation::VT_MAC_RA, MAC_ra);
   }
-  void add_manufacturer_ta(flatbuffers::Offset<flatbuffers::String> manufacturer_ta) {
+  void add_manufacturer_ta(::flatbuffers::Offset<::flatbuffers::String> manufacturer_ta) {
     fbb_.AddOffset(Annotation::VT_MANUFACTURER_TA, manufacturer_ta);
   }
-  void add_MAC_frame(flatbuffers::Offset<flatbuffers::String> MAC_frame) {
+  void add_MAC_frame(::flatbuffers::Offset<::flatbuffers::String> MAC_frame) {
     fbb_.AddOffset(Annotation::VT_MAC_FRAME, MAC_frame);
   }
-  void add_CRC(flatbuffers::Offset<flatbuffers::String> CRC) {
+  void add_CRC(::flatbuffers::Offset<::flatbuffers::String> CRC) {
     fbb_.AddOffset(Annotation::VT_CRC, CRC);
   }
   void add_start_of_packet(double start_of_packet) {
@@ -294,35 +301,35 @@ struct AnnotationBuilder {
   void add_number_of_samples_in_packet(double number_of_samples_in_packet) {
     fbb_.AddElement<double>(Annotation::VT_NUMBER_OF_SAMPLES_IN_PACKET, number_of_samples_in_packet);
   }
-  explicit AnnotationBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit AnnotationBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Annotation> Finish() {
+  ::flatbuffers::Offset<Annotation> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Annotation>(end);
+    auto o = ::flatbuffers::Offset<Annotation>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Annotation> CreateAnnotation(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::String> standard = 0,
-    flatbuffers::Offset<flatbuffers::String> frame_type_phy = 0,
-    flatbuffers::Optional<int64_t> channel = flatbuffers::nullopt,
-    flatbuffers::Optional<double> start_time_s = flatbuffers::nullopt,
-    flatbuffers::Optional<double> stop_time_s = flatbuffers::nullopt,
-    flatbuffers::Optional<double> frame_duration_s = flatbuffers::nullopt,
-    flatbuffers::Optional<double> MCS = flatbuffers::nullopt,
-    flatbuffers::Offset<flatbuffers::String> MAC_frame_type = 0,
-    flatbuffers::Offset<flatbuffers::String> MAC_ta = 0,
-    flatbuffers::Offset<flatbuffers::String> MAC_ra = 0,
-    flatbuffers::Offset<flatbuffers::String> manufacturer_ta = 0,
-    flatbuffers::Offset<flatbuffers::String> MAC_frame = 0,
-    flatbuffers::Offset<flatbuffers::String> CRC = 0,
-    flatbuffers::Optional<double> start_of_packet = flatbuffers::nullopt,
-    flatbuffers::Optional<double> stop_of_packet = flatbuffers::nullopt,
-    flatbuffers::Optional<double> number_of_samples_in_packet = flatbuffers::nullopt) {
+inline ::flatbuffers::Offset<Annotation> CreateAnnotation(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> standard = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> frame_type_phy = 0,
+    ::flatbuffers::Optional<int64_t> channel = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> start_time_s = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> stop_time_s = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> frame_duration_s = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> MCS = ::flatbuffers::nullopt,
+    ::flatbuffers::Offset<::flatbuffers::String> MAC_frame_type = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> MAC_ta = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> MAC_ra = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> manufacturer_ta = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> MAC_frame = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> CRC = 0,
+    ::flatbuffers::Optional<double> start_of_packet = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> stop_of_packet = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> number_of_samples_in_packet = ::flatbuffers::nullopt) {
   AnnotationBuilder builder_(_fbb);
   if(number_of_samples_in_packet) { builder_.add_number_of_samples_in_packet(*number_of_samples_in_packet); }
   if(stop_of_packet) { builder_.add_stop_of_packet(*stop_of_packet); }
@@ -343,24 +350,24 @@ inline flatbuffers::Offset<Annotation> CreateAnnotation(
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<Annotation> CreateAnnotationDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<Annotation> CreateAnnotationDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *standard = nullptr,
     const char *frame_type_phy = nullptr,
-    flatbuffers::Optional<int64_t> channel = flatbuffers::nullopt,
-    flatbuffers::Optional<double> start_time_s = flatbuffers::nullopt,
-    flatbuffers::Optional<double> stop_time_s = flatbuffers::nullopt,
-    flatbuffers::Optional<double> frame_duration_s = flatbuffers::nullopt,
-    flatbuffers::Optional<double> MCS = flatbuffers::nullopt,
+    ::flatbuffers::Optional<int64_t> channel = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> start_time_s = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> stop_time_s = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> frame_duration_s = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> MCS = ::flatbuffers::nullopt,
     const char *MAC_frame_type = nullptr,
     const char *MAC_ta = nullptr,
     const char *MAC_ra = nullptr,
     const char *manufacturer_ta = nullptr,
     const char *MAC_frame = nullptr,
     const char *CRC = nullptr,
-    flatbuffers::Optional<double> start_of_packet = flatbuffers::nullopt,
-    flatbuffers::Optional<double> stop_of_packet = flatbuffers::nullopt,
-    flatbuffers::Optional<double> number_of_samples_in_packet = flatbuffers::nullopt) {
+    ::flatbuffers::Optional<double> start_of_packet = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> stop_of_packet = ::flatbuffers::nullopt,
+    ::flatbuffers::Optional<double> number_of_samples_in_packet = ::flatbuffers::nullopt) {
   auto standard__ = standard ? _fbb.CreateString(standard) : 0;
   auto frame_type_phy__ = frame_type_phy ? _fbb.CreateString(frame_type_phy) : 0;
   auto MAC_frame_type__ = MAC_frame_type ? _fbb.CreateString(MAC_frame_type) : 0;
@@ -389,19 +396,23 @@ inline flatbuffers::Offset<Annotation> CreateAnnotationDirect(
       number_of_samples_in_packet);
 }
 
-flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Annotation> CreateAnnotation(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct DescrT : public flatbuffers::NativeTable {
+struct DescrT : public ::flatbuffers::NativeTable {
   typedef Descr TableType;
   std::shared_ptr<sigmf::adsb::GlobalT> global{};
   std::shared_ptr<sigmf::adsb::AnnotationT> annotation{};
   std::shared_ptr<sigmf::adsb::CaptureT> capture{};
+  DescrT() = default;
+  DescrT(const DescrT &o);
+  DescrT(DescrT&&) FLATBUFFERS_NOEXCEPT = default;
+  DescrT &operator=(DescrT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct Descr FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef DescrT NativeTableType;
   typedef DescrBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return DescrTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -418,7 +429,7 @@ struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const sigmf::adsb::Capture *capture() const {
     return GetPointer<const sigmf::adsb::Capture *>(VT_CAPTURE);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_GLOBAL) &&
            verifier.VerifyTable(global()) &&
@@ -428,40 +439,40 @@ struct Descr FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyTable(capture()) &&
            verifier.EndTable();
   }
-  DescrT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(DescrT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<Descr> Pack(flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  DescrT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(DescrT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<Descr> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct DescrBuilder {
   typedef Descr Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_global(flatbuffers::Offset<sigmf::adsb::Global> global) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_global(::flatbuffers::Offset<sigmf::adsb::Global> global) {
     fbb_.AddOffset(Descr::VT_GLOBAL, global);
   }
-  void add_annotation(flatbuffers::Offset<sigmf::adsb::Annotation> annotation) {
+  void add_annotation(::flatbuffers::Offset<sigmf::adsb::Annotation> annotation) {
     fbb_.AddOffset(Descr::VT_ANNOTATION, annotation);
   }
-  void add_capture(flatbuffers::Offset<sigmf::adsb::Capture> capture) {
+  void add_capture(::flatbuffers::Offset<sigmf::adsb::Capture> capture) {
     fbb_.AddOffset(Descr::VT_CAPTURE, capture);
   }
-  explicit DescrBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit DescrBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<Descr> Finish() {
+  ::flatbuffers::Offset<Descr> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<Descr>(end);
+    auto o = ::flatbuffers::Offset<Descr>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<Descr> CreateDescr(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<sigmf::adsb::Global> global = 0,
-    flatbuffers::Offset<sigmf::adsb::Annotation> annotation = 0,
-    flatbuffers::Offset<sigmf::adsb::Capture> capture = 0) {
+inline ::flatbuffers::Offset<Descr> CreateDescr(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<sigmf::adsb::Global> global = 0,
+    ::flatbuffers::Offset<sigmf::adsb::Annotation> annotation = 0,
+    ::flatbuffers::Offset<sigmf::adsb::Capture> capture = 0) {
   DescrBuilder builder_(_fbb);
   builder_.add_capture(capture);
   builder_.add_annotation(annotation);
@@ -469,61 +480,61 @@ inline flatbuffers::Offset<Descr> CreateDescr(
   return builder_.Finish();
 }
 
-flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<Descr> CreateDescr(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-inline GlobalT *Global::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline GlobalT *Global::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<GlobalT>(new GlobalT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Global::UnPackTo(GlobalT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Global::UnPackTo(GlobalT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
 }
 
-inline flatbuffers::Offset<Global> Global::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Global> Global::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateGlobal(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Global> CreateGlobal(::flatbuffers::FlatBufferBuilder &_fbb, const GlobalT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const GlobalT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const GlobalT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   return sigmf::adsb::CreateGlobal(
       _fbb);
 }
 
-inline CaptureT *Capture::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline CaptureT *Capture::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<CaptureT>(new CaptureT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Capture::UnPackTo(CaptureT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Capture::UnPackTo(CaptureT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
 }
 
-inline flatbuffers::Offset<Capture> Capture::Pack(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Capture> Capture::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateCapture(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Capture> CreateCapture(::flatbuffers::FlatBufferBuilder &_fbb, const CaptureT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   return sigmf::adsb::CreateCapture(
       _fbb);
 }
 
-inline AnnotationT *Annotation::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline AnnotationT *Annotation::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<AnnotationT>(new AnnotationT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Annotation::UnPackTo(AnnotationT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Annotation::UnPackTo(AnnotationT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = standard(); if (_e) _o->standard = _e->str(); }
@@ -544,14 +555,14 @@ inline void Annotation::UnPackTo(AnnotationT *_o, const flatbuffers::resolver_fu
   { auto _e = number_of_samples_in_packet(); _o->number_of_samples_in_packet = _e; }
 }
 
-inline flatbuffers::Offset<Annotation> Annotation::Pack(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Annotation> Annotation::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateAnnotation(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Annotation> CreateAnnotation(::flatbuffers::FlatBufferBuilder &_fbb, const AnnotationT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const AnnotationT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const AnnotationT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _standard = _o->standard.empty() ? 0 : _fbb.CreateString(_o->standard);
   auto _frame_type_phy = _o->frame_type_phy.empty() ? 0 : _fbb.CreateString(_o->frame_type_phy);
   auto _channel = _o->channel;
@@ -588,28 +599,41 @@ inline flatbuffers::Offset<Annotation> CreateAnnotation(flatbuffers::FlatBufferB
       _number_of_samples_in_packet);
 }
 
-inline DescrT *Descr::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline DescrT::DescrT(const DescrT &o)
+      : global((o.global) ? new sigmf::adsb::GlobalT(*o.global) : nullptr),
+        annotation((o.annotation) ? new sigmf::adsb::AnnotationT(*o.annotation) : nullptr),
+        capture((o.capture) ? new sigmf::adsb::CaptureT(*o.capture) : nullptr) {
+}
+
+inline DescrT &DescrT::operator=(DescrT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(global, o.global);
+  std::swap(annotation, o.annotation);
+  std::swap(capture, o.capture);
+  return *this;
+}
+
+inline DescrT *Descr::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<DescrT>(new DescrT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void Descr::UnPackTo(DescrT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void Descr::UnPackTo(DescrT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = global(); if (_e) _o->global = std::shared_ptr<sigmf::adsb::GlobalT>(_e->UnPack(_resolver)); }
-  { auto _e = annotation(); if (_e) _o->annotation = std::shared_ptr<sigmf::adsb::AnnotationT>(_e->UnPack(_resolver)); }
-  { auto _e = capture(); if (_e) _o->capture = std::shared_ptr<sigmf::adsb::CaptureT>(_e->UnPack(_resolver)); }
+  { auto _e = global(); if (_e) { if(_o->global) { _e->UnPackTo(_o->global.get(), _resolver); } else { _o->global = std::shared_ptr<sigmf::adsb::GlobalT>(_e->UnPack(_resolver)); } } else if (_o->global) { _o->global.reset(); } }
+  { auto _e = annotation(); if (_e) { if(_o->annotation) { _e->UnPackTo(_o->annotation.get(), _resolver); } else { _o->annotation = std::shared_ptr<sigmf::adsb::AnnotationT>(_e->UnPack(_resolver)); } } else if (_o->annotation) { _o->annotation.reset(); } }
+  { auto _e = capture(); if (_e) { if(_o->capture) { _e->UnPackTo(_o->capture.get(), _resolver); } else { _o->capture = std::shared_ptr<sigmf::adsb::CaptureT>(_e->UnPack(_resolver)); } } else if (_o->capture) { _o->capture.reset(); } }
 }
 
-inline flatbuffers::Offset<Descr> Descr::Pack(flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Descr> Descr::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return CreateDescr(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<Descr> CreateDescr(::flatbuffers::FlatBufferBuilder &_fbb, const DescrT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const DescrT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const DescrT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _global = _o->global ? CreateGlobal(_fbb, _o->global.get(), _rehasher) : 0;
   auto _annotation = _o->annotation ? CreateAnnotation(_fbb, _o->annotation.get(), _rehasher) : 0;
   auto _capture = _o->capture ? CreateCapture(_fbb, _o->capture.get(), _rehasher) : 0;
@@ -620,38 +644,38 @@ inline flatbuffers::Offset<Descr> CreateDescr(flatbuffers::FlatBufferBuilder &_f
       _capture);
 }
 
-inline const flatbuffers::TypeTable *GlobalTypeTable() {
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
+inline const ::flatbuffers::TypeTable *GlobalTypeTable() {
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *CaptureTypeTable() {
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
+inline const ::flatbuffers::TypeTable *CaptureTypeTable() {
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *AnnotationTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_LONG, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 },
-    { flatbuffers::ET_DOUBLE, 0, -1 }
+inline const ::flatbuffers::TypeTable *AnnotationTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_LONG, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 },
+    { ::flatbuffers::ET_DOUBLE, 0, -1 }
   };
   static const char * const names[] = {
     "standard",
@@ -671,19 +695,19 @@ inline const flatbuffers::TypeTable *AnnotationTypeTable() {
     "stop_of_packet",
     "number_of_samples_in_packet"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 16, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 16, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *DescrTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 1 },
-    { flatbuffers::ET_SEQUENCE, 0, 2 }
+inline const ::flatbuffers::TypeTable *DescrTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 2 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     sigmf::adsb::GlobalTypeTable,
     sigmf::adsb::AnnotationTypeTable,
     sigmf::adsb::CaptureTypeTable
@@ -693,8 +717,8 @@ inline const flatbuffers::TypeTable *DescrTypeTable() {
     "annotation",
     "capture"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }

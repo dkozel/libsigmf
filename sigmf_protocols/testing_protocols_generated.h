@@ -6,6 +6,13 @@
 
 #include "flatbuffers/flatbuffers.h"
 
+// Ensure the included flatbuffers.h is the same version as when this file was
+// generated, otherwise it may not be compatible.
+static_assert(FLATBUFFERS_VERSION_MAJOR == 23 &&
+              FLATBUFFERS_VERSION_MINOR == 3 &&
+              FLATBUFFERS_VERSION_REVISION == 3,
+             "Non-compatible flatbuffers version included");
+
 struct testing_vecs;
 struct testing_vecsBuilder;
 struct testing_vecsT;
@@ -34,19 +41,19 @@ struct testingunions;
 struct testingunionsBuilder;
 struct testingunionsT;
 
-inline const flatbuffers::TypeTable *testing_vecsTypeTable();
+inline const ::flatbuffers::TypeTable *testing_vecsTypeTable();
 
-inline const flatbuffers::TypeTable *oneTypeTable();
+inline const ::flatbuffers::TypeTable *oneTypeTable();
 
-inline const flatbuffers::TypeTable *twoTypeTable();
+inline const ::flatbuffers::TypeTable *twoTypeTable();
 
-inline const flatbuffers::TypeTable *threeTypeTable();
+inline const ::flatbuffers::TypeTable *threeTypeTable();
 
-inline const flatbuffers::TypeTable *very_nested_thingTypeTable();
+inline const ::flatbuffers::TypeTable *very_nested_thingTypeTable();
 
-inline const flatbuffers::TypeTable *composed_typeTypeTable();
+inline const ::flatbuffers::TypeTable *composed_typeTypeTable();
 
-inline const flatbuffers::TypeTable *testingunionsTypeTable();
+inline const ::flatbuffers::TypeTable *testingunionsTypeTable();
 
 enum myunion : uint8_t {
   myunion_NONE = 0,
@@ -79,7 +86,7 @@ inline const char * const *EnumNamesmyunion() {
 }
 
 inline const char *EnumNamemyunion(myunion e) {
-  if (flatbuffers::IsOutRange(e, myunion_NONE, myunion_three)) return "";
+  if (::flatbuffers::IsOutRange(e, myunion_NONE, myunion_three)) return "";
   const size_t index = static_cast<size_t>(e);
   return EnumNamesmyunion()[index];
 }
@@ -100,6 +107,22 @@ template<> struct myunionTraits<three> {
   static const myunion enum_value = myunion_three;
 };
 
+template<typename T> struct myunionUnionTraits {
+  static const myunion enum_value = myunion_NONE;
+};
+
+template<> struct myunionUnionTraits<oneT> {
+  static const myunion enum_value = myunion_one;
+};
+
+template<> struct myunionUnionTraits<twoT> {
+  static const myunion enum_value = myunion_two;
+};
+
+template<> struct myunionUnionTraits<threeT> {
+  static const myunion enum_value = myunion_three;
+};
+
 struct myunionUnion {
   myunion type;
   void *value;
@@ -117,20 +140,18 @@ struct myunionUnion {
 
   void Reset();
 
-#ifndef FLATBUFFERS_CPP98_STL
   template <typename T>
   void Set(T&& val) {
-    using RT = typename std::remove_reference<T>::type;
+    typedef typename std::remove_reference<T>::type RT;
     Reset();
-    type = myunionTraits<typename RT::TableType>::enum_value;
+    type = myunionUnionTraits<RT>::enum_value;
     if (type != myunion_NONE) {
       value = new RT(std::forward<T>(val));
     }
   }
-#endif  // FLATBUFFERS_CPP98_STL
 
-  static void *UnPack(const void *obj, myunion type, const flatbuffers::resolver_function_t *resolver);
-  flatbuffers::Offset<void> Pack(flatbuffers::FlatBufferBuilder &_fbb, const flatbuffers::rehasher_function_t *_rehasher = nullptr) const;
+  static void *UnPack(const void *obj, myunion type, const ::flatbuffers::resolver_function_t *resolver);
+  ::flatbuffers::Offset<void> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr) const;
 
   oneT *Asone() {
     return type == myunion_one ?
@@ -158,32 +179,32 @@ struct myunionUnion {
   }
 };
 
-bool Verifymyunion(flatbuffers::Verifier &verifier, const void *obj, myunion type);
-bool VerifymyunionVector(flatbuffers::Verifier &verifier, const flatbuffers::Vector<flatbuffers::Offset<void>> *values, const flatbuffers::Vector<uint8_t> *types);
+bool Verifymyunion(::flatbuffers::Verifier &verifier, const void *obj, myunion type);
+bool VerifymyunionVector(::flatbuffers::Verifier &verifier, const ::flatbuffers::Vector<::flatbuffers::Offset<void>> *values, const ::flatbuffers::Vector<uint8_t> *types);
 
-struct testing_vecsT : public flatbuffers::NativeTable {
+struct testing_vecsT : public ::flatbuffers::NativeTable {
   typedef testing_vecs TableType;
   std::vector<uint32_t> myvecfortesting{};
   std::string name{};
 };
 
-struct testing_vecs FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct testing_vecs FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef testing_vecsT NativeTableType;
   typedef testing_vecsBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return testing_vecsTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_MYVECFORTESTING = 4,
     VT_NAME = 6
   };
-  const flatbuffers::Vector<uint32_t> *myvecfortesting() const {
-    return GetPointer<const flatbuffers::Vector<uint32_t> *>(VT_MYVECFORTESTING);
+  const ::flatbuffers::Vector<uint32_t> *myvecfortesting() const {
+    return GetPointer<const ::flatbuffers::Vector<uint32_t> *>(VT_MYVECFORTESTING);
   }
-  const flatbuffers::String *name() const {
-    return GetPointer<const flatbuffers::String *>(VT_NAME);
+  const ::flatbuffers::String *name() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_NAME);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_MYVECFORTESTING) &&
            verifier.VerifyVector(myvecfortesting()) &&
@@ -191,44 +212,44 @@ struct testing_vecs FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyString(name()) &&
            verifier.EndTable();
   }
-  testing_vecsT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(testing_vecsT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<testing_vecs> Pack(flatbuffers::FlatBufferBuilder &_fbb, const testing_vecsT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  testing_vecsT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(testing_vecsT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<testing_vecs> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const testing_vecsT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct testing_vecsBuilder {
   typedef testing_vecs Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_myvecfortesting(flatbuffers::Offset<flatbuffers::Vector<uint32_t>> myvecfortesting) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_myvecfortesting(::flatbuffers::Offset<::flatbuffers::Vector<uint32_t>> myvecfortesting) {
     fbb_.AddOffset(testing_vecs::VT_MYVECFORTESTING, myvecfortesting);
   }
-  void add_name(flatbuffers::Offset<flatbuffers::String> name) {
+  void add_name(::flatbuffers::Offset<::flatbuffers::String> name) {
     fbb_.AddOffset(testing_vecs::VT_NAME, name);
   }
-  explicit testing_vecsBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit testing_vecsBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<testing_vecs> Finish() {
+  ::flatbuffers::Offset<testing_vecs> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<testing_vecs>(end);
+    auto o = ::flatbuffers::Offset<testing_vecs>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<testing_vecs> Createtesting_vecs(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::Vector<uint32_t>> myvecfortesting = 0,
-    flatbuffers::Offset<flatbuffers::String> name = 0) {
+inline ::flatbuffers::Offset<testing_vecs> Createtesting_vecs(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::Vector<uint32_t>> myvecfortesting = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> name = 0) {
   testing_vecsBuilder builder_(_fbb);
   builder_.add_name(name);
   builder_.add_myvecfortesting(myvecfortesting);
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<testing_vecs> Createtesting_vecsDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<testing_vecs> Createtesting_vecsDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<uint32_t> *myvecfortesting = nullptr,
     const char *name = nullptr) {
   auto myvecfortesting__ = myvecfortesting ? _fbb.CreateVector<uint32_t>(*myvecfortesting) : 0;
@@ -239,17 +260,17 @@ inline flatbuffers::Offset<testing_vecs> Createtesting_vecsDirect(
       name__);
 }
 
-flatbuffers::Offset<testing_vecs> Createtesting_vecs(flatbuffers::FlatBufferBuilder &_fbb, const testing_vecsT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<testing_vecs> Createtesting_vecs(::flatbuffers::FlatBufferBuilder &_fbb, const testing_vecsT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct oneT : public flatbuffers::NativeTable {
+struct oneT : public ::flatbuffers::NativeTable {
   typedef one TableType;
   float fieldone = 0.0f;
 };
 
-struct one FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct one FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef oneT NativeTableType;
   typedef oneBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return oneTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -258,53 +279,53 @@ struct one FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   float fieldone() const {
     return GetField<float>(VT_FIELDONE, 0.0f);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<float>(verifier, VT_FIELDONE) &&
+           VerifyField<float>(verifier, VT_FIELDONE, 4) &&
            verifier.EndTable();
   }
-  oneT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(oneT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<one> Pack(flatbuffers::FlatBufferBuilder &_fbb, const oneT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  oneT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(oneT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<one> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const oneT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct oneBuilder {
   typedef one Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_fieldone(float fieldone) {
     fbb_.AddElement<float>(one::VT_FIELDONE, fieldone, 0.0f);
   }
-  explicit oneBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit oneBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<one> Finish() {
+  ::flatbuffers::Offset<one> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<one>(end);
+    auto o = ::flatbuffers::Offset<one>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<one> Createone(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<one> Createone(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     float fieldone = 0.0f) {
   oneBuilder builder_(_fbb);
   builder_.add_fieldone(fieldone);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<one> Createone(flatbuffers::FlatBufferBuilder &_fbb, const oneT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<one> Createone(::flatbuffers::FlatBufferBuilder &_fbb, const oneT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct twoT : public flatbuffers::NativeTable {
+struct twoT : public ::flatbuffers::NativeTable {
   typedef two TableType;
   float fieldtwo = 0.0f;
 };
 
-struct two FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct two FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef twoT NativeTableType;
   typedef twoBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return twoTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -313,53 +334,53 @@ struct two FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   float fieldtwo() const {
     return GetField<float>(VT_FIELDTWO, 0.0f);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<float>(verifier, VT_FIELDTWO) &&
+           VerifyField<float>(verifier, VT_FIELDTWO, 4) &&
            verifier.EndTable();
   }
-  twoT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(twoT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<two> Pack(flatbuffers::FlatBufferBuilder &_fbb, const twoT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  twoT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(twoT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<two> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const twoT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct twoBuilder {
   typedef two Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_fieldtwo(float fieldtwo) {
     fbb_.AddElement<float>(two::VT_FIELDTWO, fieldtwo, 0.0f);
   }
-  explicit twoBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit twoBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<two> Finish() {
+  ::flatbuffers::Offset<two> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<two>(end);
+    auto o = ::flatbuffers::Offset<two>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<two> Createtwo(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<two> Createtwo(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     float fieldtwo = 0.0f) {
   twoBuilder builder_(_fbb);
   builder_.add_fieldtwo(fieldtwo);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<two> Createtwo(flatbuffers::FlatBufferBuilder &_fbb, const twoT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<two> Createtwo(::flatbuffers::FlatBufferBuilder &_fbb, const twoT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct threeT : public flatbuffers::NativeTable {
+struct threeT : public ::flatbuffers::NativeTable {
   typedef three TableType;
   float fieldthree = 0.0f;
 };
 
-struct three FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct three FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef threeT NativeTableType;
   typedef threeBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return threeTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -368,53 +389,53 @@ struct three FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   float fieldthree() const {
     return GetField<float>(VT_FIELDTHREE, 0.0f);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<float>(verifier, VT_FIELDTHREE) &&
+           VerifyField<float>(verifier, VT_FIELDTHREE, 4) &&
            verifier.EndTable();
   }
-  threeT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(threeT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<three> Pack(flatbuffers::FlatBufferBuilder &_fbb, const threeT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  threeT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(threeT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<three> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const threeT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct threeBuilder {
   typedef three Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_fieldthree(float fieldthree) {
     fbb_.AddElement<float>(three::VT_FIELDTHREE, fieldthree, 0.0f);
   }
-  explicit threeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit threeBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<three> Finish() {
+  ::flatbuffers::Offset<three> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<three>(end);
+    auto o = ::flatbuffers::Offset<three>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<three> Createthree(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<three> Createthree(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     float fieldthree = 0.0f) {
   threeBuilder builder_(_fbb);
   builder_.add_fieldthree(fieldthree);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<three> Createthree(flatbuffers::FlatBufferBuilder &_fbb, const threeT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<three> Createthree(::flatbuffers::FlatBufferBuilder &_fbb, const threeT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct very_nested_thingT : public flatbuffers::NativeTable {
+struct very_nested_thingT : public ::flatbuffers::NativeTable {
   typedef very_nested_thing TableType;
   uint64_t wow = 0;
 };
 
-struct very_nested_thing FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct very_nested_thing FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef very_nested_thingT NativeTableType;
   typedef very_nested_thingBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return very_nested_thingTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -423,56 +444,60 @@ struct very_nested_thing FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   uint64_t wow() const {
     return GetField<uint64_t>(VT_WOW, 0);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<uint64_t>(verifier, VT_WOW) &&
+           VerifyField<uint64_t>(verifier, VT_WOW, 8) &&
            verifier.EndTable();
   }
-  very_nested_thingT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(very_nested_thingT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<very_nested_thing> Pack(flatbuffers::FlatBufferBuilder &_fbb, const very_nested_thingT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  very_nested_thingT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(very_nested_thingT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<very_nested_thing> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const very_nested_thingT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct very_nested_thingBuilder {
   typedef very_nested_thing Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_wow(uint64_t wow) {
     fbb_.AddElement<uint64_t>(very_nested_thing::VT_WOW, wow, 0);
   }
-  explicit very_nested_thingBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit very_nested_thingBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<very_nested_thing> Finish() {
+  ::flatbuffers::Offset<very_nested_thing> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<very_nested_thing>(end);
+    auto o = ::flatbuffers::Offset<very_nested_thing>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<very_nested_thing> Createvery_nested_thing(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<very_nested_thing> Createvery_nested_thing(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     uint64_t wow = 0) {
   very_nested_thingBuilder builder_(_fbb);
   builder_.add_wow(wow);
   return builder_.Finish();
 }
 
-flatbuffers::Offset<very_nested_thing> Createvery_nested_thing(flatbuffers::FlatBufferBuilder &_fbb, const very_nested_thingT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<very_nested_thing> Createvery_nested_thing(::flatbuffers::FlatBufferBuilder &_fbb, const very_nested_thingT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct composed_typeT : public flatbuffers::NativeTable {
+struct composed_typeT : public ::flatbuffers::NativeTable {
   typedef composed_type TableType;
   std::string name{};
   std::vector<std::string> comments{};
   int32_t index = 0;
   std::vector<std::shared_ptr<very_nested_thingT>> nnnnnn{};
+  composed_typeT() = default;
+  composed_typeT(const composed_typeT &o);
+  composed_typeT(composed_typeT&&) FLATBUFFERS_NOEXCEPT = default;
+  composed_typeT &operator=(composed_typeT o) FLATBUFFERS_NOEXCEPT;
 };
 
-struct composed_type FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct composed_type FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef composed_typeT NativeTableType;
   typedef composed_typeBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return composed_typeTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -481,69 +506,69 @@ struct composed_type FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_INDEX = 8,
     VT_NNNNNN = 10
   };
-  const flatbuffers::String *name() const {
-    return GetPointer<const flatbuffers::String *>(VT_NAME);
+  const ::flatbuffers::String *name() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_NAME);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *comments() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *>(VT_COMMENTS);
+  const ::flatbuffers::Vector<::flatbuffers::Offset<::flatbuffers::String>> *comments() const {
+    return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<::flatbuffers::String>> *>(VT_COMMENTS);
   }
   int32_t index() const {
     return GetField<int32_t>(VT_INDEX, 0);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<very_nested_thing>> *nnnnnn() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<very_nested_thing>> *>(VT_NNNNNN);
+  const ::flatbuffers::Vector<::flatbuffers::Offset<very_nested_thing>> *nnnnnn() const {
+    return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<very_nested_thing>> *>(VT_NNNNNN);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_NAME) &&
            verifier.VerifyString(name()) &&
            VerifyOffset(verifier, VT_COMMENTS) &&
            verifier.VerifyVector(comments()) &&
            verifier.VerifyVectorOfStrings(comments()) &&
-           VerifyField<int32_t>(verifier, VT_INDEX) &&
+           VerifyField<int32_t>(verifier, VT_INDEX, 4) &&
            VerifyOffset(verifier, VT_NNNNNN) &&
            verifier.VerifyVector(nnnnnn()) &&
            verifier.VerifyVectorOfTables(nnnnnn()) &&
            verifier.EndTable();
   }
-  composed_typeT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(composed_typeT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<composed_type> Pack(flatbuffers::FlatBufferBuilder &_fbb, const composed_typeT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  composed_typeT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(composed_typeT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<composed_type> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const composed_typeT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 struct composed_typeBuilder {
   typedef composed_type Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
-  void add_name(flatbuffers::Offset<flatbuffers::String> name) {
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_name(::flatbuffers::Offset<::flatbuffers::String> name) {
     fbb_.AddOffset(composed_type::VT_NAME, name);
   }
-  void add_comments(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> comments) {
+  void add_comments(::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<::flatbuffers::String>>> comments) {
     fbb_.AddOffset(composed_type::VT_COMMENTS, comments);
   }
   void add_index(int32_t index) {
     fbb_.AddElement<int32_t>(composed_type::VT_INDEX, index, 0);
   }
-  void add_nnnnnn(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<very_nested_thing>>> nnnnnn) {
+  void add_nnnnnn(::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<very_nested_thing>>> nnnnnn) {
     fbb_.AddOffset(composed_type::VT_NNNNNN, nnnnnn);
   }
-  explicit composed_typeBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit composed_typeBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<composed_type> Finish() {
+  ::flatbuffers::Offset<composed_type> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<composed_type>(end);
+    auto o = ::flatbuffers::Offset<composed_type>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<composed_type> Createcomposed_type(
-    flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::String> name = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> comments = 0,
+inline ::flatbuffers::Offset<composed_type> Createcomposed_type(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> name = 0,
+    ::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<::flatbuffers::String>>> comments = 0,
     int32_t index = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<very_nested_thing>>> nnnnnn = 0) {
+    ::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<very_nested_thing>>> nnnnnn = 0) {
   composed_typeBuilder builder_(_fbb);
   builder_.add_nnnnnn(nnnnnn);
   builder_.add_index(index);
@@ -552,15 +577,15 @@ inline flatbuffers::Offset<composed_type> Createcomposed_type(
   return builder_.Finish();
 }
 
-inline flatbuffers::Offset<composed_type> Createcomposed_typeDirect(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<composed_type> Createcomposed_typeDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *name = nullptr,
-    const std::vector<flatbuffers::Offset<flatbuffers::String>> *comments = nullptr,
+    const std::vector<::flatbuffers::Offset<::flatbuffers::String>> *comments = nullptr,
     int32_t index = 0,
-    const std::vector<flatbuffers::Offset<very_nested_thing>> *nnnnnn = nullptr) {
+    const std::vector<::flatbuffers::Offset<very_nested_thing>> *nnnnnn = nullptr) {
   auto name__ = name ? _fbb.CreateString(name) : 0;
-  auto comments__ = comments ? _fbb.CreateVector<flatbuffers::Offset<flatbuffers::String>>(*comments) : 0;
-  auto nnnnnn__ = nnnnnn ? _fbb.CreateVector<flatbuffers::Offset<very_nested_thing>>(*nnnnnn) : 0;
+  auto comments__ = comments ? _fbb.CreateVector<::flatbuffers::Offset<::flatbuffers::String>>(*comments) : 0;
+  auto nnnnnn__ = nnnnnn ? _fbb.CreateVector<::flatbuffers::Offset<very_nested_thing>>(*nnnnnn) : 0;
   return Createcomposed_type(
       _fbb,
       name__,
@@ -569,18 +594,18 @@ inline flatbuffers::Offset<composed_type> Createcomposed_typeDirect(
       nnnnnn__);
 }
 
-flatbuffers::Offset<composed_type> Createcomposed_type(flatbuffers::FlatBufferBuilder &_fbb, const composed_typeT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<composed_type> Createcomposed_type(::flatbuffers::FlatBufferBuilder &_fbb, const composed_typeT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-struct testingunionsT : public flatbuffers::NativeTable {
+struct testingunionsT : public ::flatbuffers::NativeTable {
   typedef testingunions TableType;
   myunionUnion myfield{};
   int32_t dumbfield = 0;
 };
 
-struct testingunions FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+struct testingunions FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef testingunionsT NativeTableType;
   typedef testingunionsBuilder Builder;
-  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+  static const ::flatbuffers::TypeTable *MiniReflectTypeTable() {
     return testingunionsTypeTable();
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -607,17 +632,17 @@ struct testingunions FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   int32_t dumbfield() const {
     return GetField<int32_t>(VT_DUMBFIELD, 0);
   }
-  bool Verify(flatbuffers::Verifier &verifier) const {
+  bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
-           VerifyField<uint8_t>(verifier, VT_MYFIELD_TYPE) &&
+           VerifyField<uint8_t>(verifier, VT_MYFIELD_TYPE, 1) &&
            VerifyOffset(verifier, VT_MYFIELD) &&
            Verifymyunion(verifier, myfield(), myfield_type()) &&
-           VerifyField<int32_t>(verifier, VT_DUMBFIELD) &&
+           VerifyField<int32_t>(verifier, VT_DUMBFIELD, 4) &&
            verifier.EndTable();
   }
-  testingunionsT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  void UnPackTo(testingunionsT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
-  static flatbuffers::Offset<testingunions> Pack(flatbuffers::FlatBufferBuilder &_fbb, const testingunionsT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+  testingunionsT *UnPack(const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(testingunionsT *_o, const ::flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static ::flatbuffers::Offset<testingunions> Pack(::flatbuffers::FlatBufferBuilder &_fbb, const testingunionsT* _o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 };
 
 template<> inline const one *testingunions::myfield_as<one>() const {
@@ -634,32 +659,32 @@ template<> inline const three *testingunions::myfield_as<three>() const {
 
 struct testingunionsBuilder {
   typedef testingunions Table;
-  flatbuffers::FlatBufferBuilder &fbb_;
-  flatbuffers::uoffset_t start_;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
   void add_myfield_type(myunion myfield_type) {
     fbb_.AddElement<uint8_t>(testingunions::VT_MYFIELD_TYPE, static_cast<uint8_t>(myfield_type), 0);
   }
-  void add_myfield(flatbuffers::Offset<void> myfield) {
+  void add_myfield(::flatbuffers::Offset<void> myfield) {
     fbb_.AddOffset(testingunions::VT_MYFIELD, myfield);
   }
   void add_dumbfield(int32_t dumbfield) {
     fbb_.AddElement<int32_t>(testingunions::VT_DUMBFIELD, dumbfield, 0);
   }
-  explicit testingunionsBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+  explicit testingunionsBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
-  flatbuffers::Offset<testingunions> Finish() {
+  ::flatbuffers::Offset<testingunions> Finish() {
     const auto end = fbb_.EndTable(start_);
-    auto o = flatbuffers::Offset<testingunions>(end);
+    auto o = ::flatbuffers::Offset<testingunions>(end);
     return o;
   }
 };
 
-inline flatbuffers::Offset<testingunions> Createtestingunions(
-    flatbuffers::FlatBufferBuilder &_fbb,
+inline ::flatbuffers::Offset<testingunions> Createtestingunions(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
     myunion myfield_type = myunion_NONE,
-    flatbuffers::Offset<void> myfield = 0,
+    ::flatbuffers::Offset<void> myfield = 0,
     int32_t dumbfield = 0) {
   testingunionsBuilder builder_(_fbb);
   builder_.add_dumbfield(dumbfield);
@@ -668,29 +693,29 @@ inline flatbuffers::Offset<testingunions> Createtestingunions(
   return builder_.Finish();
 }
 
-flatbuffers::Offset<testingunions> Createtestingunions(flatbuffers::FlatBufferBuilder &_fbb, const testingunionsT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+::flatbuffers::Offset<testingunions> Createtestingunions(::flatbuffers::FlatBufferBuilder &_fbb, const testingunionsT *_o, const ::flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
-inline testing_vecsT *testing_vecs::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline testing_vecsT *testing_vecs::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<testing_vecsT>(new testing_vecsT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void testing_vecs::UnPackTo(testing_vecsT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void testing_vecs::UnPackTo(testing_vecsT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = myvecfortesting(); if (_e) { _o->myvecfortesting.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->myvecfortesting[_i] = _e->Get(_i); } } }
+  { auto _e = myvecfortesting(); if (_e) { _o->myvecfortesting.resize(_e->size()); for (::flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->myvecfortesting[_i] = _e->Get(_i); } } else { _o->myvecfortesting.resize(0); } }
   { auto _e = name(); if (_e) _o->name = _e->str(); }
 }
 
-inline flatbuffers::Offset<testing_vecs> testing_vecs::Pack(flatbuffers::FlatBufferBuilder &_fbb, const testing_vecsT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<testing_vecs> testing_vecs::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const testing_vecsT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createtesting_vecs(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<testing_vecs> Createtesting_vecs(flatbuffers::FlatBufferBuilder &_fbb, const testing_vecsT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<testing_vecs> Createtesting_vecs(::flatbuffers::FlatBufferBuilder &_fbb, const testing_vecsT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const testing_vecsT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const testing_vecsT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _myvecfortesting = _o->myvecfortesting.size() ? _fbb.CreateVector(_o->myvecfortesting) : 0;
   auto _name = _o->name.empty() ? 0 : _fbb.CreateString(_o->name);
   return Createtesting_vecs(
@@ -699,137 +724,153 @@ inline flatbuffers::Offset<testing_vecs> Createtesting_vecs(flatbuffers::FlatBuf
       _name);
 }
 
-inline oneT *one::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline oneT *one::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<oneT>(new oneT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void one::UnPackTo(oneT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void one::UnPackTo(oneT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = fieldone(); _o->fieldone = _e; }
 }
 
-inline flatbuffers::Offset<one> one::Pack(flatbuffers::FlatBufferBuilder &_fbb, const oneT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<one> one::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const oneT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createone(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<one> Createone(flatbuffers::FlatBufferBuilder &_fbb, const oneT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<one> Createone(::flatbuffers::FlatBufferBuilder &_fbb, const oneT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const oneT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const oneT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _fieldone = _o->fieldone;
   return Createone(
       _fbb,
       _fieldone);
 }
 
-inline twoT *two::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline twoT *two::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<twoT>(new twoT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void two::UnPackTo(twoT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void two::UnPackTo(twoT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = fieldtwo(); _o->fieldtwo = _e; }
 }
 
-inline flatbuffers::Offset<two> two::Pack(flatbuffers::FlatBufferBuilder &_fbb, const twoT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<two> two::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const twoT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createtwo(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<two> Createtwo(flatbuffers::FlatBufferBuilder &_fbb, const twoT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<two> Createtwo(::flatbuffers::FlatBufferBuilder &_fbb, const twoT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const twoT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const twoT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _fieldtwo = _o->fieldtwo;
   return Createtwo(
       _fbb,
       _fieldtwo);
 }
 
-inline threeT *three::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline threeT *three::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<threeT>(new threeT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void three::UnPackTo(threeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void three::UnPackTo(threeT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = fieldthree(); _o->fieldthree = _e; }
 }
 
-inline flatbuffers::Offset<three> three::Pack(flatbuffers::FlatBufferBuilder &_fbb, const threeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<three> three::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const threeT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createthree(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<three> Createthree(flatbuffers::FlatBufferBuilder &_fbb, const threeT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<three> Createthree(::flatbuffers::FlatBufferBuilder &_fbb, const threeT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const threeT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const threeT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _fieldthree = _o->fieldthree;
   return Createthree(
       _fbb,
       _fieldthree);
 }
 
-inline very_nested_thingT *very_nested_thing::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline very_nested_thingT *very_nested_thing::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<very_nested_thingT>(new very_nested_thingT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void very_nested_thing::UnPackTo(very_nested_thingT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void very_nested_thing::UnPackTo(very_nested_thingT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = wow(); _o->wow = _e; }
 }
 
-inline flatbuffers::Offset<very_nested_thing> very_nested_thing::Pack(flatbuffers::FlatBufferBuilder &_fbb, const very_nested_thingT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<very_nested_thing> very_nested_thing::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const very_nested_thingT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createvery_nested_thing(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<very_nested_thing> Createvery_nested_thing(flatbuffers::FlatBufferBuilder &_fbb, const very_nested_thingT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<very_nested_thing> Createvery_nested_thing(::flatbuffers::FlatBufferBuilder &_fbb, const very_nested_thingT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const very_nested_thingT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const very_nested_thingT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _wow = _o->wow;
   return Createvery_nested_thing(
       _fbb,
       _wow);
 }
 
-inline composed_typeT *composed_type::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline composed_typeT::composed_typeT(const composed_typeT &o)
+      : name(o.name),
+        comments(o.comments),
+        index(o.index) {
+  nnnnnn.reserve(o.nnnnnn.size());
+  for (const auto &nnnnnn_ : o.nnnnnn) { nnnnnn.emplace_back((nnnnnn_) ? new very_nested_thingT(*nnnnnn_) : nullptr); }
+}
+
+inline composed_typeT &composed_typeT::operator=(composed_typeT o) FLATBUFFERS_NOEXCEPT {
+  std::swap(name, o.name);
+  std::swap(comments, o.comments);
+  std::swap(index, o.index);
+  std::swap(nnnnnn, o.nnnnnn);
+  return *this;
+}
+
+inline composed_typeT *composed_type::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<composed_typeT>(new composed_typeT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void composed_type::UnPackTo(composed_typeT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void composed_type::UnPackTo(composed_typeT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = name(); if (_e) _o->name = _e->str(); }
-  { auto _e = comments(); if (_e) { _o->comments.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->comments[_i] = _e->Get(_i)->str(); } } }
+  { auto _e = comments(); if (_e) { _o->comments.resize(_e->size()); for (::flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->comments[_i] = _e->Get(_i)->str(); } } else { _o->comments.resize(0); } }
   { auto _e = index(); _o->index = _e; }
-  { auto _e = nnnnnn(); if (_e) { _o->nnnnnn.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->nnnnnn[_i] = std::shared_ptr<very_nested_thingT>(_e->Get(_i)->UnPack(_resolver)); } } }
+  { auto _e = nnnnnn(); if (_e) { _o->nnnnnn.resize(_e->size()); for (::flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { if(_o->nnnnnn[_i]) { _e->Get(_i)->UnPackTo(_o->nnnnnn[_i].get(), _resolver); } else { _o->nnnnnn[_i] = std::shared_ptr<very_nested_thingT>(_e->Get(_i)->UnPack(_resolver)); }; } } else { _o->nnnnnn.resize(0); } }
 }
 
-inline flatbuffers::Offset<composed_type> composed_type::Pack(flatbuffers::FlatBufferBuilder &_fbb, const composed_typeT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<composed_type> composed_type::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const composed_typeT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createcomposed_type(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<composed_type> Createcomposed_type(flatbuffers::FlatBufferBuilder &_fbb, const composed_typeT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<composed_type> Createcomposed_type(::flatbuffers::FlatBufferBuilder &_fbb, const composed_typeT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const composed_typeT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const composed_typeT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _name = _o->name.empty() ? 0 : _fbb.CreateString(_o->name);
   auto _comments = _o->comments.size() ? _fbb.CreateVectorOfStrings(_o->comments) : 0;
   auto _index = _o->index;
-  auto _nnnnnn = _o->nnnnnn.size() ? _fbb.CreateVector<flatbuffers::Offset<very_nested_thing>> (_o->nnnnnn.size(), [](size_t i, _VectorArgs *__va) { return Createvery_nested_thing(*__va->__fbb, __va->__o->nnnnnn[i].get(), __va->__rehasher); }, &_va ) : 0;
+  auto _nnnnnn = _o->nnnnnn.size() ? _fbb.CreateVector<::flatbuffers::Offset<very_nested_thing>> (_o->nnnnnn.size(), [](size_t i, _VectorArgs *__va) { return Createvery_nested_thing(*__va->__fbb, __va->__o->nnnnnn[i].get(), __va->__rehasher); }, &_va ) : 0;
   return Createcomposed_type(
       _fbb,
       _name,
@@ -838,13 +879,13 @@ inline flatbuffers::Offset<composed_type> Createcomposed_type(flatbuffers::FlatB
       _nnnnnn);
 }
 
-inline testingunionsT *testingunions::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+inline testingunionsT *testingunions::UnPack(const ::flatbuffers::resolver_function_t *_resolver) const {
   auto _o = std::unique_ptr<testingunionsT>(new testingunionsT());
   UnPackTo(_o.get(), _resolver);
   return _o.release();
 }
 
-inline void testingunions::UnPackTo(testingunionsT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+inline void testingunions::UnPackTo(testingunionsT *_o, const ::flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
   { auto _e = myfield_type(); _o->myfield.type = _e; }
@@ -852,14 +893,14 @@ inline void testingunions::UnPackTo(testingunionsT *_o, const flatbuffers::resol
   { auto _e = dumbfield(); _o->dumbfield = _e; }
 }
 
-inline flatbuffers::Offset<testingunions> testingunions::Pack(flatbuffers::FlatBufferBuilder &_fbb, const testingunionsT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<testingunions> testingunions::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const testingunionsT* _o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   return Createtestingunions(_fbb, _o, _rehasher);
 }
 
-inline flatbuffers::Offset<testingunions> Createtestingunions(flatbuffers::FlatBufferBuilder &_fbb, const testingunionsT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+inline ::flatbuffers::Offset<testingunions> Createtestingunions(::flatbuffers::FlatBufferBuilder &_fbb, const testingunionsT *_o, const ::flatbuffers::rehasher_function_t *_rehasher) {
   (void)_rehasher;
   (void)_o;
-  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const testingunionsT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  struct _VectorArgs { ::flatbuffers::FlatBufferBuilder *__fbb; const testingunionsT* __o; const ::flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _myfield_type = _o->myfield.type;
   auto _myfield = _o->myfield.Pack(_fbb);
   auto _dumbfield = _o->dumbfield;
@@ -870,7 +911,7 @@ inline flatbuffers::Offset<testingunions> Createtestingunions(flatbuffers::FlatB
       _dumbfield);
 }
 
-inline bool Verifymyunion(flatbuffers::Verifier &verifier, const void *obj, myunion type) {
+inline bool Verifymyunion(::flatbuffers::Verifier &verifier, const void *obj, myunion type) {
   switch (type) {
     case myunion_NONE: {
       return true;
@@ -891,10 +932,10 @@ inline bool Verifymyunion(flatbuffers::Verifier &verifier, const void *obj, myun
   }
 }
 
-inline bool VerifymyunionVector(flatbuffers::Verifier &verifier, const flatbuffers::Vector<flatbuffers::Offset<void>> *values, const flatbuffers::Vector<uint8_t> *types) {
+inline bool VerifymyunionVector(::flatbuffers::Verifier &verifier, const ::flatbuffers::Vector<::flatbuffers::Offset<void>> *values, const ::flatbuffers::Vector<uint8_t> *types) {
   if (!values || !types) return !values && !types;
   if (values->size() != types->size()) return false;
-  for (flatbuffers::uoffset_t i = 0; i < values->size(); ++i) {
+  for (::flatbuffers::uoffset_t i = 0; i < values->size(); ++i) {
     if (!Verifymyunion(
         verifier,  values->Get(i), types->GetEnum<myunion>(i))) {
       return false;
@@ -903,7 +944,8 @@ inline bool VerifymyunionVector(flatbuffers::Verifier &verifier, const flatbuffe
   return true;
 }
 
-inline void *myunionUnion::UnPack(const void *obj, myunion type, const flatbuffers::resolver_function_t *resolver) {
+inline void *myunionUnion::UnPack(const void *obj, myunion type, const ::flatbuffers::resolver_function_t *resolver) {
+  (void)resolver;
   switch (type) {
     case myunion_one: {
       auto ptr = reinterpret_cast<const one *>(obj);
@@ -921,7 +963,8 @@ inline void *myunionUnion::UnPack(const void *obj, myunion type, const flatbuffe
   }
 }
 
-inline flatbuffers::Offset<void> myunionUnion::Pack(flatbuffers::FlatBufferBuilder &_fbb, const flatbuffers::rehasher_function_t *_rehasher) const {
+inline ::flatbuffers::Offset<void> myunionUnion::Pack(::flatbuffers::FlatBufferBuilder &_fbb, const ::flatbuffers::rehasher_function_t *_rehasher) const {
+  (void)_rehasher;
   switch (type) {
     case myunion_one: {
       auto ptr = reinterpret_cast<const oneT *>(value);
@@ -981,14 +1024,14 @@ inline void myunionUnion::Reset() {
   type = myunion_NONE;
 }
 
-inline const flatbuffers::TypeTable *myunionTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_SEQUENCE, 0, -1 },
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 1 },
-    { flatbuffers::ET_SEQUENCE, 0, 2 }
+inline const ::flatbuffers::TypeTable *myunionTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_SEQUENCE, 0, -1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 1 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 2 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     oneTypeTable,
     twoTypeTable,
     threeTypeTable
@@ -999,87 +1042,87 @@ inline const flatbuffers::TypeTable *myunionTypeTable() {
     "two",
     "three"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_UNION, 4, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_UNION, 4, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *testing_vecsTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_UINT, 1, -1 },
-    { flatbuffers::ET_STRING, 0, -1 }
+inline const ::flatbuffers::TypeTable *testing_vecsTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_UINT, 1, -1 },
+    { ::flatbuffers::ET_STRING, 0, -1 }
   };
   static const char * const names[] = {
     "myvecfortesting",
     "name"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 2, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 2, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *oneTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_FLOAT, 0, -1 }
+inline const ::flatbuffers::TypeTable *oneTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_FLOAT, 0, -1 }
   };
   static const char * const names[] = {
     "fieldone"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *twoTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_FLOAT, 0, -1 }
+inline const ::flatbuffers::TypeTable *twoTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_FLOAT, 0, -1 }
   };
   static const char * const names[] = {
     "fieldtwo"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *threeTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_FLOAT, 0, -1 }
+inline const ::flatbuffers::TypeTable *threeTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_FLOAT, 0, -1 }
   };
   static const char * const names[] = {
     "fieldthree"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *very_nested_thingTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_ULONG, 0, -1 }
+inline const ::flatbuffers::TypeTable *very_nested_thingTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_ULONG, 0, -1 }
   };
   static const char * const names[] = {
     "wow"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *composed_typeTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_STRING, 0, -1 },
-    { flatbuffers::ET_STRING, 1, -1 },
-    { flatbuffers::ET_INT, 0, -1 },
-    { flatbuffers::ET_SEQUENCE, 1, 0 }
+inline const ::flatbuffers::TypeTable *composed_typeTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_STRING, 0, -1 },
+    { ::flatbuffers::ET_STRING, 1, -1 },
+    { ::flatbuffers::ET_INT, 0, -1 },
+    { ::flatbuffers::ET_SEQUENCE, 1, 0 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     very_nested_thingTypeTable
   };
   static const char * const names[] = {
@@ -1088,19 +1131,19 @@ inline const flatbuffers::TypeTable *composed_typeTypeTable() {
     "index",
     "nnnnnn"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 4, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 4, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
 
-inline const flatbuffers::TypeTable *testingunionsTypeTable() {
-  static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_UTYPE, 0, 0 },
-    { flatbuffers::ET_SEQUENCE, 0, 0 },
-    { flatbuffers::ET_INT, 0, -1 }
+inline const ::flatbuffers::TypeTable *testingunionsTypeTable() {
+  static const ::flatbuffers::TypeCode type_codes[] = {
+    { ::flatbuffers::ET_UTYPE, 0, 0 },
+    { ::flatbuffers::ET_SEQUENCE, 0, 0 },
+    { ::flatbuffers::ET_INT, 0, -1 }
   };
-  static const flatbuffers::TypeFunction type_refs[] = {
+  static const ::flatbuffers::TypeFunction type_refs[] = {
     myunionTypeTable
   };
   static const char * const names[] = {
@@ -1108,8 +1151,8 @@ inline const flatbuffers::TypeTable *testingunionsTypeTable() {
     "myfield",
     "dumbfield"
   };
-  static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
+  static const ::flatbuffers::TypeTable tt = {
+    ::flatbuffers::ST_TABLE, 3, type_codes, type_refs, nullptr, nullptr, names
   };
   return &tt;
 }
