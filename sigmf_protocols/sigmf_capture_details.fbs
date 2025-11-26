@@ -5,7 +5,7 @@ table Global { /*`capture_details` does not extend `global`*/ }
 
 table Capture {
     acq_scale_factor:double=null;
-    attentuation:double=null;
+    attenuation:double=null;
     acquisition_bandwidth:double=null;
     start_capture:string;
     stop_capture:string;

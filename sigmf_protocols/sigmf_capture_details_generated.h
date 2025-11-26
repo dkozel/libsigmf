@@ -78,7 +78,7 @@ flatbuffers::Offset<Global> CreateGlobal(flatbuffers::FlatBufferBuilder &_fbb, c
 struct CaptureT : public flatbuffers::NativeTable {
   typedef Capture TableType;
   flatbuffers::Optional<double> acq_scale_factor = flatbuffers::nullopt;
-  flatbuffers::Optional<double> attentuation = flatbuffers::nullopt;
+  flatbuffers::Optional<double> attenuation = flatbuffers::nullopt;
   flatbuffers::Optional<double> acquisition_bandwidth = flatbuffers::nullopt;
   std::string start_capture{};
   std::string stop_capture{};
@@ -94,7 +94,7 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   }
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_ACQ_SCALE_FACTOR = 4,
-    VT_ATTENTUATION = 6,
+    VT_ATTENUATION = 6,
     VT_ACQUISITION_BANDWIDTH = 8,
     VT_START_CAPTURE = 10,
     VT_STOP_CAPTURE = 12,
@@ -104,8 +104,8 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   flatbuffers::Optional<double> acq_scale_factor() const {
     return GetOptional<double, double>(VT_ACQ_SCALE_FACTOR);
   }
-  flatbuffers::Optional<double> attentuation() const {
-    return GetOptional<double, double>(VT_ATTENTUATION);
+  flatbuffers::Optional<double> attenuation() const {
+    return GetOptional<double, double>(VT_ATTENUATION);
   }
   flatbuffers::Optional<double> acquisition_bandwidth() const {
     return GetOptional<double, double>(VT_ACQUISITION_BANDWIDTH);
@@ -125,7 +125,7 @@ struct Capture FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<double>(verifier, VT_ACQ_SCALE_FACTOR) &&
-           VerifyField<double>(verifier, VT_ATTENTUATION) &&
+           VerifyField<double>(verifier, VT_ATTENUATION) &&
            VerifyField<double>(verifier, VT_ACQUISITION_BANDWIDTH) &&
            VerifyOffset(verifier, VT_START_CAPTURE) &&
            verifier.VerifyString(start_capture()) &&
@@ -148,8 +148,8 @@ struct CaptureBuilder {
   void add_acq_scale_factor(double acq_scale_factor) {
     fbb_.AddElement<double>(Capture::VT_ACQ_SCALE_FACTOR, acq_scale_factor);
   }
-  void add_attentuation(double attentuation) {
-    fbb_.AddElement<double>(Capture::VT_ATTENTUATION, attentuation);
+  void add_attenuation(double attenuation) {
+    fbb_.AddElement<double>(Capture::VT_ATTENUATION, attenuation);
   }
   void add_acquisition_bandwidth(double acquisition_bandwidth) {
     fbb_.AddElement<double>(Capture::VT_ACQUISITION_BANDWIDTH, acquisition_bandwidth);
@@ -180,7 +180,7 @@ struct CaptureBuilder {
 inline flatbuffers::Offset<Capture> CreateCapture(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Optional<double> acq_scale_factor = flatbuffers::nullopt,
-    flatbuffers::Optional<double> attentuation = flatbuffers::nullopt,
+    flatbuffers::Optional<double> attenuation = flatbuffers::nullopt,
     flatbuffers::Optional<double> acquisition_bandwidth = flatbuffers::nullopt,
     flatbuffers::Offset<flatbuffers::String> start_capture = 0,
     flatbuffers::Offset<flatbuffers::String> stop_capture = 0,
@@ -189,7 +189,7 @@ inline flatbuffers::Offset<Capture> CreateCapture(
   CaptureBuilder builder_(_fbb);
   if(gain) { builder_.add_gain(*gain); }
   if(acquisition_bandwidth) { builder_.add_acquisition_bandwidth(*acquisition_bandwidth); }
-  if(attentuation) { builder_.add_attentuation(*attentuation); }
+  if(attenuation) { builder_.add_attenuation(*attenuation); }
   if(acq_scale_factor) { builder_.add_acq_scale_factor(*acq_scale_factor); }
   builder_.add_source_file(source_file);
   builder_.add_stop_capture(stop_capture);
@@ -200,7 +200,7 @@ inline flatbuffers::Offset<Capture> CreateCapture(
 inline flatbuffers::Offset<Capture> CreateCaptureDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Optional<double> acq_scale_factor = flatbuffers::nullopt,
-    flatbuffers::Optional<double> attentuation = flatbuffers::nullopt,
+    flatbuffers::Optional<double> attenuation = flatbuffers::nullopt,
     flatbuffers::Optional<double> acquisition_bandwidth = flatbuffers::nullopt,
     const char *start_capture = nullptr,
     const char *stop_capture = nullptr,
@@ -212,7 +212,7 @@ inline flatbuffers::Offset<Capture> CreateCaptureDirect(
   return sigmf::capture_details::CreateCapture(
       _fbb,
       acq_scale_factor,
-      attentuation,
+      attenuation,
       acquisition_bandwidth,
       start_capture__,
       stop_capture__,
@@ -401,7 +401,7 @@ inline void Capture::UnPackTo(CaptureT *_o, const flatbuffers::resolver_function
   (void)_o;
   (void)_resolver;
   { auto _e = acq_scale_factor(); _o->acq_scale_factor = _e; }
-  { auto _e = attentuation(); _o->attentuation = _e; }
+  { auto _e = attenuation(); _o->attenuation = _e; }
   { auto _e = acquisition_bandwidth(); _o->acquisition_bandwidth = _e; }
   { auto _e = start_capture(); if (_e) _o->start_capture = _e->str(); }
   { auto _e = stop_capture(); if (_e) _o->stop_capture = _e->str(); }
@@ -418,7 +418,7 @@ inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const CaptureT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
   auto _acq_scale_factor = _o->acq_scale_factor;
-  auto _attentuation = _o->attentuation;
+  auto _attenuation = _o->attenuation;
   auto _acquisition_bandwidth = _o->acquisition_bandwidth;
   auto _start_capture = _o->start_capture.empty() ? 0 : _fbb.CreateString(_o->start_capture);
   auto _stop_capture = _o->stop_capture.empty() ? 0 : _fbb.CreateString(_o->stop_capture);
@@ -427,7 +427,7 @@ inline flatbuffers::Offset<Capture> CreateCapture(flatbuffers::FlatBufferBuilder
   return sigmf::capture_details::CreateCapture(
       _fbb,
       _acq_scale_factor,
-      _attentuation,
+      _attenuation,
       _acquisition_bandwidth,
       _start_capture,
       _stop_capture,
@@ -515,7 +515,7 @@ inline const flatbuffers::TypeTable *CaptureTypeTable() {
   };
   static const char * const names[] = {
     "acq_scale_factor",
-    "attentuation",
+    "attenuation",
     "acquisition_bandwidth",
     "start_capture",
     "stop_capture",
