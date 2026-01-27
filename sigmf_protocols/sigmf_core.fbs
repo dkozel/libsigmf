@@ -45,6 +45,7 @@ table Capture {
     header_bytes:ulong=null;
     frequency:double=null;
     datetime:string;
+    geolocation:geojson_point;
 }
 
 table Annotation {
@@ -56,8 +57,8 @@ table Annotation {
     comment:string;
     freq_lower_edge:double=null;
     freq_upper_edge:double=null;
-    latitude:double=null;  // deprecated, use the `global` `geolocation` field
-    longitude:double=null; // deprecated, use the `global` `geolocation` field
+    latitude:double=null;  // deprecated, use the `capture` `geolocation` field
+    longitude:double=null; // deprecated, use the `capture` `geolocation` field
 }
 
 table Collection {

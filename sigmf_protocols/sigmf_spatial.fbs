@@ -1,6 +1,11 @@
 
 namespace sigmf.spatial;
 
+table geojson_point {
+    type:string;
+    coordinates:[double];
+}
+
 table sigmf_bearing {
     azimuth:double=null;
     elevation:double=null;
@@ -39,6 +44,7 @@ table Capture {
 table Annotation {
     signal_azimuth:double=null;
     signal_bearing:sigmf_bearing;
+    emitter_location:geojson_point;
 }
 
 table Collection {
